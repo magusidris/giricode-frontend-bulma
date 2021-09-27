@@ -21,3 +21,11 @@
     </section>
   </div>
 </template>
+
+<script>
+export default {
+    async fetch({store, params}) {
+      await store.dispatch('web/post/getDetailPost', params.slug)
+    }
+}
+</script>
