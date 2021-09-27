@@ -1,0 +1,21 @@
+@import "./variables";
+@import "./bulma";
+@import "./carousel";
+@import "./custom";
+@import "./spacing";
+@import "./instructor_header";
+@import "./editor/index";
+@import './pagination';
+
+#app {
+  min-height: 60vh;
+}
+
+body {
+  font-family: 'Quicksand', sans-serif;
+  background: #CCDCEC;
+}
+
+.blog-editor-container {
+  padding-top: 60px;
+}
