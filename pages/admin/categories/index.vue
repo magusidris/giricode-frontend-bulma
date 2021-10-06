@@ -151,9 +151,10 @@ export default {
     },
     destroyCategory(id) {
       this.$buefy.dialog.confirm({
-          title: 'Deleting account',
-          message: 'Are you sure you want to <b>delete</b> your account? This action cannot be undone.',
-          confirmText: 'Delete Account',
+          title: 'Apakah Anda Yakin ?',
+          message: 'Ingin <b>Menghapus</b> Data ini ?',
+          confirmText: 'Ya, Hapus!',
+          cancelText: 'Tidak',
           type: 'is-danger',
           hasIcon: true,
           onConfirm: () => {
@@ -165,7 +166,7 @@ export default {
                 // refresh data
                 this.$nuxt.refresh()
 
-                this.$buefy.toast.open('Account deleted!')
+                this.$buefy.toast.open('Data Berhasil Dihapus!')
               })
           }
       })
