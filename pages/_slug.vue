@@ -1,10 +1,18 @@
 <template>
   <div>
     <section class="section">
-      <div class="container">
+      <div class="container is-max-widescreen">
         <div class="columns">
           <div class="column is-three-quarters">
-            <web-show-post-card />
+            <web-show-post-card
+              :image="post.image"
+              :title="post.title"
+              :content="post.content"
+              :description="post.description"
+              :created_at="post.created_at"
+              :category="post.category.name"
+              :tags="post.tags"
+              :user="post.user.name" />
           </div>
           <div class="column">
             <div class="columns is-multiline">
@@ -24,8 +32,13 @@
 
 <script>
 export default {
-    async fetch({store, params}) {
-      await store.dispatch('web/post/getDetailPost', params.slug)
+  computed: {
+    post() {
+      return this.$store.state.web.post.post
     }
+  },
+  async fetch({store, params}) {
+    await store.dispatch('web/post/getDetailPost', params.slug)
+  }
 }
 </script>

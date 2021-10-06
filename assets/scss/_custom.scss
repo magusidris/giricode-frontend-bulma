@@ -3,6 +3,21 @@
   text-decoration: none;
 }
 
+.categoryContainer a:not(.button):not(.dropdown-item) {
+  text-decoration: none;
+}
+
+.ct-height {
+  height: 60vh;
+}
+
+.media-content {
+  flex-basis: auto;
+  flex-grow: 1;
+  flex-shrink: 1;
+  text-align: inherit;
+}
+
 a.tag:hover {
   text-decoration: none;
 }

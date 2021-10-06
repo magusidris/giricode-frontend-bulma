@@ -1,6 +1,6 @@
 <template>
   <div class="hero-footer footer footer-custom">
-    <div class="container">
+    <div class="container py-7">
       <div class="has-text-centered">
         <span class="icon">
           <i class="fab fa-github"></i>

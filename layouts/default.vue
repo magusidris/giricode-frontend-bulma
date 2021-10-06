@@ -2,7 +2,7 @@
   <div>
     <web-hero />
     <web-navbar />
-    <Nuxt id="app" />
+    <Nuxt id="web" />
     <web-footer />
   </div>
 </template>
@@ -25,5 +25,15 @@ export default {
       ]
     }
   },
+  mounted() {
+    document.documentElement.classList.remove('has-aside-left')
+    document.documentElement.classList.remove('has-aside-mobile-transition')
+    document.documentElement.classList.remove('has-navbar-fixed-top')
+    document.documentElement.classList.remove('has-aside-expanded')
+  }
 }
 </script>
+
+<style lang="scss" scoped>
+// @import '~/assets/scss/web/main'
+</style>

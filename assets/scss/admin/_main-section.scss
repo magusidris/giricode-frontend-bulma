@@ -1,0 +1,9 @@
+section.section.is-main-section {
+  padding-top: $default-padding;
+  min-height: 80vh;
+}
+
+a.navbar-item:focus, a.navbar-item:focus-within, a.navbar-item:hover, a.navbar-item.is-active, .navbar-link:focus, .navbar-link:focus-within, .navbar-link:hover, .navbar-link.is-active {
+  background-color: #fafafa;
+  color: #7BAE91;
+}

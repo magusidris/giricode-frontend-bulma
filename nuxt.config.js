@@ -1,5 +1,5 @@
 export default {
-
+  mode: 'universal',
   server: {
     port: 2021
   },
@@ -32,10 +32,12 @@ export default {
         type: 'image/x-icon',
         href: '/favicon.ico'
       },
+      { rel: 'dns-prefetch', href: 'https://fonts.gstatic.com' },
       {
         rel: 'stylesheet',
-        href: 'https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap'
-      }
+        type: 'text/css',
+        href: 'https://fonts.googleapis.com/css?family=Nunito',
+      },
     ]
   },
 
@@ -55,7 +57,8 @@ export default {
   plugins: [
     { src: '~/plugins/axios' },
     { src: '~/plugins/components'},
-    { src: '~/plugins/integrations'}
+    { src: '~/plugins/integrations'},
+    { src: '~/plugins/after-each', ssr: false }
   ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
@@ -76,11 +79,27 @@ export default {
     '@nuxtjs/style-resources',
     // https://image.nuxtjs.org/
     '@nuxt/image',
+    //https://github.com/avil13/vue-sweetalert2
+    'vue-sweetalert2/nuxt',
   ],
 
   image: {
-    cloudinary: {
-      baseURL: 'https://res.cloudinary.com/giricode/image/upload/'
+    domains: [
+      // 'backend.giricode.com'
+      'http://giricode-backend.test'
+    ],
+    alias: {
+      // storage: 'https://backend.giricode.com/storage'
+      storage: 'http://giricode-backend.test/storage'
+    },
+    presets: {
+      web: {
+        modifiers: {
+          format: 'webp',
+          fit: 'fill',
+          quality: '80'
+        }
+      }
     }
   },
 
@@ -91,7 +110,8 @@ export default {
 
   proxy: {
     '/api': {
-      target: 'https://backend.giricode.com/',
+      // target: 'https://backend.giricode.com/',
+      target: 'http://giricode-backend.test/',
       pathRewrite: { '^/api': '/' }
     }
   },
@@ -100,12 +120,12 @@ export default {
     strategies: {
       'jwt': {
         provider: 'laravel/jwt',
+        scheme: 'refresh',
         url: process.env.BASE_URL || 'http://localhost:2021',
         endpoints: {
           login: {
             url: '/api/v1/auth/login',
-            method: 'post',
-            propertyName: 'token'
+            method: 'post'
           },
           refresh: {
             url: '/api/v1/auth/refresh',
@@ -126,6 +146,7 @@ export default {
           maxAge: 60 * 60
         },
         refreshToken: {
+          property: 'token',
           maxAge: 20160 * 60
         },
       },
@@ -134,5 +155,17 @@ export default {
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {
+    /*
+     ** You can extend webpack config here
+     */
+     extend(config, ctx) {
+      if (!config.externals) {
+        config.externals = {}
+      }
+
+      // Remove moment.js from chart.js
+      // https://www.chartjs.org/docs/latest/getting-started/integration.html#bundlers-webpack-rollup-etc
+      config.externals.moment = 'moment'
+    }
   }
 }

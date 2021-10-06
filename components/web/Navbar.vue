@@ -1,7 +1,7 @@
 <template>
   <nav class="navbar has-background-info-dark is-link" role="navigation" aria-label="main navigation">
-    <div class="container">
-      <div id="navbarBasicExample" class="navbar-menu mx-6">
+    <div class="container is-max-widescreen">
+      <div id="navbarBasicExample" class="navbar-menu">
         <div class="navbar-start">
 
           <nav-link :to="menu.url" class="navbar-item" v-for="menu in menus" :key="menu.id">
@@ -11,7 +11,7 @@
         </div>
 
         <div class="navbar-end">
-          <template v-if="!isAuth">
+          <template v-if="!isAuthenticated">
             <div class="navbar-item">
               <div class="buttons">
                 <nuxt-link to="/register" class="button is-primary">
@@ -26,8 +26,13 @@
           <template v-else>
             <div class="navbar-item">
               <div class="buttons">
-                {{ user.username }}
-                <a @click="logout" class="ml-3 button is-light">
+                <nuxt-link v-if="isProgrammer || isAdmin || isOperator" :to="{name: 'admin'}" class="button is-light">
+                  Admin
+                </nuxt-link>
+                <a class="button is-link">
+                  {{ authUser.username }}
+                </a>
+                <a @click="logout" class="button is-danger">
                   Logout
                 </a>
               </div>
@@ -48,12 +53,9 @@ export default {
     }
   },
   computed: {
-    ...mapGetters({
-      'isAuth': 'isAuthenticated',
-      'user': 'authUser',
-      'isProgrammer': 'isProgrammer',
-      'isAdmin' : 'isAdmin'
-  }),
+    ...mapGetters([
+      'isAuthenticated', 'authUser', 'isProgrammer', 'isAdmin', 'isOperator'
+    ]),
     // menus
     menus() {
       return this.$store.state.web.menu.menus

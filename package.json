@@ -9,17 +9,31 @@
     "generate": "nuxt generate"
   },
   "dependencies": {
+    "@blowstack/ckeditor-nuxt": "^0.6.0",
     "@nuxtjs/auth-next": "5.0.0-1624817847.21691f1",
     "@nuxtjs/axios": "^5.13.6",
     "@nuxtjs/style-resources": "^1.2.1",
+    "babel-loader": "^8.2.2",
+    "chart.js": "^2.9.4",
     "core-js": "^3.15.1",
+    "dayjs": "^1.10.7",
+    "lodash": "^4.17.21",
+    "numeral": "^2.0.6",
     "nuxt": "^2.15.7",
-    "nuxt-buefy": "^0.4.8"
+    "nuxt-buefy": "^0.3.31",
+    "vue-chartjs": "^3.5.1",
+    "vue-sweetalert2": "^4.3.1"
   },
   "devDependencies": {
     "@nuxt/image": "^0.6.0",
+    "@nuxt/types": "^2.14.3",
+    "cross-env": "^7.0.2",
+    "fibers": "^5.0.0",
+    "gh-pages": "^3.1.0",
     "node-sass": "^4.14.1",
     "nodemon": "^1.19.4",
+    "prettier": "^2.0.5",
+    "sass": "^1.42.1",
     "sass-loader": "^7.3.1"
   }
 }

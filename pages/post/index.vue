@@ -1,9 +1,11 @@
 <template>
   <section class="section">
-    <div class="container">
+    <div class="container is-max-widescreen">
       <div class="columns is-multiline">
         <div class="column is-4" v-for="post in posts.data" :key="post.id">
-          <web-post-card :post="post" />
+          <nuxt-link :to="{name: 'slug', params: {slug: post.slug}}">
+            <web-post-card :post="post" />
+          </nuxt-link>
         </div>
       </div>
       <div class="columns mt-4">

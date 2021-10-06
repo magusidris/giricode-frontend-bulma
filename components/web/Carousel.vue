@@ -7,7 +7,13 @@
           :progress="progress"
           :progress-type="progressType">
           <b-carousel-item v-for="slider in sliders" :key="slider.id">
-            <b-image class="image" :src="slider.image"></b-image>
+            <!-- <b-image class="image" :src="slider.image"></b-image> -->
+            <nuxt-img
+              :src="`/storage/sliders/`+slider.image"
+              alt="post.title"
+              preset="web"
+              width="1500"
+              sizes="sm:355px md:320px lg:1000px" />
           </b-carousel-item>
       </b-carousel>
     </section>

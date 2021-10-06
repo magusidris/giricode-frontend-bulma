@@ -1,7 +1,7 @@
 <template>
-  <section class="hero is-fullheight">
-    <div class="hero-body">
-      <div class="container">
+  <section class="section">
+    <div class="container ct-height">
+      <div class="columns h-100 is-vcentered">
         <div class="column is-4 is-offset-4">
           <div class="card">
             <header class="card-header has-text-centered">
@@ -17,27 +17,27 @@
                   </b-message>
                 </div>
                 <form @submit.prevent="login">
-                  <div class="field">
-                    <p class="control has-icons-left">
-                      <input class="input" v-model="form.username" type="text" placeholder="Email atau Username">
-                      <span class="icon is-small is-left">
-                        <i class="fas fa-envelope"></i>
-                      </span>
-                    </p>
-                  </div>
+                  <b-field>
+                    <b-input
+                      v-model="form.username"
+                      type="text"
+                      icon="email"
+                      placeholder="Email atau Username">
+                    </b-input>
+                  </b-field>
                   <div v-if="validation.username" class="mt-2 mb-3">
                     <b-message type="is-danger">
                       {{ validation.username[0] }}
                     </b-message>
                   </div>
-                  <div class="field">
-                    <p class="control has-icons-left">
-                      <input class="input" v-model="form.password" type="password" placeholder="Password">
-                      <span class="icon is-small is-left">
-                        <i class="fas fa-lock"></i>
-                      </span>
-                    </p>
-                  </div>
+                  <b-field>
+                    <b-input v-model="form.password"
+                      type="password"
+                      placeholder="Password"
+                      icon="lock"
+                      password-reveal>
+                    </b-input>
+                  </b-field>
                   <div v-if="validation.password" class="mt-2 mb-3">
                     <b-message type="is-danger">
                       {{ validation.password[0] }}
@@ -59,6 +59,7 @@
 
 <script>
 export default {
+  middleware: 'guest',
   data() {
     return {
       form: {
@@ -99,5 +100,5 @@ export default {
 <style lang="scss" scoped>
   .card-header:first-child, .card-content:first-child, .card-footer:first-child {
     border-top: 3px solid $info;
-}
+  }
 </style>

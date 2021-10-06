@@ -27,12 +27,12 @@ export const actions = {
 
       //search
       // let search = payload ? payload : ''
-      const url = this.$applyParamsToUrl('/api/v1/web/posts', filter)
+      let url = this.$applyParamsToUrl(`/api/v1/web/posts`, filter)
 
       return this.$axios.$get(url)
       .then(response => {
-        const blogs = response.data
-        commit('setPostsData', {resource: 'all', blogs})
+        const posts = response.data
+        commit('setPostsData', {resource: 'all', posts})
         return state.posts.all
       })
       .catch(error => Promise.reject(error))
@@ -60,26 +60,19 @@ export const actions = {
   },
 
   //get detail post
-  getDetailPost({ commit }, payload) {
+  getDetailPost({ commit, state }, slug) {
 
-    //set promise
-    return new Promise((resolve, reject) => {
+    //get to Rest API "/api/web/posts/:slug" with method "GET"
+    return this.$axios.$get(`/api/v1/web/posts/${slug}`)
 
-        //get to Rest API "/api/web/posts/:slug" with method "GET"
-        this.$axios.get(`/api/v1/web/posts/${payload}`)
-
-        //success
-        .then(response => {
-
-            //commit to mutation "SET_POST_DATA"
-            commit('setPostData', response.data.data)
-
-            //resolve promise
-            resolve()
-
-        })
-
+    //success
+    .then(response => {
+        const post = response.data
+        //commit to mutation "SET_POST_DATA"
+        commit('setPostData', post)
+        return state.post
     })
+    .catch(error => Promise.reject(error))
 
   },
 }
@@ -87,8 +80,11 @@ export const actions = {
 
 //mutations
 export const mutations = {
-  setPostsData(state, {resource, blogs}) {
-    state.posts[resource] = blogs
+  setPostsData(state, {resource, posts}) {
+    state.posts[resource] = posts
+  },
+  setPostData(state, post) {
+    state.post = post
   },
   setPage(state, currentPage) {
     Vue.set(state.pagination, 'page', currentPage)

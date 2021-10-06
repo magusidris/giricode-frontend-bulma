@@ -1,15 +1,20 @@
 <template>
   <div class="tile is-vertical">
-    <article class="tile is-child notification is-grey" v-for="category in categories" :key="category.id">
+    <article class="tile categoryContainer is-child notification is-grey" v-for="category in categories" :key="category.id">
       <nuxt-link :to="{ name: 'category-slug', params: {slug: category.slug} }">
         <div class="media">
-          <div class="media-left">
+          <div class="media-center">
             <figure class="image is-32x32">
-              <img :src="category.image">
+              <!-- <img :src="`https://backend.giricode.com/storage/categories/`+category.image"> -->
+              <nuxt-img
+                :src="`/storage/categories/`+category.image"
+                alt="post.title"
+                preset="web"
+                sizes="sm:32px md:32px lg:32px" />
             </figure>
           </div>
-          <div class="media-content my-auto">
-            <p class="title is-5">
+          <div class="media-content ml-3 my-auto">
+            <p class="title is-6">
               {{ category.name }}
             </p>
           </div>
@@ -38,3 +43,12 @@ export default {
   }
 }
 </script>
+
+<style lang="scss" scoped>
+  .notification {
+      padding: .7rem 2.5rem .7rem 1.5rem;
+  }
+  .tile.is-vertical > .tile.is-child:not(:last-child) {
+      margin-bottom: 1rem !important;
+  }
+</style>

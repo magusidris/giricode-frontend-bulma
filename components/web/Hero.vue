@@ -1,12 +1,14 @@
 <template>
   <section class="hero is-info">
     <div>
-      <div class="container">
+      <div class="container is-max-widescreen">
         <div class="hero-body">
-          <div class="columns">
-            <div class="column is-1 my-auto">
-              <figure class="image is-64x64 m-r-sm">
-                <img class="is-rounded" src="/img/mobile-logo.svg">
+          <div class="columns is-multiline is-centered">
+            <div class="column is-1 is-full-tabled is-full-mobile my-auto">
+              <figure class="image is-64x64 mx-auto">
+                <nuxt-link to="/">
+                  <img class="is-rounded" src="/img/mobile-logo.svg">
+                </nuxt-link>
               </figure>
             </div>
             <div class="column">
@@ -23,3 +25,10 @@
     </div>
   </section>
 </template>
+
+<style lang="scss" scoped>
+  .hero-body {
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+  }
+</style>

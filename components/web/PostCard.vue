@@ -2,17 +2,19 @@
   <div class="card">
     <div class="card-image">
       <figure class="image is-4by2">
-        <img :src="post.image" alt="post.title">
+        <nuxt-img
+          :src="`/storage/posts/`+post.image"
+          alt="post.title"
+          preset="web"
+          sizes="sm:355px md:320px lg:480px" />
       </figure>
     </div>
     <div class="card-content">
       <div class="media">
         <div class="media-content">
           <p class="title is-5">{{ post.title }}</p>
-          <p class="subtitle is-6">@{{ post.user.username }}</p>
         </div>
       </div>
-
       <div class="content">
 
         <time :datetime="post.created_at">
@@ -38,3 +40,9 @@ export default {
   }
 }
 </script>
+
+<style lang="scss" scoped>
+  .title {
+    height: 4rem
+  }
+</style>

@@ -1,21 +1,27 @@
 @import "./variables";
 @import "./bulma";
 @import "./carousel";
-@import "./custom";
 @import "./spacing";
-@import "./instructor_header";
-@import "./editor/index";
-@import './pagination';
+@import "./size";
+@import "./admin/main";
+@import "./custom";
 
-#app {
+#web {
   min-height: 60vh;
-}
-
-body {
-  font-family: 'Quicksand', sans-serif;
   background: #CCDCEC;
 }
+
+#admin {
+  min-height: 60vh;
+  background: #F8F8F8;
+}
+
+/* Default font */
+$family-sans-serif: "Nunito", sans-serif;
 
 .blog-editor-container {
   padding-top: 60px;
 }
+
+/* Animate.css custom build (just selected animations to minimize bundle size) */
+@import "../css/animate.min.css";

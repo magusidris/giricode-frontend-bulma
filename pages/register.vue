@@ -1,7 +1,7 @@
 <template>
-  <section class="hero is-fullheight">
-    <div class="hero-body">
-      <div class="container">
+  <section class="section">
+    <div class="container ct-height">
+      <div class="columns h-100 is-vcentered">
         <div class="column is-4 is-offset-4">
           <div class="card">
             <header class="card-header has-text-centered">
@@ -11,48 +11,75 @@
             </header>
             <div class="card-content pb-5">
               <div class="content">
-                <form>
-                  <div class="field">
-                    <p class="control has-icons-left">
-                      <input class="input" type="text" placeholder="Name">
-                      <span class="icon is-small is-left">
-                        <i class="fas fa-envelope"></i>
-                      </span>
-                    </p>
+                <div v-if="validation.message" class="mb-3">
+                  <b-message type="is-danger">
+                    {{ validation.message }}
+                  </b-message>
+                </div>
+                <form @submit.prevent="register">
+                  <b-field>
+                    <b-input
+                        v-model="form.name"
+                        type="text"
+                        icon="account"
+                        placeholder="Name">
+                    </b-input>
+                  </b-field>
+                  <div v-if="validation.name" class="mt-2 mb-3">
+                    <b-message type="is-danger">
+                      {{ validation.name[0] }}
+                    </b-message>
                   </div>
-                  <div class="field">
-                    <p class="control has-icons-left">
-                      <input class="input" type="text" placeholder="Username">
-                      <span class="icon is-small is-left">
-                        <i class="fas fa-envelope"></i>
-                      </span>
-                    </p>
+                  <b-field>
+                    <b-input
+                        v-model="form.username"
+                        type="text"
+                        icon="id-card"
+                        placeholder="Username">
+                    </b-input>
+                  </b-field>
+                  <div v-if="validation.username" class="mt-2 mb-3">
+                    <b-message type="is-danger">
+                      {{ validation.username[0] }}
+                    </b-message>
                   </div>
-                  <div class="field">
-                    <p class="control has-icons-left">
-                      <input class="input" type="text" placeholder="Email">
-                      <span class="icon is-small is-left">
-                        <i class="fas fa-envelope"></i>
-                      </span>
-                    </p>
+                  <b-field>
+                    <b-input
+                        v-model="form.email"
+                        type="email"
+                        icon="email"
+                        placeholder="Email">
+                    </b-input>
+                  </b-field>
+                  <div v-if="validation.email" class="mt-2 mb-3">
+                    <b-message type="is-danger">
+                      {{ validation.email[0] }}
+                    </b-message>
                   </div>
-                  <div class="field">
-                    <p class="control has-icons-left">
-                      <input class="input" type="password" placeholder="Password">
-                      <span class="icon is-small is-left">
-                        <i class="fas fa-lock"></i>
-                      </span>
-                    </p>
+                  <b-field>
+                    <b-input
+                        v-model="form.password"
+                        type="password"
+                        icon="lock"
+                        password-reveal
+                        placeholder="Password">
+                    </b-input>
+                  </b-field>
+                  <div v-if="validation.password" class="mt-2 mb-3">
+                    <b-message type="is-danger">
+                      {{ validation.password[0] }}
+                    </b-message>
                   </div>
-                  <div class="field">
-                    <p class="control has-icons-left">
-                      <input class="input" type="password" placeholder="Konfirmasi Password">
-                      <span class="icon is-small is-left">
-                        <i class="fas fa-lock"></i>
-                      </span>
-                    </p>
-                  </div>
-                  <button class="button is-fullwidth is-info">Register</button>
+                  <b-field>
+                    <b-input
+                        v-model="form.password_confirmation"
+                        type="password"
+                        icon="lock"
+                        password-reveal
+                        placeholder="Konfirmasi Password">
+                    </b-input>
+                  </b-field>
+                  <button type="submit" class="button is-fullwidth is-info">Register</button>
                 </form>
               </div>
               <div class="has-text-centered">
@@ -65,6 +92,59 @@
     </div>
   </section>
 </template>
+
+<script>
+export default {
+  // layout
+  layout: 'default',
+  middleware: 'guest',
+
+  data() {
+    return {
+      form: {
+        name: '',
+        username: '',
+        email: '',
+        password: '',
+        password_confirmation: ''
+      },
+      // validation
+      validation: []
+    }
+  },
+  methods: {
+
+    // method "register"
+    async register() {
+
+      // dispatch to action "store User Register"
+      await this.$store.dispatch('web/user/register', {
+        name: this.form.name,
+        username: this.form.username,
+        email: this.form.email,
+        password: this.form.password,
+        password_confirmation: this.form.password_confirmation
+      })
+      .then(async () => {
+          await this.$auth.loginWith('jwt', {
+          data: {
+            username: this.form.username,
+            password: this.form.password
+          }
+        })
+        .then(() => {
+
+          // redirect
+          this.$router.push('/')
+        })
+      })
+      .catch(error => {
+        this.validation = error.response.data
+      })
+    }
+  }
+}
+</script>
 
 <style lang="scss" scoped>
   .card-header:first-child, .card-content:first-child, .card-footer:first-child {
