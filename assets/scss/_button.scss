@@ -1,0 +1,43 @@
+.button.is-dark-green {
+  background-color: $dark-green;
+  border-color: transparent;
+  color: #fff;
+}
+
+.button.is-dark-green:hover, .button.is-dark-green.is-hovered {
+  background-color: $light-green;
+  border-color: transparent;
+  color: #fff;
+}
+
+.button:focus:not(:active), .button.is-focused:not(:active) {
+  box-shadow: 0 0 0 0.125em $light-green;
+}
+
+.button.is-dark-green:active, .button.is-dark-green.is-active {
+  background-color: $dark-green;
+  border-color: transparent;
+  color: #fff;
+}
+
+.button.is-light-green {
+  background-color: $dark-green;
+  border-color: transparent;
+  color: #fff;
+}
+
+// .button.is-light-green:hover, .button.is-light-green.is-hovered {
+//   background-color: $dark-green;
+//   border-color: transparent;
+//   color: #fff;
+// }
+
+.button:focus:not(:active), .button.is-focused:not(:active) {
+  box-shadow: 0 0 0 0.125em $dark-green;
+}
+
+// .button.is-light-green:active, .button.is-light-green.is-active {
+//   background-color: $light-green;
+//   border-color: transparent;
+//   color: #fff;
+// }

@@ -2,31 +2,28 @@
   <div>
     <admin-title-bar :title-stack="titleStack" />
     <section class="section is-main-section">
-      <admin-card-component title="Edit Tag" class="has-table has-mobile-sort-spaced">
+      <admin-card-component title="Edit Menu" class="has-table has-mobile-sort-spaced">
         <section class="mx-3 my-3">
           <div v-if="validation.message" class="mb-3">
             <b-message type="is-danger">
               {{ validation.message }}
             </b-message>
           </div>
-          <form @submit.prevent="updateTag">
-            <b-field label="Nama Tag">
-              <b-input v-model="form.name" placeholder="Masukkan Nama Tag"></b-input>
+          <form @submit.prevent="updateMenu">
+            <b-field label="Nama Menu">
+              <b-input v-model="menu.name" placeholder="Masukkan Nama Menu"></b-input>
             </b-field>
             <div v-if="validation.name" class="mt-2 mb-3">
               <b-message type="is-danger">
                 {{ validation.name[0] }}
               </b-message>
             </div>
-            <b-field label="Color">
-              <b-select v-model="form.color" expanded>
-                  <option value="">Pilih sebuah warna</option>
-                  <option v-for="color in colors" :key="color.id" :value="color.id">{{ color.name }}</option>
-              </b-select>
+            <b-field label="URL">
+              <b-input v-model="menu.url" value="" placeholder="Masukkan URL"></b-input>
             </b-field>
-            <div v-if="validation.color_id" class="mt-2 mb-3">
+            <div v-if="validation.url" class="mt-2 mb-3">
               <b-message type="is-danger">
-                {{ validation.color_id[0] }}
+                {{ validation.url[0] }}
               </b-message>
             </div>
             <div class="buttons mt-4">
@@ -58,9 +55,9 @@ export default {
   layout: 'admin',
   data() {
     return {
-      form: {
+      menu: {
         name: '',
-        color: '',
+        url: ''
       },
       // validation
       validation: []
@@ -68,34 +65,30 @@ export default {
   },
   computed: {
     titleStack() {
-      return ['Admin', 'Tags', 'Edit']
-    },
-    ...mapState({
-      colors: state => state.admin.tag.colors
-    })
+      return ['Admin', 'Menu', 'Edit']
+    }
   },
   mounted() {
-    this.form.name = this.$store.state.admin.tag.tag.name,
-    this.form.color = this.$store.state.admin.tag.tag.color_id
+    this.menu.name = this.$store.state.admin.menu.menu.name,
+    this.menu.url = this.$store.state.admin.menu.menu.url
   },
   async asyncData({ store, route }) {
-    await store.dispatch('admin/tag/getDetailTag', route.params.id)
-    await store.dispatch('admin/tag/getColorsData')
+    await store.dispatch('admin/menu/getDetailMenu', route.params.id)
   },
   methods: {
-    // method "storeTag"
-    async updateTag() {
+    // method "storeMenu"
+    async updateMenu() {
 
       // define formData
       let formData = new FormData();
 
-      formData.append('name', this.form.name)
-      formData.append('color_id', this.form.color)
+      formData.append('name', this.menu.name)
+      formData.append('url', this.menu.url)
       formData.append('_method', 'PATCH')
 
       // sending data to action "storeTag" vuex
-      await this.$store.dispatch('admin/tag/updateTag', {
-        tagId: this.$route.params.id,
+      await this.$store.dispatch('admin/menu/updateMenu', {
+        menuId: this.$route.params.id,
         payload: formData
       })
 
@@ -107,7 +100,7 @@ export default {
 
           // redirect route "admin-tags"
           this.$router.push({
-            name: 'admin-tags'
+            name: 'admin-menus'
           })
         })
 

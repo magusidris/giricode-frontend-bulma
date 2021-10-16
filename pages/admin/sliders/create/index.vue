@@ -2,31 +2,42 @@
   <div>
     <admin-title-bar :title-stack="titleStack" />
     <section class="section is-main-section">
-      <admin-card-component title="Tambah Tag Baru" class="has-table has-mobile-sort-spaced">
+      <admin-card-component title="Tambah Slider Baru" class="has-table has-mobile-sort-spaced">
         <section class="mx-3 my-3">
           <div v-if="validation.message" class="mb-3">
             <b-message type="is-danger">
               {{ validation.message }}
             </b-message>
           </div>
-          <form @submit.prevent="storeTag">
-            <b-field label="Nama Tag">
-              <b-input v-model="form.name" value="" placeholder="Masukkan Nama Tag"></b-input>
+          <form @submit.prevent="storeSlider">
+            <b-field>
+              <b-upload v-model="slider.image" drag-drop expanded>
+                <section class="section">
+                  <div class="content has-text-centered">
+                    <p>
+                      <b-icon icon="upload" size="is-large"></b-icon>
+                    </p>
+                    <p>Drop your files here or click to upload</p>
+                  </div>
+                </section>
+              </b-upload>
             </b-field>
-            <div v-if="validation.name" class="mt-2 mb-3">
+            <div class="tags">
+              <span v-if="slider.image" class="tag is-primary">
+                {{ slider.image.name }}
+              </span>
+            </div>
+            <div v-if="validation.image" class="mt-2 mb-3">
               <b-message type="is-danger">
-                {{ validation.name[0] }}
+                {{ validation.image[0] }}
               </b-message>
             </div>
-            <b-field label="Color">
-              <b-select v-model="form.color" expanded>
-                  <option value="">Pilih sebuah warna</option>
-                  <option v-for="color in colors" :key="color.id" :value="color.id">{{ color.name }}</option>
-              </b-select>
+            <b-field label="URL">
+              <b-input v-model="slider.url" value="" placeholder="Masukkan URL"></b-input>
             </b-field>
-            <div v-if="validation.color_id" class="mt-2 mb-3">
+            <div v-if="validation.url" class="mt-2 mb-3">
               <b-message type="is-danger">
-                {{ validation.color_id[0] }}
+                {{ validation.url[0] }}
               </b-message>
             </div>
             <div class="buttons mt-4">
@@ -58,9 +69,9 @@ export default {
   layout: 'admin',
   data() {
     return {
-      form: {
-        name: '',
-        color: '',
+      slider: {
+        image: null,
+        url: ''
       },
       // validation
       validation: []
@@ -68,27 +79,53 @@ export default {
   },
   computed: {
     titleStack() {
-      return ['Admin', 'Tags', 'Tambah']
-    },
-    ...mapState({
-      colors: state => state.admin.tag.colors
-    })
-  },
-  async asyncData({ store }) {
-    await store.dispatch('admin/tag/getColorsData')
+      return ['Admin', 'Slider', 'Tambah']
+    }
   },
   methods: {
-    // method "storeTag"
-    async storeTag() {
+
+    deleteDropFile(index) {
+      this.slider.image.splice(index, 1);
+    },
+
+    //handle file upload
+    handleFileChange(e) {
+
+      //get image
+      let image = this.slider.image = e.target.files[0]
+
+      //check fileType
+      if (!image.type.match('image.*')) {
+
+        //if fileType not allowed, then clear value and set null
+        e.target.value = ''
+
+        //set state "slider.image" to null
+        this.slider.image = null
+
+        //show sweet alert
+        this.$swal.fire({
+          title: 'OOPS!',
+          text: "Format File Tidak Didukung!",
+          icon: 'error',
+          showConfirmButton: false,
+          timer: 2000
+        })
+      }
+
+    },
+
+    // method "storeSlider"
+    async storeSlider() {
 
       // define formData
       let formData = new FormData();
 
-      formData.append('name', this.form.name)
-      formData.append('color_id', this.form.color)
+      formData.append('image', this.slider.image)
+      formData.append('url', this.slider.url)
 
-      // sending data to action "storeTag" vuex
-      await this.$store.dispatch('admin/tag/storeTag', formData)
+      // sending data to action "storeSlider" vuex
+      await this.$store.dispatch('admin/slider/storeSlider', formData)
 
         // success
         .then(() => {
@@ -96,9 +133,9 @@ export default {
           // sweet alert
           this.$buefy.snackbar.open(`Data Berhasil Disimpan!`)
 
-          // redirect route "admin-tags"
+          // redirect route "admin-sliders"
           this.$router.push({
-            name: 'admin-tags'
+            name: 'admin-sliders'
           })
         })
 

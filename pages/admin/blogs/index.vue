@@ -3,7 +3,7 @@
     <admin-title-bar :title-stack="titleStack" />
     <section class="section is-main-section">
       <admin-card-component title="Data Kategori" class="has-table has-mobile-sort-spaced">
-        <b-field class="mt-3 mx-3">
+        <b-field class="mx-3">
             <p class="control">
                 <b-button :to="{name: 'admin-blogs-create'}" tag="nuxt-link" type="is-danger" label="Tambah" icon-pack="fas" icon-left="plus-circle" />
             </p>

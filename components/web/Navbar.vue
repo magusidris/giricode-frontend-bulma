@@ -1,5 +1,5 @@
 <template>
-  <nav class="navbar has-background-info-dark is-link" role="navigation" aria-label="main navigation">
+  <nav class="navbar has-background-info-dark is-dark-green" role="navigation" aria-label="main navigation">
     <div class="container is-max-widescreen">
       <div id="navbarBasicExample" class="navbar-menu">
         <div class="navbar-start">
@@ -26,12 +26,15 @@
           <template v-else>
             <div class="navbar-item">
               <div class="buttons">
+                <a class="button is-light-green">
+                  <div class="is-user-avatar mr-2">
+                    <nuxt-img :src="`/storage/users/`+authUser.image" :alt="authUser.username" />
+                  </div>
+                  {{ authUser.username }}
+                </a>
                 <nuxt-link v-if="isProgrammer || isAdmin || isOperator" :to="{name: 'admin'}" class="button is-light">
                   Admin
                 </nuxt-link>
-                <a class="button is-link">
-                  {{ authUser.username }}
-                </a>
                 <a @click="logout" class="button is-danger">
                   Logout
                 </a>

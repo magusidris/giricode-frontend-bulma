@@ -1,14 +1,17 @@
-@import "./variables";
 @import "./bulma";
 @import "./carousel";
 @import "./spacing";
 @import "./size";
+@import "./table";
 @import "./admin/main";
 @import "./custom";
+@import "./font";
+@import "./navbar";
+@import "./button";
 
 #web {
   min-height: 60vh;
-  background: #CCDCEC;
+  background: #F8F8F8;
 }
 
 #admin {

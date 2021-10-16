@@ -1,5 +1,5 @@
 <template>
-  <section class="hero is-info">
+  <section class="hero is-light-green">
     <div>
       <div class="container is-max-widescreen">
         <div class="hero-body">

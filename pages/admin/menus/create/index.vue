@@ -10,7 +10,7 @@
             </b-message>
           </div>
           <form @submit.prevent="storeTag">
-            <b-field label="Nama Tag">
+            <b-field label="Nama">
               <b-input v-model="form.name" value="" placeholder="Masukkan Nama Tag"></b-input>
             </b-field>
             <div v-if="validation.name" class="mt-2 mb-3">
@@ -18,15 +18,12 @@
                 {{ validation.name[0] }}
               </b-message>
             </div>
-            <b-field label="Color">
-              <b-select v-model="form.color" expanded>
-                  <option value="">Pilih sebuah warna</option>
-                  <option v-for="color in colors" :key="color.id" :value="color.id">{{ color.name }}</option>
-              </b-select>
+            <b-field label="URL">
+              <b-input v-model="form.url" value="" placeholder="Masukkan URL"></b-input>
             </b-field>
-            <div v-if="validation.color_id" class="mt-2 mb-3">
+            <div v-if="validation.url" class="mt-2 mb-3">
               <b-message type="is-danger">
-                {{ validation.color_id[0] }}
+                {{ validation.url[0] }}
               </b-message>
             </div>
             <div class="buttons mt-4">
@@ -60,7 +57,7 @@ export default {
     return {
       form: {
         name: '',
-        color: '',
+        url: '',
       },
       // validation
       validation: []
@@ -68,14 +65,8 @@ export default {
   },
   computed: {
     titleStack() {
-      return ['Admin', 'Tags', 'Tambah']
-    },
-    ...mapState({
-      colors: state => state.admin.tag.colors
-    })
-  },
-  async asyncData({ store }) {
-    await store.dispatch('admin/tag/getColorsData')
+      return ['Admin', 'Menu', 'Tambah']
+    }
   },
   methods: {
     // method "storeTag"
@@ -85,10 +76,10 @@ export default {
       let formData = new FormData();
 
       formData.append('name', this.form.name)
-      formData.append('color_id', this.form.color)
+      formData.append('url', this.form.url)
 
       // sending data to action "storeTag" vuex
-      await this.$store.dispatch('admin/tag/storeTag', formData)
+      await this.$store.dispatch('admin/menu/storeMenu', formData)
 
         // success
         .then(() => {
@@ -98,7 +89,7 @@ export default {
 
           // redirect route "admin-tags"
           this.$router.push({
-            name: 'admin-tags'
+            name: 'admin-menus'
           })
         })
 

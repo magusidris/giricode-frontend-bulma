@@ -2,31 +2,84 @@
   <div>
     <admin-title-bar :title-stack="titleStack" />
     <section class="section is-main-section">
-      <admin-card-component title="Tambah Tag Baru" class="has-table has-mobile-sort-spaced">
+      <admin-card-component title="Tambah Post Baru" class="has-table has-mobile-sort-spaced">
         <section class="mx-3 my-3">
           <div v-if="validation.message" class="mb-3">
             <b-message type="is-danger">
               {{ validation.message }}
             </b-message>
           </div>
-          <form @submit.prevent="storeTag">
-            <b-field label="Nama Tag">
-              <b-input v-model="form.name" value="" placeholder="Masukkan Nama Tag"></b-input>
+          <form @submit.prevent="storePost">
+            <b-field>
+              <b-upload v-model="post.image" drag-drop expanded>
+                <section class="section">
+                  <div class="content has-text-centered">
+                    <p>
+                      <b-icon icon="upload" size="is-large"></b-icon>
+                    </p>
+                    <p>Drop your files here or click to upload</p>
+                  </div>
+                </section>
+              </b-upload>
             </b-field>
-            <div v-if="validation.name" class="mt-2 mb-3">
+            <div class="tags">
+              <span v-if="post.image" class="tag is-primary">
+                {{ post.image.name }}
+              </span>
+            </div>
+            <div v-if="validation.image" class="mt-2 mb-3">
               <b-message type="is-danger">
-                {{ validation.name[0] }}
+                {{ validation.image[0] }}
               </b-message>
             </div>
-            <b-field label="Color">
-              <b-select v-model="form.color" expanded>
-                  <option value="">Pilih sebuah warna</option>
-                  <option v-for="color in colors" :key="color.id" :value="color.id">{{ color.name }}</option>
-              </b-select>
+            <b-field label="Judul Post">
+              <b-input v-model="post.title" value="" placeholder="Masukkan Nama Post"></b-input>
             </b-field>
-            <div v-if="validation.color_id" class="mt-2 mb-3">
+            <div v-if="validation.title" class="mt-2 mb-3">
               <b-message type="is-danger">
-                {{ validation.color_id[0] }}
+                {{ validation.title[0] }}
+              </b-message>
+            </div>
+            <b-field label="Kategori">
+              <client-only placeholder="loading...">
+                <b-select v-model="post.category" expanded>
+                    <option value="">Pilih Kategori</option>
+                    <option v-for="category in categories" :key="category.id" :value="category.id">{{ category.name }}</option>
+                </b-select>
+              </client-only>
+            </b-field>
+            <div v-if="validation.category_id" class="mt-2 mb-3">
+              <b-message type="is-danger">
+                {{ validation.category_id[0] }}
+              </b-message>
+            </div>
+            <b-field label="Tags">
+              <client-only placeholder="loading...">
+                <multiselect v-model="post.tags" :multiple="true" :options="tags.map(tag => tag.id)" :custom-label="opt => tags.find(x => x.id == opt).name">
+                </multiselect>
+              </client-only>
+            </b-field>
+            <div v-if="validation.tags" class="mt-2 mb-3">
+              <b-message type="is-danger">
+                {{ validation.tags[0] }}
+              </b-message>
+            </div>
+            <b-field label="Content Post">
+              <client-only placeholder="loading...">
+                <ckeditor-nuxt v-model="post.content" :config="editorConfig" />
+              </client-only>
+            </b-field>
+            <div v-if="validation.content" class="mt-2 mb-3">
+              <b-message type="is-danger">
+                {{ validation.content[0] }}
+              </b-message>
+            </div>
+            <b-field label="Deskripsi">
+              <b-input v-model="post.description" maxlength="200" type="textarea"></b-input>
+            </b-field>
+            <div v-if="validation.descripton" class="mt-2 mb-3">
+              <b-message type="is-danger">
+                {{ validation.descripton[0] }}
               </b-message>
             </div>
             <div class="buttons mt-4">
@@ -53,42 +106,100 @@
 </template>
 
 <script>
-import { mapState } from 'vuex'
+import { mapGetters } from 'vuex'
 export default {
   layout: 'admin',
+  components: {
+    'ckeditor-nuxt': () => {
+      if (process.client) {
+        return import('@blowstack/ckeditor-nuxt')
+      }
+    },
+  },
   data() {
     return {
-      form: {
-        name: '',
-        color: '',
+      post: {
+        image: null,
+        title: '',
+        category: '',
+        content: '',
+        description: '',
+        tags: [],
       },
+      filteredTags: this.tags,
       // validation
-      validation: []
+      validation: [],
+      allowNew: false,
+      openOnFocus: true,
+      //config CKEDITOR
+      editorConfig: {
+        removePlugins: ['Title'],
+        simpleUpload: {
+          uploadUrl: '/api/v1/admin/images/',
+          withCredentials: true
+        }
+      }
     }
   },
   computed: {
+    ...mapGetters({
+      categories: 'admin/post/getCategories',
+      tags: 'admin/post/getTags'
+    }),
     titleStack() {
-      return ['Admin', 'Tags', 'Tambah']
-    },
-    ...mapState({
-      colors: state => state.admin.tag.colors
-    })
+      return ['Admin', 'Blog', 'Tambah']
+    }
   },
   async asyncData({ store }) {
-    await store.dispatch('admin/tag/getColorsData')
+    await store.dispatch('admin/post/getCategoriesData')
+    await store.dispatch('admin/post/getTagsData')
   },
   methods: {
+    //handle file upload
+    handleFileChange(e) {
+
+      //get image
+      let image = this.post.image = e.target.files[0]
+
+      //check fileType
+      if (!image.type.match('image.*')) {
+
+        //if fileType not allowed, then clear value and set null
+        e.target.value = ''
+
+        //set state "category.image" to null
+        this.post.image = null
+
+        //show sweet alert
+        this.$swal.fire({
+          title: 'OOPS!',
+          text: "Format File Tidak Didukung!",
+          icon: 'error',
+          showConfirmButton: false,
+          timer: 2000
+        })
+      }
+
+    },
     // method "storeTag"
-    async storeTag() {
+    async storePost() {
 
       // define formData
       let formData = new FormData();
 
-      formData.append('name', this.form.name)
-      formData.append('color_id', this.form.color)
+      formData.append('image', this.post.image)
+      formData.append('title', this.post.title)
+      formData.append('category_id', this.post.category)
+      formData.append('content', this.post.content)
+      formData.append('description', this.post.description)
+
+      for( var i = 0; i < this.post.tags.length; i++ ){
+          let tags = this.post.tags[i];
+          formData.append('tags[' + i + ']', tags);
+      }
 
       // sending data to action "storeTag" vuex
-      await this.$store.dispatch('admin/tag/storeTag', formData)
+      await this.$store.dispatch('admin/post/storePost', formData)
 
         // success
         .then(() => {
@@ -98,7 +209,7 @@ export default {
 
           // redirect route "admin-tags"
           this.$router.push({
-            name: 'admin-tags'
+            name: 'admin-blogs'
           })
         })
 
@@ -112,3 +223,9 @@ export default {
   }
 }
 </script>
+
+<style>
+  .ck-editor__editable {
+    min-height: 200px;
+  }
+</style>

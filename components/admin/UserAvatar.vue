@@ -1,11 +1,11 @@
 <template>
-  <div class="is-user-avatar">
-    <img :src="newUserAvatar" :alt="userName" />
+  <div v-if="isAuthenticated" class="is-user-avatar">
+    <nuxt-img :src="`/storage/users/`+authUser.image" :alt="authUser.username" />
   </div>
 </template>
 
 <script>
-import { mapState } from 'vuex'
+import { mapState, mapGetters } from 'vuex'
 export default {
   name: 'UserAvatar',
   props: {
@@ -33,6 +33,10 @@ export default {
       return `https://avatars.dicebear.com/v2/human/${name}.svg?options[mood][]=happy`
     },
     ...mapState(['userAvatar', 'userName']),
+
+    ...mapGetters([
+      'authUser', 'isAuthenticated'
+    ])
   },
 }
 </script>

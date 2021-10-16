@@ -58,7 +58,9 @@ export default {
     { src: '~/plugins/axios' },
     { src: '~/plugins/components'},
     { src: '~/plugins/integrations'},
-    { src: '~/plugins/after-each', ssr: false }
+    { src: '~/plugins/after-each', ssr: false },
+    { src: '~/plugins/multi-select' },
+    { src: '~/plugins/advanced-crop' }
   ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
@@ -158,6 +160,7 @@ export default {
     /*
      ** You can extend webpack config here
      */
+
      extend(config, ctx) {
       if (!config.externals) {
         config.externals = {}

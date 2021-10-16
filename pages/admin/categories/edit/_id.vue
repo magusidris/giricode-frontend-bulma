@@ -23,10 +23,10 @@
               </b-upload>
             </b-field>
             <div class="tags">
-                <span v-if="category.image" class="tag is-primary">
-                  {{ category.image.name }}
-                </span>
-              </div>
+              <span v-if="category.image" class="tag is-primary">
+                {{ category.image.name }}
+              </span>
+            </div>
             <div v-if="validation.name" class="mt-2 mb-3">
               <b-message type="is-danger">
                 {{ validation.name[0] }}
@@ -89,7 +89,6 @@ export default {
     await store.dispatch('admin/category/getDetailCategory', route.params.id)
   },
   methods: {
-
     //handle file upload
     handleFileChange(e) {
 

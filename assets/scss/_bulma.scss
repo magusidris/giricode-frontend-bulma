@@ -4,10 +4,27 @@
 /* Buefy has Bulma included. So we import just that */
 @import "~buefy/src/scss/buefy-build";
 
-$primary: #4bacff;
-$danger: #dc5222;
+$primary: $turquoise;
+$link: $blue;
+$info: $cyan;
+$success: $green;
+$warning: $yellow;
+$danger: $red;
+$dark: $grey-darker;
+$text: $grey-dark;
+$background: $white-ter;
+$link: $blue;
+$family-primary: $family-sans-serif;
 
 $navbar-height: 4rem;
 $navbar-item-img-max-height: 3rem;
+
+.is-dark-green {
+  background-color: $dark-green;
+}
+
+.is-light-green {
+  background-color: $light-green;
+}
 
 @import "~bulma"

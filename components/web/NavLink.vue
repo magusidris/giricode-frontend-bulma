@@ -17,10 +17,3 @@ export default {
   }
 }
 </script>
-
-<style lang="scss" scoped>
-  .is-active {
-    border-bottom: 4px solid $primary;
-    font-weight: bold;
-  }
-</style>

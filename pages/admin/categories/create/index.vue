@@ -23,13 +23,13 @@
               </b-upload>
             </b-field>
             <div class="tags">
-                <span v-if="category.image" class="tag is-primary">
-                  {{ category.image.name }}
-                </span>
-              </div>
-            <div v-if="validation.name" class="mt-2 mb-3">
+              <span v-if="category.image" class="tag is-primary">
+                {{ category.image.name }}
+              </span>
+            </div>
+            <div v-if="validation.image" class="mt-2 mb-3">
               <b-message type="is-danger">
-                {{ validation.name[0] }}
+                {{ validation.image[0] }}
               </b-message>
             </div>
             <b-field label="Nama Kategori">
@@ -88,31 +88,31 @@ export default {
     },
 
     //handle file upload
-      handleFileChange(e) {
+    handleFileChange(e) {
 
-        //get image
-        let image = this.category.image = e.target.files[0]
+      //get image
+      let image = this.category.image = e.target.files[0]
 
-        //check fileType
-        if (!image.type.match('image.*')) {
+      //check fileType
+      if (!image.type.match('image.*')) {
 
-          //if fileType not allowed, then clear value and set null
-          e.target.value = ''
+        //if fileType not allowed, then clear value and set null
+        e.target.value = ''
 
-          //set state "category.image" to null
-          this.category.image = null
+        //set state "category.image" to null
+        this.category.image = null
 
-          //show sweet alert
-          this.$swal.fire({
-            title: 'OOPS!',
-            text: "Format File Tidak Didukung!",
-            icon: 'error',
-            showConfirmButton: false,
-            timer: 2000
-          })
-        }
+        //show sweet alert
+        this.$swal.fire({
+          title: 'OOPS!',
+          text: "Format File Tidak Didukung!",
+          icon: 'error',
+          showConfirmButton: false,
+          timer: 2000
+        })
+      }
 
-      },
+    },
 
     // method "storeCategory"
     async storeCategory() {
