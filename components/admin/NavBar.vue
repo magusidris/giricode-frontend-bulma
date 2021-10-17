@@ -121,3 +121,9 @@ export default {
   },
 }
 </script>
+
+<style lang="scss" scoped>
+  a.is-active.nuxt-link-active {
+    background: red!important;
+  }
+</style>

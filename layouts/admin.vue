@@ -1,7 +1,8 @@
 <template>
   <div>
     <admin-nav-bar />
-    <admin-aside-menu :menu="menu" />
+    <!-- <admin-aside-menu :menu="menu" /> -->
+    <admin-sidebar />
     <nuxt id="admin" />
     <admin-footer-bar />
   </div>

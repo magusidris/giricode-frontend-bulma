@@ -48,7 +48,7 @@ export default {
   },
   computed: {
     componentIs() {
-      return this.item.to ? 'router-link' : 'a'
+      return this.item.to ? 'nuxt-link' : 'a'
     },
     hasDropdown() {
       return !!this.item.menu
