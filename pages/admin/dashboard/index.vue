@@ -46,11 +46,11 @@
         </div>
       </card-component>
 
-      <card-component title="Clients" class="has-table has-mobile-sort-spaced">
+      <!-- <card-component title="Clients" class="has-table has-mobile-sort-spaced">
         <clients-table-sample
           :data-url="`${$router.options.base}data-sources/clients.json`"
         />
-      </card-component>
+      </card-component> -->
     </section>
   </div>
 </template>

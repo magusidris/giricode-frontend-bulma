@@ -40,15 +40,66 @@
 
 <script>
 import { mapState } from 'vuex'
+import { bootstrap } from 'vue-gtag'
+import { SnackbarProgrammatic as Snackbar } from 'buefy'
 export default {
+  data() {
+    return {
+      isOpen: false
+    }
+  },
   computed: {
     ...mapState({
       posts: state => state.web.post.posts.all
     })
   },
+  mounted() {
+    if (!this.getGDPR() === true) {
+        this.isOpen = true;
+    }
+    if (this.isOpen === true) {
+      Snackbar.open({
+            indefinite: true,
+            message: 'Dapatkah menggunakan cookie untuk Analytics?',
+            position: 'is-bottom',
+            actionText: 'Ya, tentu',
+            cancelText: 'Tidak',
+            onCancel: () => {
+              this.deny()
+            },
+            onAction: () => {
+              this.accept()
+            }
+        })
+    }
+  },
   async fetch() {
     // fetching slider on Rest API
     await this.$store.dispatch('web/post/getPostsData')
+  },
+  created() {
+  },
+  methods: {
+    getGDPR() {
+        if (process.browser) {
+            return localStorage.getItem('GDPR:accepted', true);
+        }
+    },
+    accept() {
+      if (process.browser) {
+        bootstrap().then(gtag => {
+          this.isOpen = false;
+          localStorage.setItem('GDPR:accepted', true)
+          location.reload();
+        })
+      }
+    },
+    deny() {
+      if (process.browser) {
+        this.isOpen = false;
+        localStorage.setItem('GDPR:accepted', false);
+      }
+    },
   }
 }
 </script>

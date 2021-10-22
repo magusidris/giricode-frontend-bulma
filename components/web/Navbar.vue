@@ -32,7 +32,7 @@
                   </div>
                   {{ authUser.username }}
                 </a>
-                <nuxt-link v-if="isProgrammer || isAdmin || isOperator" :to="{name: 'admin'}" class="button is-light">
+                <nuxt-link v-if="isProgrammer || isAdmin || isOperator" :to="{name: 'admin-dashboard'}" class="button is-light">
                   Admin
                 </nuxt-link>
                 <a @click="logout" class="button is-danger">

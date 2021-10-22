@@ -12,69 +12,70 @@
                 <b-button type="is-success" @click="searchData" label="Cari" icon-pack="fas" icon-left="search" />
             </p>
         </b-field>
-        <b-table
-          class="mx-3"
-          :loading="isLoading"
-          :per-page="categories.per_page"
-          :striped="true"
-          :hoverable="true"
-          default-sort="name"
-          :data="categories.data">
-          <template slot-scope="props">
-            <b-table-column label="Image" centered field="image" sortable>
-              <nuxt-img
-                :src="`/storage/categories/`+props.row.image"
-                :alt="props.row.name"
-                preset="web"
-                width="60px"
-                sizes="sm:355px md:320px lg:480px" />
-            </b-table-column>
-            <b-table-column label="Name" centered field="name" sortable>
-              {{ props.row.name }}
-            </b-table-column>
-            <b-table-column label="Created" centered field="created_at" sortable>
-              <small
-                class="has-text-grey is-abbr-like"
-                :title="props.row.created_at"
-                >{{ props.row.created_at }}</small
-              >
-            </b-table-column>
-            <b-table-column custom-key="actions" class="is-actions-cell">
-              <div class="buttons is-centered">
-                <nuxt-link
-                  :to="{ name: 'admin-categories-edit-id', params: { id: props.row.id } }"
-                  class="button is-small is-primary"
+        <div class="tb-container">
+          <b-table
+            class="mx-3"
+            :loading="isLoading"
+            :per-page="categories.per_page"
+            :striped="true"
+            :hoverable="true"
+            default-sort="name"
+            :data="categories.data">
+              <b-table-column label="Image" centered field="image" sortable v-slot="props">
+                <nuxt-img
+                  :src="`/storage/categories/`+props.row.image"
+                  :alt="props.row.name"
+                  preset="web"
+                  width="60px"
+                  sizes="sm:355px md:320px lg:480px" />
+              </b-table-column>
+              <b-table-column label="Name" centered field="name" sortable v-slot="props">
+                {{ props.row.name }}
+              </b-table-column>
+              <b-table-column label="Created" centered field="created_at" sortable v-slot="props">
+                <small
+                  class="has-text-grey is-abbr-like"
+                  :title="props.row.created_at"
+                  >{{ props.row.created_at }}</small
                 >
-                  <b-icon icon="account-edit" size="is-small" />
-                </nuxt-link>
-                <button
-                  class="button is-small is-danger"
-                  type="button"
-                  @click.prevent="destroyCategory(props.row.id)"
-                >
-                  <b-icon icon="trash-can" size="is-small" />
-                </button>
-              </div>
-            </b-table-column>
-          </template>
+              </b-table-column>
+              <b-table-column custom-key="actions" class="is-actions-cell" v-slot="props">
+                <div class="buttons is-centered">
+                  <nuxt-link
+                    :to="{ name: 'admin-categories-edit-id', params: { id: props.row.id } }"
+                    class="button is-small is-primary"
+                  >
+                    <b-icon icon="account-edit" size="is-small" />
+                  </nuxt-link>
+                  <button
+                    class="button is-small is-danger"
+                    type="button"
+                    @click.prevent="destroyCategory(props.row.id)"
+                  >
+                    <b-icon icon="trash-can" size="is-small" />
+                  </button>
+                </div>
+              </b-table-column>
 
-          <section slot="empty" class="section">
-            <div class="content has-text-grey has-text-centered">
-              <template v-if="isLoading">
-                <p>
-                  <b-icon icon="dots-horizontal" size="is-large" />
-                </p>
-                <p>Fetching data...</p>
-              </template>
-              <template v-else>
-                <p>
-                  <b-icon icon="emoticon-sad" size="is-large" />
-                </p>
-                <p>Nothing's here&hellip;</p>
-              </template>
-            </div>
-          </section>
-        </b-table>
+            <section slot="empty" class="section">
+              <div class="content has-text-grey has-text-centered">
+                <template v-if="isLoading">
+                  <p>
+                    <b-icon icon="dots-horizontal" size="is-large" />
+                  </p>
+                  <p>Fetching data...</p>
+                </template>
+                <template v-else>
+                  <p>
+                    <b-icon icon="emoticon-sad" size="is-large" />
+                  </p>
+                  <p>Nothing's here&hellip;</p>
+                </template>
+              </div>
+            </section>
+          </b-table>
+
+        </div>
         <b-pagination
           class="mx-3 my-3"
           :current="currentPage"
@@ -174,3 +175,9 @@ export default {
   }
 }
 </script>
+
+<style lang="scss" scoped>
+  .tb-container {
+    height: 17rem;
+  }
+</style>

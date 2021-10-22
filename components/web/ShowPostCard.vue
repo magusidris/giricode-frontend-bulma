@@ -40,7 +40,7 @@
             </b-icon>
             {{ category }}
           </p>
-          <div class="content mt-5" v-html="content" />
+          <div class="content mt-5 is-medium" v-html="content" />
           <hr>
           <div>
             <div class="tags are-medium">

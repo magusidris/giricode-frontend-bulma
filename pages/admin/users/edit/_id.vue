@@ -264,10 +264,13 @@ export default {
           payload: formData
         })
         // success
-        .then(() => {
+        .then( async () => {
 
           // sweet alert
           this.$buefy.snackbar.open(`Data Berhasil Diupdate!`)
+          // await this.$auth.user.refresh()
+          // await this.$fetch()
+          await this.$nuxt.refresh()
 
           // redirect route "admin-users"
           this.$router.push({
@@ -303,10 +306,13 @@ export default {
             payload: formData
           })
             // success
-            .then(() => {
+            .then( async () => {
 
               // sweet alert
               this.$buefy.snackbar.open(`Data Berhasil Diupdate!`)
+              // await this.$nuxt.refresh()
+              // await this.$fetch()
+              await this.$auth.user
 
               // redirect route "admin-users"
               this.$router.push({

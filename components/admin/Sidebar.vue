@@ -15,7 +15,7 @@
 		    <li>
 		    	<nuxt-link :to="{name: 'admin-dashboard'}">
 		    		<span class="icon">
-		    			<i class="mdi mdi-desktop-mac default"></i>		    			
+		    			<i class="fas fa-desktop"></i>
 		    		</span>
 		    		Dashboard
 		    	</nuxt-link>
@@ -28,7 +28,7 @@
 		    <li>
 		    	<nuxt-link :to="{name: 'admin-tags'}">
 		    		<span class="icon">
-		    			<i class="mdi mdi-tag-multiple default"></i>	
+		    			<i class="fas fa-tags"></i>
 		    		</span>
 		    		Tags
 		    	</nuxt-link>
@@ -36,7 +36,7 @@
 		    <li>
 		    	<nuxt-link :to="{name: 'admin-categories'}">
 		    		<span class="icon">
-		    			<i class="mdi mdi-folder-multiple default"></i>	
+		    			<i class="fas fa-folder"></i>
 		    		</span>
 			    	Kategori
 		    	</nuxt-link>
@@ -44,7 +44,7 @@
 		    <li>
 		    	<nuxt-link :to="{name: 'admin-blogs'}">
 		    		<span class="icon">
-		    			<i class="mdi mdi-book-open default"></i>	
+		    			<i class="fas fa-book-open"></i>
 		    		</span>
 		    		Blog
 		    	</nuxt-link>
@@ -57,7 +57,7 @@
 		    <li>
 		    	<nuxt-link :to="{name: 'admin-menus'}">
 		    		<span class="icon">
-		    			<i class="mdi mdi-select-multiple default"></i>	
+		    			<i class="fab fa-elementor"></i>
 		    		</span>
 		    		Menu
 		    	</nuxt-link>
@@ -65,7 +65,7 @@
 		    <li>
 		    	<nuxt-link :to="{name: 'admin-sliders'}">
 		    		<span class="icon">
-		    			<i class="mdi mdi-folder-multiple-image default"></i>	
+		    			<i class="fas fa-digital-tachograph"></i>
 		    		</span>
 		    		Slider
 		    	</nuxt-link>
@@ -73,7 +73,7 @@
 		    <li>
 		    	<nuxt-link :to="{name: 'admin-users'}">
 		    		<span class="icon">
-		    			<i class="mdi mdi-account-multiple default"></i>	
+		    			<i class="fas fa-user-friends"></i>
 		    		</span>
 		    		User
 		    	</nuxt-link>

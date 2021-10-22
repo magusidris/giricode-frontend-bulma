@@ -1,3 +1,5 @@
+const pkg = require('./package')
+
 export default {
   mode: 'universal',
   server: {
@@ -16,14 +18,14 @@ export default {
 
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
-    title: 'giricode-frontend',
+    title: pkg.name,
     htmlAttrs: {
       lang: 'en'
     },
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-      { hid: 'description', name: 'description', content: '' },
+      { hid: 'description', name: 'description', content: pkg.description },
       { name: 'format-detection', content: 'telephone=no' }
     ],
     link: [
@@ -44,7 +46,8 @@ export default {
   // Global CSS: https://go.nuxtjs.dev/config-css
   css: [
     '@/assets/scss/main.scss',
-    '@/assets/css/icons.css'
+    '@/assets/css/icons.css',
+    '@mdi/font/css/materialdesignicons.css'
   ],
 
   styleResources: {
@@ -59,6 +62,7 @@ export default {
     { src: '~/plugins/components'},
     { src: '~/plugins/integrations'},
     { src: '~/plugins/after-each', ssr: false },
+    { src: '~/plugins/google-analytics', ssr: false },
     { src: '~/plugins/multi-select' },
     { src: '~/plugins/advanced-crop' }
   ],
@@ -73,7 +77,7 @@ export default {
   // Modules: https://go.nuxtjs.dev/config-modules
   modules: [
     // https://go.nuxtjs.dev/buefy
-    'nuxt-buefy',
+    ['nuxt-buefy', { materialDesignIcons: false }],
     // https://go.nuxtjs.dev/axios
     '@nuxtjs/axios',
     //https://dev.auth.nuxtjs.org/
@@ -87,12 +91,12 @@ export default {
 
   image: {
     domains: [
-      // 'backend.giricode.com'
-      'http://giricode-backend.test'
+      'backend.giricode.com'
+      // 'http://giricode-backend.test'
     ],
     alias: {
-      // storage: 'https://backend.giricode.com/storage'
-      storage: 'http://giricode-backend.test/storage'
+      storage: 'https://backend.giricode.com/storage'
+      // storage: 'http://giricode-backend.test/storage'
     },
     presets: {
       web: {
@@ -112,8 +116,8 @@ export default {
 
   proxy: {
     '/api': {
-      // target: 'https://backend.giricode.com/',
-      target: 'http://giricode-backend.test/',
+      target: 'https://backend.giricode.com/',
+      // target: 'http://giricode-backend.test/',
       pathRewrite: { '^/api': '/' }
     }
   },
