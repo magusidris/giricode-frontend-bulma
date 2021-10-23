@@ -26,7 +26,7 @@
                   :src="`/storage/categories/`+props.row.image"
                   :alt="props.row.name"
                   preset="web"
-                  width="60px"
+                  width="50px"
                   sizes="sm:355px md:320px lg:480px" />
               </b-table-column>
               <b-table-column label="Name" centered field="name" sortable v-slot="props">
@@ -178,6 +178,6 @@ export default {
 
 <style lang="scss" scoped>
   .tb-container {
-    height: 17rem;
+    height: 25rem;
   }
 </style>

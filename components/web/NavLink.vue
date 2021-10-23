@@ -1,5 +1,5 @@
 <template>
-  <nuxt-link :to="to" class="has-background-info-dark" :class="{'is-active': isActive}">
+  <nuxt-link :to="to" class="is-dark-green" :class="{'is-active': isActive}">
     <slot />
   </nuxt-link>
 </template>

@@ -288,11 +288,12 @@ export default {
           // sending data to action "storeUser" vuex
           this.$store.dispatch('admin/user/storeUser', formData)
             // success
-            .then(() => {
+            .then( async () => {
 
               // sweet alert
               this.$buefy.snackbar.open(`Data Berhasil Disimpan!`)
-              this.$nuxt.refresh()
+              // this.$nuxt.refresh()
+              await this.$auth.fetchUser()
 
               // redirect route "admin-users"
               this.$router.push({

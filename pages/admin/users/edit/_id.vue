@@ -313,6 +313,7 @@ export default {
               // await this.$nuxt.refresh()
               // await this.$fetch()
               await this.$auth.user
+              await this.$auth.fetchUser()
 
               // redirect route "admin-users"
               this.$router.push({

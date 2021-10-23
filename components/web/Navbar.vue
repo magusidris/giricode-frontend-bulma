@@ -1,13 +1,13 @@
 <template>
-  <nav class="navbar has-background-info-dark is-dark-green" role="navigation" aria-label="main navigation">
+  <nav class="navbar is-dark-green" role="navigation" aria-label="main navigation">
     <div class="container is-max-widescreen">
-      <div id="navbarBasicExample" class="navbar-menu">
+      <div :class="{'is-active': isActive}"
+            id="navbarBasicExample"
+            class="navbar-menu">
         <div class="navbar-start">
-
-          <nav-link :to="menu.url" class="navbar-item" v-for="menu in menus" :key="menu.id">
+          <nav-link :to="menu.url" class="navbar-item green" v-for="menu in menus" :key="menu.id">
             {{ menu.name }}
           </nav-link>
-
         </div>
 
         <div class="navbar-end">
@@ -27,9 +27,9 @@
             <div class="navbar-item">
               <div class="buttons">
                 <a class="button is-light-green">
-                  <div class="is-user-avatar mr-2">
-                    <nuxt-img :src="`/storage/users/`+authUser.image" :alt="authUser.username" />
-                  </div>
+                  <figure class="image is-32x32 mr-2">
+                    <nuxt-img class="is-rounded" :src="`/storage/users/`+authUser.image" :alt="authUser.username" />
+                  </figure>
                   {{ authUser.username }}
                 </a>
                 <nuxt-link v-if="isProgrammer || isAdmin || isOperator" :to="{name: 'admin-dashboard'}" class="button is-light">

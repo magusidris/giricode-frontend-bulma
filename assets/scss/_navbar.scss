@@ -3,13 +3,24 @@
   color: white;
 }
 
-.navbar.is-dark-green .navbar-start > .navbar-item, .navbar.is-dark-green .navbar-start .navbar-link, .navbar.is-dark-green .navbar-end > .navbar-item, .navbar.is-primary .navbar-end .navbar-link {
+.navbar-item.green {
+  background-color: $dark-green;
   color: white;
 }
 
-.navbar.is-dark-green .navbar-start > a.navbar-item:focus, .navbar.is-dark-green .navbar-start > a.navbar-item:hover, .navbar.is-dark-green .navbar-start > a.navbar-item.is-active, .navbar.is-dark-green .navbar-start .navbar-link:focus, .navbar.is-dark-green .navbar-start .navbar-link:hover, .navbar.is-dark-green .navbar-start .navbar-link.is-active, .navbar.is-dark-green .navbar-end > a.navbar-item:focus, .navbar.is-dark-green .navbar-end > a.navbar-item:hover, .navbar.is-dark-green .navbar-end > a.navbar-item.is-active, .navbar.is-dark-green .navbar-end .navbar-link:focus, .navbar.is-dark-green .navbar-end .navbar-link:hover, .navbar.is-dark-green .navbar-end .navbar-link.is-active {
+a.navbar-item.green:focus,
+a.navbar-item.green:hover,
+a.navbar-item.green.is-active {
   background-color: $dark-green;
   color: white;
+}
+
+a.navbar-item.green:hover {
+  color: rgb(231, 238, 235);
+  font-weight: bold;
+}
+
+a.navbar-item.green.is-active {
   border-bottom: 4px solid $light-green;
   font-weight: bold;
 }
