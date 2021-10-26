@@ -4,15 +4,16 @@
       <div class="container is-max-widescreen">
         <div class="columns">
           <div class="column is-three-quarters">
-            <web-show-post-card
-              :image="post.image"
-              :title="post.title"
-              :content="post.content"
-              :description="post.description"
-              :created_at="post.created_at"
-              :category="post.category.name"
-              :tags="post.tags"
-              :user="post.user.name" />
+            <div class="columns is-multiline">
+              <div class="column is-12">
+                <web-show-post-card
+                  :post="post" />
+              </div>
+              <div class="column is-12">
+                <web-comment-list
+                  :comments="post.comments" />
+              </div>
+            </div>
           </div>
           <div class="column">
             <div class="columns is-multiline">
@@ -39,6 +40,9 @@ export default {
   },
   async fetch({store, params}) {
     await store.dispatch('web/post/getDetailPost', params.slug)
-  }
+  },
+  async asyncData({store, params}) {
+    await store.dispatch('web/post/storeVisitor', params.slug)
+  },
 }
 </script>

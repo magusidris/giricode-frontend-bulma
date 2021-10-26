@@ -28,6 +28,7 @@
     "vue-advanced-cropper": "^1.8.2",
     "vue-chartjs": "^3.5.1",
     "vue-gtag": "^1.16.1",
+    "vue-lodash": "^2.1.2",
     "vue-multiselect": "^2.1.6",
     "vue-sweetalert2": "^4.3.1"
   },

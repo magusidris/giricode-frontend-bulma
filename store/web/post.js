@@ -75,6 +75,52 @@ export const actions = {
     .catch(error => Promise.reject(error))
 
   },
+
+  storeVisitor({ dispatch }, slug) {
+
+    // set Promise
+    return new Promise((resolve, reject) => {
+
+      // store to Rest API "/api/v1/admin/posts" with method "POST"
+      this.$axios.post(`/api/v1/web/visitor/${slug}`)
+
+      // success
+      .then(() => {
+
+        // dispatch getDetailPost
+        // dispatch('getDetailPost')
+
+        // resolve promise
+        resolve()
+
+      })
+
+      .catch(error => reject(error))
+    })
+  },
+
+  storeComment({ dispatch }, slug) {
+
+    // set Promise
+    return new Promise((resolve, reject) => {
+
+      // store to Rest API "/api/v1/web/post/:slug/comment" with method "POST"
+      this.$axios.post(`/api/v1/web/post/${slug}/comment`)
+
+      // success
+      .then(() => {
+
+        // dispatch getDetailPost
+        // dispatch('getDetailPost')
+
+        // resolve promise
+        resolve()
+
+      })
+
+      .catch(error => reject(error))
+    })
+  }
 }
 
 

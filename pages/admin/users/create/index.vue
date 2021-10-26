@@ -292,7 +292,6 @@ export default {
 
               // sweet alert
               this.$buefy.snackbar.open(`Data Berhasil Disimpan!`)
-              // this.$nuxt.refresh()
               await this.$auth.fetchUser()
 
               // redirect route "admin-users"

@@ -11,7 +11,7 @@
 <script>
 
 export default {
-  name: 'Home',
+  name: 'admin',
   middleware: 'operator',
   computed: {
     menu() {

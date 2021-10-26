@@ -4,7 +4,7 @@
       <figure class="image is-4by2">
         <!-- <nuxt-img :src="image" alt="post.title" height="200" /> -->
         <nuxt-img
-          :src="`/storage/posts/`+image"
+          :src="`/storage/posts/`+post.image"
           alt="post.title"
           preset="web"
           height="300px"
@@ -13,15 +13,15 @@
       <hr>
       <div class="media">
         <div class="media-content">
-          <p class="title is-5">{{ title }}</p>
+          <p class="title is-5">{{ post.title }}</p>
           <p>
-            <time :datetime="created_at">
+            <time :datetime="post.created_at">
               <b-icon
                 pack="fas"
                 icon="calendar"
                 size="is-small">
               </b-icon>
-                {{ created_at }}
+                {{ post.created_at }}
             </time>
 
             <b-icon
@@ -30,7 +30,7 @@
               icon="user"
               size="is-small">
             </b-icon>
-            {{ user }}
+            {{ post.user.name }}
 
             <b-icon
               class="ml-4"
@@ -38,13 +38,13 @@
               icon="folder"
               size="is-small">
             </b-icon>
-            {{ category }}
+            {{ post.category.name }}
           </p>
-          <div class="content mt-5 is-medium" v-html="content" />
+          <div class="content mt-5 is-medium" v-html="post.content" />
           <hr>
           <div>
             <div class="tags are-medium">
-              <nuxt-link v-for="tag in tags" :key="tag.id" class="tag" :class="tag.color.value" :to="{ name: 'tag-slug', params: { slug: tag.slug } }">
+              <nuxt-link v-for="tag in post.tags" :key="tag.id" class="tag" :class="tag.color.value" :to="{ name: 'tag-slug', params: { slug: tag.slug } }">
                 {{ tag.name }}
               </nuxt-link>
             </div>
@@ -58,37 +58,9 @@
 <script>
 export default {
     props: {
-      image: {
-        type: String,
-        default: 'abcd'
-      },
-      title: {
-        type: String,
-        default: ''
-      },
-      content: {
-        type: String,
-        default: ''
-      },
-      description: {
-        type: String,
-        default: ''
-      },
-      created_at: {
-        type: String,
-        default: ''
-      },
-      category: {
-        type: String,
-        default: ''
-      },
-      tags: {
-        type: Array,
+      post: {
+        type: Object,
         required: true
-      },
-      user: {
-        type: String,
-        default: ''
       }
     }
 }
