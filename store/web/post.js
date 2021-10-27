@@ -14,6 +14,16 @@ export const state = () => ({
   //page
   page: 1,
 
+  comment: {
+    slug: '',
+    comment: '',
+    parentId: 0
+  },
+
+  canComment: false,
+
+  canReply: false,
+
   pagination: {
     page: 1 // Current page
   }
@@ -99,20 +109,24 @@ export const actions = {
     })
   },
 
-  storeComment({ dispatch }, slug) {
+  storeComment({ commit, dispatch, state }) {
+
+    const slug = state.comment.slug
+    const comment = state.comment.comment
 
     // set Promise
     return new Promise((resolve, reject) => {
 
-      // store to Rest API "/api/v1/web/post/:slug/comment" with method "POST"
-      this.$axios.post(`/api/v1/web/post/${slug}/comment`)
+      // store to Rest API "/api/v1/admin/posts" with method "POST"
+      this.$axios.post(`/api/v1/web/post/${slug}/comment`, {'comment': comment})
 
       // success
       .then(() => {
 
         // dispatch getDetailPost
-        // dispatch('getDetailPost')
-
+        dispatch('getDetailPost', slug)
+        commit('setCanComment', false)
+        commit('setCanReply', false)
         // resolve promise
         resolve()
 
@@ -120,6 +134,53 @@ export const actions = {
 
       .catch(error => reject(error))
     })
+  },
+
+  storeReply({ commit, dispatch, state }) {
+
+    const slug = state.comment.slug
+    const comment = state.comment.comment
+    const parentId = state.comment.parentId
+
+    // set Promise
+    return new Promise((resolve, reject) => {
+
+      // store to Rest API "/api/v1/admin/posts" with method "POST"
+      this.$axios.post(`/api/v1/web/post/${slug}/reply/${parentId}`, {'comment': comment})
+
+      // success
+      .then(() => {
+
+        // dispatch getDetailPost
+        dispatch('getDetailPost', slug)
+        commit('setCanComment', false)
+        commit('setCanReply', false)
+        // resolve promise
+        resolve()
+
+      })
+
+      .catch(error => reject(error))
+    })
+  },
+
+  updateComment({ commit }, {comment}) {
+    commit('setCommentValue', {comment})
+    commit('setCanComment', true)
+    commit('setCanReply', false)
+  },
+
+  updateReply({ commit }, {comment, parentId}) {
+    commit('setReplyValue', {comment})
+    commit('setParentId', {parentId})
+    commit('setCanReply', true)
+    commit('setCanComment', false)
+  },
+
+  updateSlug({ commit }, {slug}) {
+    commit('setSlugValue', {slug})
+    commit('setCanComment', false)
+    commit('setCanReply', false)
   }
 }
 
@@ -134,5 +195,23 @@ export const mutations = {
   },
   setPage(state, currentPage) {
     Vue.set(state.pagination, 'page', currentPage)
+  },
+  setCommentValue(state, {comment}) {
+    state.comment.comment = comment
+  },
+  setReplyValue(state, {comment}) {
+    state.comment.comment = comment
+  },
+  setParentId(state, {parentId}) {
+    state.comment.parentId = parentId
+  },
+  setSlugValue(state, {slug}) {
+    state.comment.slug = slug
+  },
+  setCanComment(state, canComment) {
+    state.canComment = canComment
+  },
+  setCanReply(state, canReply) {
+    state.canReply = canReply
   }
 }

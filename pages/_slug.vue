@@ -43,6 +43,7 @@ export default {
   },
   async asyncData({store, params}) {
     await store.dispatch('web/post/storeVisitor', params.slug)
+    await store.dispatch('web/post/updateSlug', {slug: params.slug})
   },
 }
 </script>

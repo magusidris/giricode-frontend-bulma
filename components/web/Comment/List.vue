@@ -8,7 +8,9 @@
     <div class="card-content">
       <form>
         <!-- Comment Post -->
-        <web-comment-form />
+        <web-comment-form
+          :comment="comment"
+          @valueUpdated="updateComment($event)" />
 
         <article class="media" v-for="data in comments" :key="data.id">
           <figure class="media-left">
@@ -45,8 +47,10 @@
                 </div>
               </div>
             </article>
-            <div>
-              <web-comment-reply-form />
+            <div v-if="replyBoxs === data.id">
+              <web-comment-reply-form
+                @valueUpdated="updateReply($event, 'reply')"
+                :parentId="data.id" />
             </div>
           </div>
         </article>
@@ -61,7 +65,8 @@ export default {
   data() {
     return {
       replyBoxs: [],
-      show: []
+      show: [],
+      comment: ''
     }
   },
   props: {
@@ -80,20 +85,25 @@ export default {
     comments: {
       type: Array,
       default: false
-    },
-    slug: {
-      type: String
     }
   },
   methods: {
     replyBox(index) {
-      if (this.replyBoxs[index]) {
-        console.log('Reply line of index: ', index)
-        return this.replyBoxs[index]
-      } else {
-        console.log('Reply line of index: ', 0)
-        return this.replyBoxs[index]
-      }
+      this.replyBoxs = index
+      // console.log('Reply to : ', this.replyBoxs)
+      this.$store.commit('web/post/setCanComment', false)
+      this.comment = ''
+      // this.$store.dispatch('web/post/updateCommentId', {comment: index})
+    },
+    updateComment({value}) {
+      this.replyBoxs = 0
+      // console.log('value of comment : ', {comment: value})
+      this.$store.dispatch('web/post/updateComment', {comment: value})
+    },
+    updateReply({value, parentId}) {
+      // console.log('value of reply : ', {comment: value, 'parentId': parentId})
+      this.$store.dispatch('web/post/updateReply', {comment: value, 'parentId': parentId})
+      // this.$store.dispatch('web/post/updateComment', {comment: value})
     }
   }
 }

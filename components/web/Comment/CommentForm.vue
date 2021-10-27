@@ -8,12 +8,17 @@
     <div class="media-content">
       <div class="field">
         <p class="control">
-          <textarea class="textarea" @input="emitComment($event)" placeholder="Add a comment..."></textarea>
+          <textarea
+              :value="comment"
+              class="textarea"
+              @input="handleInput($event)"
+              placeholder="Add a comment...">
+          </textarea>
         </p>
       </div>
       <div class="field">
         <p class="control">
-          <button class="button" @click.prevent="postComment">Post comment</button>
+          <button class="button" @click.prevent="postComment" :disabled="!canComment">Post comment</button>
         </p>
       </div>
     </div>
@@ -21,18 +26,34 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
+import _get from 'lodash'
+import { mapState, mapGetters } from 'vuex'
 export default {
+  props: {
+    value: [Object],
+    comment: String
+  },
+  data() {
+    return {
+      saving: false
+    }
+  },
   computed: {
+    ...mapState({
+      canComment: ({web}) => web.post.canComment
+    }),
     ...mapGetters([
       'isAuthenticated', 'authUser', 'isProgrammer', 'isAdmin', 'isOperator'
-    ]),
+    ])
   },
   methods: {
-    emitComment(event) {
-      const {value} = event.target
-      // store.dispatch('web/post/storeComment', params.slug)
-      console.log('Body of comment: ', value)
+    handleInput(event) {
+      const { value } = event.target
+      this.$emit('valueUpdated', {value})
+      // console.log('Body of comment: ', {value})
+    },
+    async postComment() {
+      await this.$store.dispatch('web/post/storeComment')
     }
   }
 
