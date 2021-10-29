@@ -9,9 +9,9 @@
       <div class="field">
         <p class="control">
           <textarea
-              :value="comment"
               class="textarea"
               @input="handleInput($event)"
+              ref="comment"
               placeholder="Add a comment...">
           </textarea>
         </p>
@@ -26,7 +26,6 @@
 </template>
 
 <script>
-import _get from 'lodash'
 import { mapState, mapGetters } from 'vuex'
 export default {
   props: {
@@ -50,10 +49,12 @@ export default {
     handleInput(event) {
       const { value } = event.target
       this.$emit('valueUpdated', {value})
-      // console.log('Body of comment: ', {value})
     },
     async postComment() {
       await this.$store.dispatch('web/post/storeComment')
+        .then(_ =>
+          this.$refs.comment.value=null
+      )
     }
   }
 

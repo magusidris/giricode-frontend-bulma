@@ -26,5 +26,9 @@ $family-sans-serif: "Nunito", sans-serif;
   padding-top: 60px;
 }
 
+article.media {
+  margin-top: 1rem;
+}
+
 /* Animate.css custom build (just selected animations to minimize bundle size) */
 @import "../css/animate.min.css";

@@ -8,9 +8,12 @@
     <div class="card-content">
       <form>
         <!-- Comment Post -->
-        <web-comment-form
-          :comment="comment"
-          @valueUpdated="updateComment($event)" />
+        <div class="pb-2" v-if="isAuthenticated">
+          <keep-alive>
+            <web-comment-form
+              @valueUpdated="updateComment($event)" />
+          </keep-alive>
+        </div>
 
         <article class="media" v-for="data in comments" :key="data.id">
           <figure class="media-left">
@@ -29,7 +32,13 @@
               </p>
             </div>
 
-            <article class="media" v-for="reply in data.replies" :key="reply.id">
+            <div v-if="replyBoxs === data.id">
+              <web-comment-reply-form
+                @valueUpdated="updateReply($event, 'reply')"
+                :parentId="data.id" />
+            </div>
+
+            <article class="media reply" v-for="reply in data.replies" :key="reply.id">
               <figure class="media-left">
                 <p class="image is-48x48">
                   <nuxt-img :src="`/storage/users/`+reply.user.image" :alt="reply.user.name" />
@@ -47,11 +56,6 @@
                 </div>
               </div>
             </article>
-            <div v-if="replyBoxs === data.id">
-              <web-comment-reply-form
-                @valueUpdated="updateReply($event, 'reply')"
-                :parentId="data.id" />
-            </div>
           </div>
         </article>
       </form>
@@ -60,7 +64,7 @@
 </template>
 
 <script>
-import Vue from 'vue'
+import { mapGetters } from 'vuex'
 export default {
   data() {
     return {
@@ -68,6 +72,11 @@ export default {
       show: [],
       comment: ''
     }
+  },
+  computed: {
+    ...mapGetters([
+      'isAuthenticated'
+    ])
   },
   props: {
     /**
@@ -89,22 +98,39 @@ export default {
   },
   methods: {
     replyBox(index) {
-      this.replyBoxs = index
-      // console.log('Reply to : ', this.replyBoxs)
-      this.$store.commit('web/post/setCanComment', false)
-      this.comment = ''
-      // this.$store.dispatch('web/post/updateCommentId', {comment: index})
+      if(this.isAuthenticated) {
+        this.replyBoxs = index
+        this.comment = "comment"
+        // console.log('Reply to : ', this.replyBoxs)
+        this.$store.commit('web/post/setCanComment', false)
+        this.$store.commit('web/post/setCanReply', false)
+      } else {
+        // redirect
+        this.$router.push({
+          name: 'login'
+        })
+      }
     },
     updateComment({value}) {
       this.replyBoxs = 0
-      // console.log('value of comment : ', {comment: value})
       this.$store.dispatch('web/post/updateComment', {comment: value})
     },
     updateReply({value, parentId}) {
       // console.log('value of reply : ', {comment: value, 'parentId': parentId})
-      this.$store.dispatch('web/post/updateReply', {comment: value, 'parentId': parentId})
-      // this.$store.dispatch('web/post/updateComment', {comment: value})
+      this.$store.dispatch('web/post/updateReply', {'comment': value, parentId})
     }
   }
 }
 </script>
+<style lang="scss">
+  article .media {
+    border-left: 3px lightgray;
+  }
+</style>
+
+<style lang="scss" scoped>
+.card .media:not(:last-child) {
+    padding-top: 1.5rem;
+    margin-bottom: 0;
+}
+</style>

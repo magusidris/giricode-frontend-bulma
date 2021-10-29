@@ -39,6 +39,14 @@
               size="is-small">
             </b-icon>
             {{ post.category.name }}
+
+            <b-icon
+              class="ml-4"
+              pack="fas"
+              icon="comments"
+              size="is-small">
+            </b-icon>
+            {{ post.comments_count }}
           </p>
           <div class="content mt-5 is-medium" v-html="post.content" />
           <hr>

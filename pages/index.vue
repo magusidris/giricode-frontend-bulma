@@ -50,7 +50,9 @@ export default {
   },
   computed: {
     ...mapState({
-      posts: state => state.web.post.posts.all
+      posts: state => state.web.post.posts,
+      currentPage: state => state.web.post.posts.current_page,
+      statePage: state => state.web.post.page
     })
   },
   mounted() {
@@ -73,11 +75,10 @@ export default {
         })
     }
   },
-  async fetch() {
+  async fetch({ store, query }) {
     // fetching slider on Rest API
-    await this.$store.dispatch('web/post/getPostsData')
-  },
-  created() {
+    await store.commit('web/post/setPage', query.page)
+    await store.dispatch('web/post/getPostsData')
   },
   methods: {
     getGDPR() {

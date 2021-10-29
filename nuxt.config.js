@@ -47,7 +47,7 @@ export default {
   css: [
     '@/assets/scss/main.scss',
     '@/assets/css/icons.css',
-    '@mdi/font/css/materialdesignicons.css'
+    '@/node_modules/@mdi/font/scss/materialdesignicons.scss'
   ],
 
   styleResources: {

@@ -12,19 +12,28 @@
     <div class="card-content">
       <div class="media">
         <div class="media-content">
-          <p class="title is-5">{{ post.title }}</p>
+          <p class="title is-size-6">{{ post.title }}</p>
         </div>
       </div>
       <div class="content">
 
-        <time :datetime="post.created_at">
+        <p class="is-size-7">
+          <time :datetime="post.created_at">
+            <b-icon
+              pack="fas"
+              icon="calendar"
+              size="is-small">
+            </b-icon>
+            {{ post.created_at }}
+          </time>
           <b-icon
+            class="ml-4"
             pack="fas"
-            icon="calendar"
+            icon="eye"
             size="is-small">
           </b-icon>
-          {{ post.created_at }}
-          </time>
+          {{ post.views_count }}
+        </p>
       </div>
     </div>
   </div>

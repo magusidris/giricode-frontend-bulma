@@ -1,12 +1,8 @@
-import Vue from 'vue'
-
 //state
 export const state = () => ({
 
   //posts
-  posts: {
-    all: []
-  },
+  posts: [],
 
   //post
   post: {},
@@ -21,78 +17,64 @@ export const state = () => ({
   },
 
   canComment: false,
-
-  canReply: false,
-
-  pagination: {
-    page: 1 // Current page
-  }
+  canReply: false
 })
 
 //actions
 export const actions = {
 
-  //get posts data
-  getPostsData({ commit, state }, filter) {
+  // get categories data
+  getPostsData({ commit, state }, payload) {
 
-      //search
-      // let search = payload ? payload : ''
-      let url = this.$applyParamsToUrl(`/api/v1/web/posts`, filter)
+    // search
+    let search = payload ? payload : ''
 
-      return this.$axios.$get(url)
-      .then(response => {
-        const posts = response.data
-        commit('setPostsData', {resource: 'all', posts})
-        return state.posts.all
+    // set promise
+    return new Promise((resolve, reject) => {
+
+      // fetching Rest API "/api/v1/web/posts" with method "GET"
+      this.$axios.get(`/api/v1/web/posts?q=${search}&page=${state.page}`)
+
+      // success
+      .then((response) => {
+
+        // commit to mutation "SetCategoriesData"
+        commit('setPostsData', response.data.data)
+
+        // resolve promise
+        resolve()
       })
-      .catch(error => Promise.reject(error))
-      //set promise
-      // return new Promise((resolve, reject) => {
-      //   debugger
-
-      //     //fetching Rest API "/api/web/posts" with method "GET"
-      //     // this.$axios.get(`/api/v1/web/posts?q=${search}&page=${filter}`)
-      //     this.$axios.get(url)
-
-      //     //success
-      //     .then((response) => {
-      //       const blogs = response.data.data
-
-      //         //commit ti mutation "SET_POSTS_DATA"
-      //         commit('setPostsData', blogs)
-
-      //         //resolve promise
-      //         resolve()
-      //     })
-
-      // })
-
+    })
   },
 
   //get detail post
-  getDetailPost({ commit, state }, slug) {
+  getDetailPost({ commit }, payload) {
 
-    //get to Rest API "/api/web/posts/:slug" with method "GET"
-    return this.$axios.$get(`/api/v1/web/posts/${slug}`)
+    //set promise
+    return new Promise((resolve, reject) => {
 
-    //success
-    .then(response => {
-        const post = response.data
-        //commit to mutation "SET_POST_DATA"
-        commit('setPostData', post)
-        return state.post
+      //get to Rest API "/api/web/posts/:slug" with method "GET"
+      this.$axios.$get(`/api/v1/web/posts/${payload}`)
+
+      //success
+      .then(response => {
+
+          //commit to mutation "SET_POST_DATA"
+          commit('setPostData', response.data)
+
+          resolve()
+      })
     })
-    .catch(error => Promise.reject(error))
 
   },
 
-  storeVisitor({ dispatch }, slug) {
+  storeVisitor({ dispatch }, payload) {
 
     // set Promise
     return new Promise((resolve, reject) => {
 
       // store to Rest API "/api/v1/admin/posts" with method "POST"
-      this.$axios.post(`/api/v1/web/visitor/${slug}`)
+      this.$axios.post(`/api/v1/web/visitor/${payload}`)
 
       // success
       .then(() => {
@@ -167,34 +149,36 @@ export const actions = {
   updateComment({ commit }, {comment}) {
     commit('setCommentValue', {comment})
     commit('setCanComment', true)
-    commit('setCanReply', false)
+    // commit('setCanReply', false)
   },
 
-  updateReply({ commit }, {comment, parentId}) {
+  updateReply({commit}, {comment, parentId}) {
     commit('setReplyValue', {comment})
     commit('setParentId', {parentId})
+    // commit('setCanComment', false)
     commit('setCanReply', true)
-    commit('setCanComment', false)
   },
 
-  updateSlug({ commit }, {slug}) {
+  updateSlug({commit}, {slug}) {
     commit('setSlugValue', {slug})
-    commit('setCanComment', false)
-    commit('setCanReply', false)
   }
 }
 
 
 //mutations
 export const mutations = {
-  setPostsData(state, {resource, posts}) {
-    state.posts[resource] = posts
+  setPostsData(state, payload) {
+    state.posts = payload
   },
-  setPostData(state, post) {
-    state.post = post
+  setPostData(state, payload) {
+    state.post = payload
   },
-  setPage(state, currentPage) {
-    Vue.set(state.pagination, 'page', currentPage)
+
+  // mutation "setPage"
+  setPage(state, payload) {
+
+    // set value state "page"
+    state.page = payload
   },
   setCommentValue(state, {comment}) {
     state.comment.comment = comment

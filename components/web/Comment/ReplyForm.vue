@@ -8,7 +8,8 @@
     <div class="media-content">
       <div class="field">
         <p class="control">
-          <textarea class="textarea" :value="comment" @input="handleInput($event, parentId)" placeholder="Add a comment..."></textarea>
+          <textarea class="textarea" @input="handleInput($event, parentId)" :ref='"reply_"+parentId' placeholder="Add a comment..."></textarea>
+          <!-- <input class="input is-primary" @input="handleInput($event, parentId)" :ref='"reply_"+parentId' type="text" placeholder="Primary input"> -->
         </p>
       </div>
       <div class="field">
@@ -35,20 +36,28 @@ export default {
       canReply: ({web}) => web.post.canReply
     }),
     ...mapGetters([
-      'isAuthenticated', 'authUser', 'isProgrammer', 'isAdmin', 'isOperator'
+      'authUser'
     ])
+  },
+  mounted() {
+    this.$nextTick(() => this.$refs["reply_" + this.parentId].focus())
   },
   methods: {
     handleInput(event, parentId) {
       const {value} = event.target
       this.$emit('valueUpdated', {value, parentId})
-      // store.dispatch('web/post/storeComment', params.slug)
-      // console.log('Body of comment: ', {value, parentId})
     },
-    async postReply(e) {
-      await this.$store.dispatch('web/post/storeReply')
-      this.comment = ''
+    postReply() {
+      this.$store.dispatch('web/post/storeReply')
+        .then(_ => {
+          // this.comment = ''
+          this.$nextTick(() => {
+            this.$refs["reply_" + this.parentId].focus()
+            this.$refs["reply_" + this.parentId].value=null
+          })
+        })
     }
+
   }
 
 }
