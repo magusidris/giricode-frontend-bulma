@@ -27,8 +27,11 @@
             <div class="navbar-item">
               <div class="buttons">
                 <a class="button is-light-green">
-                  <figure class="image is-32x32 mr-2">
+                  <figure v-if="isAuthenticated" class="image is-32x32 mr-2">
                     <nuxt-img class="is-rounded" :src="`/storage/users/`+authUser.image" :alt="authUser.username" />
+                  </figure>
+                  <figure v-else class="image is-32x32 mr-2">
+                    <img class="is-rounded" src="https://b.kisscc0.com/20180718/urw/kisscc0-ninja-computer-icons-samurai-youtube-avatar-ninja-5b4ed903c2dd20.4931332915318940197982.jpg">
                   </figure>
                   {{ authUser.username }}
                 </a>
