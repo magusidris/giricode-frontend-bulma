@@ -1,8 +1,11 @@
 <template>
   <article class="media">
     <figure class="media-left">
-      <p class="image is-64x64">
+      <p v-if="authUser.image !== null" class="image is-64x64">
         <nuxt-img :src="`/storage/users/`+authUser.image" :alt="authUser.username" />
+      </p>
+      <p v-else class="image is-64x64">
+        <img src="https://b.kisscc0.com/20180718/urw/kisscc0-ninja-computer-icons-samurai-youtube-avatar-ninja-5b4ed903c2dd20.4931332915318940197982.jpg">
       </p>
     </figure>
     <div class="media-content">

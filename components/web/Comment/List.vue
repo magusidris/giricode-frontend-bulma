@@ -17,8 +17,11 @@
 
         <article class="media" v-for="data in comments" :key="data.id">
           <figure class="media-left">
-            <p class="image is-64x64">
+            <p v-if="data.user.image !== null" class="image is-64x64">
               <nuxt-img :src="`/storage/users/`+data.user.image" :alt="data.user.name" />
+            </p>
+            <p v-else class="image is-64x64">
+              <img src="https://b.kisscc0.com/20180718/urw/kisscc0-ninja-computer-icons-samurai-youtube-avatar-ninja-5b4ed903c2dd20.4931332915318940197982.jpg">
             </p>
           </figure>
           <div class="media-content">
@@ -40,8 +43,11 @@
 
             <article class="media reply" v-for="reply in data.replies" :key="reply.id">
               <figure class="media-left">
-                <p class="image is-48x48">
+                <p v-if="reply.user.image !== null" class="image is-48x48">
                   <nuxt-img :src="`/storage/users/`+reply.user.image" :alt="reply.user.name" />
+                </p>
+                <p v-else class="image is-48x48">
+                  <img src="https://b.kisscc0.com/20180718/urw/kisscc0-ninja-computer-icons-samurai-youtube-avatar-ninja-5b4ed903c2dd20.4931332915318940197982.jpg">
                 </p>
               </figure>
               <div class="media-content">
