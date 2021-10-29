@@ -45,5 +45,17 @@ export default {
     await store.dispatch('web/post/storeVisitor', params.slug)
     await store.dispatch('web/post/updateSlug', {slug: params.slug})
   },
+  head() {
+      return {
+        title: this.post.title +" - Giricode",
+        meta: [
+          {
+            hid: 'description',
+            name: 'description',
+            content: this.post.description
+          }
+        ]
+      }
+    }
 }
 </script>
