@@ -118,7 +118,8 @@ export default {
     '/api': {
       target: 'https://backend.giricode.com/',
       // target: 'http://giricode-backend.test/',
-      pathRewrite: { '^/api': '/' }
+      pathRewrite: { '^/api': '/' },
+      changeOrigin: true
     }
   },
 
@@ -127,7 +128,7 @@ export default {
       'jwt': {
         provider: 'laravel/jwt',
         scheme: 'refresh',
-        url: process.env.BASE_URL || 'http://localhost:2021',
+        url: 'https://giricode.com' || 'http://localhost:2021',
         endpoints: {
           login: {
             url: '/api/v1/auth/login',
