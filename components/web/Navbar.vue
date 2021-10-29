@@ -1,6 +1,19 @@
 <template>
   <nav class="navbar is-dark-green" role="navigation" aria-label="main navigation">
     <div class="container is-max-widescreen">
+      <div class="navbar-brand">
+        <a @click="isActive = !isActive"
+          :class="{'is-active': isActive}"
+          role="button"
+          class="navbar-burger burger"
+          aria-label="menu"
+          aria-expanded="false"
+          data-target="navbarBasicExample">
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+        </a>
+      </div>
       <div :class="{'is-active': isActive}"
             id="navbarBasicExample"
             class="navbar-menu">
