@@ -1,21 +1,24 @@
 <template>
   <div>
     <section>
-        <b-carousel
-          :animated="animated"
-          :pause-hover="pauseHover"
-          :progress="progress"
-          :progress-type="progressType">
-          <b-carousel-item v-for="slider in sliders" :key="slider.id">
-            <!-- <b-image class="image" :src="slider.image"></b-image> -->
-            <nuxt-img
-              :src="`/storage/sliders/`+slider.image"
-              alt="post.title"
-              preset="web"
-              width="1500"
-              sizes="sm:355px md:320px lg:1000px" />
-          </b-carousel-item>
-      </b-carousel>
+      <b-carousel
+            :indicator="indicator"
+            :indicator-background="indicatorBackground"
+            :indicator-inside="indicatorInside"
+            :indicator-mode="indicatorMode"
+            :indicator-position="indicatorPosition"
+            :indicator-style="indicatorStyle">
+            <b-carousel-item v-for="slider in sliders" :key="slider.id">
+                <section :class="`hero is-medium`">
+                    <nuxt-img
+                          :src="`/storage/sliders/`+slider.image"
+                          alt="post.title"
+                          preset="web"
+                          width="1500"
+                          sizes="sm:355px md:320px lg:1000px" />
+                </section>
+            </b-carousel-item>
+        </b-carousel>
     </section>
   </div>
 </template>
@@ -25,16 +28,12 @@ import { mapState } from 'vuex'
 export default {
   data() {
       return {
-          progress: true,
-          progressType: 'is-primary',
-          animated: 'fade',
-          pauseHover: false,
-          carousels: [
-              { title: 'Slide 1', color: 'warning' },
-              { title: 'Slide 2', color: 'dark' },
-              { title: 'Slide 3', color: 'primary' },
-              { title: 'Slide 4', color: 'info' }
-          ]
+        indicator: true,
+        indicatorBackground: false,
+        indicatorInside: true,
+        indicatorMode: 'hover',
+        indicatorPosition: 'is-bottom',
+        indicatorStyle: 'is-dots'
       }
   },
   computed: {
