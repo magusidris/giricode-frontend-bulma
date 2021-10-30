@@ -33,7 +33,7 @@
               icon="eye"
               size="is-small">
             </b-icon>
-            {{ post.views_count }}
+            <span class="is-hidden-mobile">{{ post.views_count }}</span>
 
             <b-icon
               class="ml-4 is-hidden-mobile"
@@ -41,7 +41,7 @@
               icon="comments"
               size="is-small">
             </b-icon>
-            {{ post.comments_count }}
+            <span class="is-hidden-mobile">{{ post.comments_count }}</span>
           </p>
         </div>
       </div>
