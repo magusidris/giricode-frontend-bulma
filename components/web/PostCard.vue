@@ -28,7 +28,7 @@
             </time>
 
             <b-icon
-              class="ml-4"
+              class="ml-4 is-hidden-mobile"
               pack="fas"
               icon="eye"
               size="is-small">
@@ -36,7 +36,7 @@
             {{ post.views_count }}
 
             <b-icon
-              class="ml-4"
+              class="ml-4 is-hidden-mobile"
               pack="fas"
               icon="comments"
               size="is-small">
