@@ -4,7 +4,7 @@
       <div class="columns is-multiline">
         <div class="column is-4" v-for="post in posts.data" :key="post.id">
           <nuxt-link :to="{name: 'slug', params: {slug: post.slug}}">
-            <web-post-card :post="post" />
+            <web-post-card-second :post="post" />
           </nuxt-link>
         </div>
       </div>

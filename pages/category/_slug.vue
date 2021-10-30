@@ -7,7 +7,7 @@
       <div class="columns is-multiline">
         <div class="column is-4" v-for="post in category.posts" :key="post.id">
           <nuxt-link :to="{ name: 'slug', params: {slug: post.slug} }">
-            <web-category-post-card :post="post" />
+            <web-post-card-category :post="post" />
             <!-- {{ viewCount }} -->
           </nuxt-link>
         </div>

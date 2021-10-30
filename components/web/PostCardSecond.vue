@@ -1,7 +1,7 @@
 <template>
   <div class="card">
     <div class="columns is-multiline is-gapless">
-      <div class="column card-image is-4-desktop is-full-tablet is-full-mobile">
+      <div class="column card-image is-full">
         <figure class="image is-4by2">
           <nuxt-img
             :src="`/storage/posts/`+post.image"
@@ -10,14 +10,14 @@
             sizes="sm:355px md:320px lg:480px" />
         </figure>
       </div>
-      <div class="mx-3 my-3 column status card-content is-7-desktop is-full-tablet is-full-mobile">
+      <div class="mx-3 my-3 column status card-content is-full">
         <div class="media">
           <div class="media-content">
-            <p class="title is-size-4-desktop is-size-5-tablet is-size-6-mobile">{{ post.title }}</p>
+            <p class="title is-size-4">{{ post.title }}</p>
           </div>
         </div>
         <div class="content">
-          <p class="is-size-6-desktop is-size-7-tablet is-size-7-mobile">
+          <p class="is-size-6">
             <time :datetime="post.created_at">
               <b-icon
                 pack="fas"
@@ -62,11 +62,6 @@ export default {
 
 <style lang="scss" scoped>
   .title {
-    min-height: 2rem
-  }
-  .status {
-    display:flex;
-    flex-direction:column;
-    justify-content:space-between
+    min-height: 3rem
   }
 </style>

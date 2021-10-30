@@ -13,7 +13,7 @@
       <div class="card-content">
         <div class="media">
           <div class="media-content">
-            <p class="title is-size-6">{{ post.title }}</p>
+            <p class="title is-size-5">{{ post.title }}</p>
           </div>
         </div>
         <div class="content">
@@ -34,6 +34,7 @@
               size="is-small">
             </b-icon>
             {{ viewCount }}
+
           </p>
         </div>
       </div>
