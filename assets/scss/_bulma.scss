@@ -27,4 +27,12 @@ $navbar-item-img-max-height: 3rem;
   background-color: $light-green;
 }
 
+.has-text-dark-green {
+  color: $dark-green!important;
+}
+
+.has-text-light-green {
+  color: $light-green!important;
+}
+
 @import "~bulma"

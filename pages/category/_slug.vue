@@ -2,12 +2,13 @@
   <section class="section">
     <div class="container is-max-widescreen">
       <h1 class="title">
-        Category : {{ category.name }}
+        Category : <span class="has-text-dark-green">{{ category.name }}</span>
       </h1>
       <div class="columns is-multiline">
         <div class="column is-4" v-for="post in category.posts" :key="post.id">
           <nuxt-link :to="{ name: 'slug', params: {slug: post.slug} }">
-            <web-post-card :post="post" />
+            <web-category-post-card :post="post" />
+            <!-- {{ viewCount }} -->
           </nuxt-link>
         </div>
       </div>
@@ -18,7 +19,6 @@
 <script>
 import { mapState } from 'vuex'
 export default {
-
   // computed
   computed: {
 
