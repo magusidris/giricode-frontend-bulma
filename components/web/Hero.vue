@@ -12,11 +12,11 @@
               </figure>
             </div>
             <div class="column">
-              <p class="title">
+              <p class="title has-text-white">
                 Giricode
               </p>
-              <p class="subtitle">
-                Belajar koding bahasa Indonesia terlengkap.
+              <p class="subtitle has-text-white">
+                Belajar koding bahasa Indonesia dari nol terlengkap.
               </p>
             </div>
           </div>
