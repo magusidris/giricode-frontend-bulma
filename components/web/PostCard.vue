@@ -20,28 +20,29 @@
           <p class="is-size-6-desktop is-size-7-tablet is-size-7-mobile">
             <time :datetime="post.created_at">
               <b-icon
+                class="has-text-grey-dark"
                 pack="fas"
                 icon="calendar"
                 size="is-small">
               </b-icon>
-              {{ post.created_at }}
+              <span class="has-text-grey-dark">{{ post.created_at }}</span>
             </time>
 
             <b-icon
-              class="ml-4 is-hidden-mobile"
+              class="ml-4 is-hidden-mobile has-text-grey-dark"
               pack="fas"
               icon="eye"
               size="is-small">
             </b-icon>
-            <span class="is-hidden-mobile">{{ post.views_count }}</span>
+            <span class="is-hidden-mobile has-text-grey-dark">{{ post.views_count }}</span>
 
             <b-icon
-              class="ml-4 is-hidden-mobile"
+              class="ml-4 is-hidden-mobile has-text-grey-dark"
               pack="fas"
               icon="comments"
               size="is-small">
             </b-icon>
-            <span class="is-hidden-mobile">{{ post.comments_count }}</span>
+            <span class="is-hidden-mobile has-text-grey-dark">{{ post.comments_count }}</span>
           </p>
         </div>
       </div>
