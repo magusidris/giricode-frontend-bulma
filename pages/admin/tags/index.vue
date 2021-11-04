@@ -1,8 +1,8 @@
 <template>
   <div>
-    <admin-title-bar :title-stack="titleStack" />
+    <titlebar :title-stack="titleStack" />
     <section class="section is-main-section">
-      <admin-card-component title="Tags Data" class="has-table has-mobile-sort-spaced">
+      <card-component title="Tags Data" class="has-table has-mobile-sort-spaced">
         <b-field class="mt-3 mx-3">
             <p class="control">
                 <b-button :to="{name: 'admin-tags-create'}" tag="nuxt-link" type="is-danger" label="Tambah" icon-pack="fas" icon-left="plus-circle" />
@@ -80,15 +80,21 @@
           :total="tags.total"
           :perPage="tags.per_page">
         </b-pagination>
-      </admin-card-component>
+      </card-component>
     </section>
   </div>
 </template>
 
 <script>
 import { mapState } from 'vuex'
+import Titlebar from '@/components/admin/TitleBar'
+import CardComponent from '@/components/admin/CardComponent'
 export default {
   layout: 'admin',
+  components: {
+    Titlebar,
+    CardComponent
+  },
   data() {
     return {
 

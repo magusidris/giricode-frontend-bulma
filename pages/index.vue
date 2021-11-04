@@ -2,7 +2,7 @@
   <div>
     <section class="section">
       <div class="container is-max-widescreen">
-        <web-carousel />
+        <carousel />
       </div>
     </section>
     <section class="section pt-0">
@@ -12,7 +12,7 @@
             <div class="columns is-multiline is-mobile">
               <div class="column is-half-mobile is-full-desktop is-half-tablet" v-for="post in posts.data" :key="post.id">
                 <nuxt-link :to="{name: 'slug', params: {slug: post.slug}}">
-                  <web-post-card :post="post" />
+                  <post-card :post="post" />
                 </nuxt-link>
               </div>
             </div>
@@ -25,10 +25,10 @@
           <div class="column is-4-desktop is-full-tablet">
             <div class="columns is-multiline is-mobile">
               <div class="column is-full">
-                <web-category-card />
+                <category-card />
               </div>
               <div class="column is-12">
-                <web-tag-card />
+                <tag-card />
               </div>
             </div>
           </div>
@@ -42,7 +42,17 @@
 import { mapState } from 'vuex'
 import { bootstrap } from 'vue-gtag'
 import { SnackbarProgrammatic as Snackbar } from 'buefy'
+import Carousel from '@/components/web/Carousel'
+import PostCard from '@/components/web/PostCard'
+import CategoryCard from '@/components/web/CategoryCard'
+import TagCard from '@/components/web/TagCard'
 export default {
+  components: {
+    Carousel,
+    PostCard,
+    CategoryCard,
+    TagCard
+  },
   data() {
     return {
       isOpen: false
@@ -78,6 +88,7 @@ export default {
   async fetch({ store, query }) {
     // fetching slider on Rest API
     await store.commit('web/post/setPage', query.page)
+
     await store.dispatch('web/post/getPostsData')
   },
   methods: {

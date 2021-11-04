@@ -69,7 +69,7 @@ export default {
   ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
-  components: true,
+  // components: true,
 
   // Modules for dev and build (recommended): https://go.nuxtjs.dev/config-modules
   buildModules: [
@@ -129,7 +129,7 @@ export default {
       'jwt': {
         provider: 'laravel/jwt',
         scheme: 'refresh',
-        url: pkg.base_url || 'http://localhost:2021',
+        url: process.env.BASE_URL || 'http://localhost:2021',
         endpoints: {
           login: {
             url: '/api/v1/auth/login',

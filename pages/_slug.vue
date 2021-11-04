@@ -6,11 +6,11 @@
           <div class="column is-three-quarters">
             <div class="columns is-multiline">
               <div class="column is-12">
-                <web-show-post-card
+                <show-post-card
                   :post="post" />
               </div>
               <div class="column is-12">
-                <web-comment-list
+                <comment-list
                   :comments="post.comments" />
               </div>
             </div>
@@ -18,10 +18,10 @@
           <div class="column">
             <div class="columns is-multiline">
               <div class="column is-12">
-                <web-category-card />
+                <category-card />
               </div>
               <div class="column is-12">
-                <web-tag-card />
+                <tag-card />
               </div>
             </div>
           </div>
@@ -32,7 +32,17 @@
 </template>
 
 <script>
+import ShowPostCard from '@/components/web/ShowPostCard'
+import CommentList from '@/components/web/Comment/List'
+import CategoryCard from '@/components/web/CategoryCard'
+import TagCard from '@/components/web/TagCard'
 export default {
+  components: {
+    ShowPostCard,
+    CommentList,
+    CategoryCard,
+    TagCard
+  },
   computed: {
     post() {
       return this.$store.state.web.post.post

@@ -1,18 +1,25 @@
 <template>
   <div>
-    <admin-nav-bar />
+    <navbar />
     <!-- <admin-aside-menu :menu="menu" /> -->
-    <admin-sidebar />
+    <sidebar />
     <nuxt id="admin" />
-    <admin-footer-bar />
+    <footerbar />
   </div>
 </template>
 
 <script>
-
+import Navbar from '@/components/admin/NavBar'
+import Sidebar from '@/components/admin/Sidebar'
+import Footerbar from '@/components/admin/FooterBar'
 export default {
   name: 'admin',
   middleware: 'operator',
+  components: {
+    Navbar,
+    Sidebar,
+    Footerbar
+  },
   computed: {
     menu() {
       return [
@@ -62,13 +69,6 @@ export default {
         ]
       ]
     },
-  },
-  created() {
-    this.$store.commit('user', {
-      name: 'John Doe',
-      email: 'john@example.com',
-      avatar: 'https://avatars.dicebear.com/v2/gridy/John-Doe.svg',
-    })
   },
   mounted() {
     document.documentElement.classList.add('has-aside-left')

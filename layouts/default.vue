@@ -1,15 +1,23 @@
 <template>
   <div>
-    <web-hero />
-    <web-navbar />
+    <hero />
+    <navbar />
     <Nuxt id="web" />
-    <web-footer />
+    <footerbar />
   </div>
 </template>
 
 <script>
+import Hero from '@/components/web/Hero'
+import Navbar from '@/components/web/Navbar'
+import Footerbar from '@/components/web/Footer'
 export default {
   name: 'default',
+  components: {
+    Hero,
+    Navbar,
+    Footerbar
+  },
   data () {
     return {
       items: [

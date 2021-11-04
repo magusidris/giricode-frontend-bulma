@@ -7,7 +7,7 @@
       <div class="columns is-multiline">
         <div class="column is-4" v-for="post in category.posts" :key="post.id">
           <nuxt-link :to="{ name: 'slug', params: {slug: post.slug} }">
-            <web-post-card-category :post="post" />
+            <category-card :post="post" />
             <!-- {{ viewCount }} -->
           </nuxt-link>
         </div>
@@ -18,7 +18,11 @@
 
 <script>
 import { mapState } from 'vuex'
+import CategoryCard from '@/components/web/PostCardCategory'
 export default {
+  components: {
+    CategoryCard
+  },
   // computed
   computed: {
 

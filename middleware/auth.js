@@ -1,7 +1,8 @@
-export default function({ $auth, redirect }) {
+export default function({ store, redirect }) {
+  const isAuth = store.getters['isAuthenticated']
 
   //check loggedIn "true"
-  if(!$auth.loggedIn) {
+  if(!isAuth) {
 
       return redirect('/notAuthenticated')
   }

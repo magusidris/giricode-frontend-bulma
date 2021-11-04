@@ -10,7 +10,7 @@
         <!-- Comment Post -->
         <div class="pb-2" v-if="isAuthenticated">
           <keep-alive>
-            <web-comment-form
+            <comment-form
               @valueUpdated="updateComment($event)" />
           </keep-alive>
         </div>
@@ -36,7 +36,7 @@
             </div>
 
             <div v-if="replyBoxs === data.id">
-              <web-comment-reply-form
+              <reply-form
                 @valueUpdated="updateReply($event, 'reply')"
                 :parentId="data.id" />
             </div>
@@ -71,7 +71,13 @@
 
 <script>
 import { mapGetters } from 'vuex'
+import CommentForm from '@/components/web/Comment/CommentForm'
+import ReplyForm from '@/components/web/Comment/ReplyForm'
 export default {
+  components: {
+    CommentForm,
+    ReplyForm
+  },
   data() {
     return {
       replyBoxs: [],

@@ -6,12 +6,16 @@
       </p>
     </header>
     <div class="card-content">
-      <web-media-card />
+      <media-card />
     </div>
   </div>
 </template>
 
 <script>
+import MediaCard from '@/components/web/MediaCard'
 export default {
+  components: {
+    MediaCard
+  }
 }
 </script>

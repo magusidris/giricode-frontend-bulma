@@ -44,6 +44,7 @@ export const actions = {
         // resolve promise
         resolve()
       })
+      .catch(error => reject(error))
     })
   },
 
@@ -64,6 +65,7 @@ export const actions = {
 
           resolve()
       })
+      .catch(error => reject(error))
     })
 
   },

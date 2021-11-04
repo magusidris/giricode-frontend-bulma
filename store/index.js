@@ -1,6 +1,4 @@
 export const state = () => ({
-  /* User */
-  userAvatar: null,
 
   /* NavBar */
   isNavBarVisible: true,
@@ -14,17 +12,6 @@ export const state = () => ({
 })
 
 export const mutations = {
-  /* A fit-them-all commit */
-  basic(state, payload) {
-    state[payload.key] = payload.value
-  },
-
-  /* User */
-  user(state, payload) {
-    if (payload.avatar) {
-      state.userAvatar = payload.avatar
-    }
-  },
 
   /* Aside Mobile */
   asideMobileStateToggle(state, payload = null) {

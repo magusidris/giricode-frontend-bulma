@@ -1,8 +1,8 @@
 <template>
   <div>
-    <admin-title-bar :title-stack="titleStack" />
+    <titlebar :title-stack="titleStack" />
     <section class="section is-main-section">
-      <admin-card-component title="Tambah Post Baru" class="has-table has-mobile-sort-spaced">
+      <card-component title="Tambah Post Baru" class="has-table has-mobile-sort-spaced">
         <section class="mx-3 my-3">
           <div v-if="validation.message" class="mb-3">
             <b-message type="is-danger">
@@ -67,6 +67,10 @@
             <b-field label="Content Post">
               <client-only placeholder="loading...">
                 <ckeditor-nuxt v-model="post.content" :config="editorConfig" />
+                <div class="ck ck-word-count columns is-flex-direction-row-reverse is-gapless is-multiline mt-n1 px-2 py-2">
+                  <div class="has-text-weight-medium">Characters: {{ characters }}</div>
+                  <div class="has-text-weight-medium is-2 mr-5">Words: {{ words }}</div>
+                </div>
               </client-only>
             </b-field>
             <div v-if="validation.content" class="mt-2 mb-3">
@@ -100,15 +104,21 @@
             </div>
           </form>
         </section>
-      </admin-card-component>
+      </card-component>
     </section>
   </div>
 </template>
 
 <script>
 import { mapGetters } from 'vuex'
+import Titlebar from '@/components/admin/TitleBar'
+import CardComponent from '@/components/admin/CardComponent'
 export default {
   layout: 'admin',
+  components: {
+    Titlebar,
+    CardComponent
+  },
   components: {
     'ckeditor-nuxt': () => {
       if (process.client) {
@@ -126,6 +136,8 @@ export default {
         description: '',
         tags: [],
       },
+      words: 0,
+      characters: 0,
       filteredTags: this.tags,
       // validation
       validation: [],
@@ -137,6 +149,13 @@ export default {
         simpleUpload: {
           uploadUrl: '/api/v1/admin/images/',
           withCredentials: true
+        },
+        wordCount: {
+          onUpdate: stats => {
+            // Prints the current content statistics.
+            this.words = stats.words
+            this.characters = stats.characters
+          }
         }
       }
     }
@@ -223,9 +242,3 @@ export default {
   }
 }
 </script>
-
-<style>
-  .ck-editor__editable {
-    min-height: 200px;
-  }
-</style>

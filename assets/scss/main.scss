@@ -34,5 +34,13 @@ article.media {
   margin-top: 1rem;
 }
 
+.ck-editor__editable {
+  min-height: 200px;
+}
+
+.ck.ck-word-count {
+  border: 1px solid var(--ck-color-base-border);
+}
+
 /* Animate.css custom build (just selected animations to minimize bundle size) */
 @import "../css/animate.min.css";

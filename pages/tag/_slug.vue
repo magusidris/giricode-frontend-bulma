@@ -7,7 +7,7 @@
       <div class="columns is-multiline">
         <div class="column is-4" v-for="post in tag.posts" :key="post.id">
           <nuxt-link :to="{ name: 'slug', params: {slug: post.slug} }">
-            <web-post-card :post="post" />
+            <post-card :post="post" />
           </nuxt-link>
         </div>
       </div>
@@ -17,7 +17,11 @@
 
 <script>
 import { mapState } from 'vuex'
+import PostCard from '@/components/web/PostCard'
 export default {
+  components: {
+    PostCard
+  },
 
   // computed
   computed: {

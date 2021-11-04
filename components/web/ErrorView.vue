@@ -9,7 +9,7 @@
     <section class="section pt-0">
       <div class="container">
         <div class="columns is-centered is-vcentered">
-          <nuxt-img src="/img/error-401.svg" width="700px" />
+          <nuxt-img :src="image" width="700px" />
         </div>
       </div>
     </section>
@@ -32,6 +32,10 @@ export default {
       type: String
     },
     navigateToText: {
+      required: true,
+      type: String
+    },
+    image: {
       required: true,
       type: String
     }
