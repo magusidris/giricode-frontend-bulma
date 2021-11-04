@@ -117,7 +117,7 @@ export default {
 
   proxy: {
     '/api': {
-      target: process.env.BASE_URL || 'http://localhost:2021',
+      target: 'https://backend.giricode.com/',
       // target: 'http://giricode-backend.test/',
       pathRewrite: { '^/api': '/' },
       changeOrigin: true
@@ -129,7 +129,7 @@ export default {
       'jwt': {
         provider: 'laravel/jwt',
         scheme: 'refresh',
-        url: process.env.BASE_URL,
+        url: process.env.BASE_URL && 'http://localhost:2021',
         endpoints: {
           login: {
             url: '/api/v1/auth/login',
