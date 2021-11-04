@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="card">
+    <div class="card blog">
       <div class="card-image">
         <figure class="image is-4by2">
           <nuxt-img
@@ -10,14 +10,12 @@
             sizes="sm:355px md:320px lg:480px" />
         </figure>
       </div>
-      <div class="card-content">
-        <div class="media">
-          <div class="media-content">
-            <p class="title is-size-5">{{ post.title }}</p>
-          </div>
-        </div>
+      <div class="card-content has-text-grey">
         <div class="content">
-
+          <p class="is-size-7 has-text-weight-medium">
+            <span class="mr-2" :class="'has-text-'+tag.color.value" v-for="tag in post.tags" :key="tag.id" v-html="tag.name" />
+          </p>
+          <p class="blog-title title is-size-6">{{ post.title }}</p>
           <p class="is-size-7">
             <time :datetime="post.created_at">
               <b-icon
@@ -57,9 +55,3 @@ export default {
   }
 }
 </script>
-
-<style lang="scss" scoped>
-  .title {
-    height: 4rem
-  }
-</style>

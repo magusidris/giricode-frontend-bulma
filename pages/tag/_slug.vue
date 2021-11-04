@@ -4,8 +4,8 @@
       <h1 class="title">
         Tag : {{ tag.name }}
       </h1>
-      <div class="columns is-multiline">
-        <div class="column is-4" v-for="post in tag.posts" :key="post.id">
+      <div class="columns is-multiline is-variable is-1-mobile is-8-tablet is-4-desktop is-6-widescreen is-8-fullhd">
+        <div class="column is-4-desktop is-6-tablet is-12-mobile py-7" v-for="post in tag.posts" :key="post.id">
           <nuxt-link :to="{ name: 'slug', params: {slug: post.slug} }">
             <post-card :post="post" />
           </nuxt-link>

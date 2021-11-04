@@ -1,0 +1,19 @@
+div.card.blog {
+  background-color: transparent;
+  border: 2px solid transparent;
+  transition: .5s all;
+}
+
+div.card.blog:hover {
+  border: 2px solid #f3f3f3;
+  box-shadow: 4px 3px 6px 4px #e7e7e7;
+  transform: translateY(-2%);
+}
+
+.blog-title {
+  min-height: 3rem;
+  line-height: 1.3;
+}
+.card-image:first-child img {
+  border-radius: 0.30rem!important;
+}

@@ -7,30 +7,16 @@
     </section>
     <section class="section pt-0">
       <div class="container is-max-widescreen">
-        <div class="columns is-multiline is-mobile">
-          <div class="column is-full-mobile is-full-tablet is-8-desktop">
-            <div class="columns is-multiline is-mobile">
-              <div class="column is-half-mobile is-full-desktop is-half-tablet" v-for="post in posts.data" :key="post.id">
-                <nuxt-link :to="{name: 'slug', params: {slug: post.slug}}">
-                  <post-card :post="post" />
-                </nuxt-link>
-              </div>
-            </div>
-            <div class="columns mt-4">
-              <div class="column has-text-centered">
-                <nuxt-link :to="{name: 'post', query: {page: 1}}" class="button is-dark-green">LIHAT LEBIH BANYAK</nuxt-link>
-              </div>
-            </div>
+        <div class="columns is-multiline is-variable is-1-mobile is-8-tablet is-4-desktop is-6-widescreen is-8-fullhd">
+          <div class="column is-4-desktop is-6-tablet is-12-mobile py-7" v-for="post in posts.data" :key="post.id">
+            <nuxt-link :to="{name: 'slug', params: {slug: post.slug}}">
+              <post-card class="post" :post="post" />
+            </nuxt-link>
           </div>
-          <div class="column is-4-desktop is-full-tablet">
-            <div class="columns is-multiline is-mobile">
-              <div class="column is-full">
-                <category-card />
-              </div>
-              <div class="column is-12">
-                <tag-card />
-              </div>
-            </div>
+        </div>
+        <div class="columns mt-4">
+          <div class="column has-text-centered">
+            <nuxt-link :to="{name: 'post', query: {page: 1}}" class="button is-dark-green">LIHAT LEBIH BANYAK</nuxt-link>
           </div>
         </div>
       </div>
@@ -115,10 +101,3 @@ export default {
   }
 }
 </script>
-
-<style lang="scss" scoped>
-  .border-column {
-    border: 2px solid black;
-  }
-</style>
-
