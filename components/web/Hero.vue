@@ -16,7 +16,7 @@
                 Giricode
               </p>
               <p class="subtitle has-text-white">
-                Belajar koding bahasa Indonesia dari nol terlengkap.
+                Belajar koding bahasa Indonesia dari pemula hingga mahir.
               </p>
             </div>
           </div>

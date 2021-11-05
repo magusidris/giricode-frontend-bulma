@@ -26,8 +26,6 @@
 
 <script>
 import { mapState } from 'vuex'
-import { bootstrap } from 'vue-gtag'
-import { SnackbarProgrammatic as Snackbar } from 'buefy'
 import Carousel from '@/components/web/Carousel'
 import PostCard from '@/components/web/PostCard'
 import CategoryCard from '@/components/web/CategoryCard'
@@ -39,11 +37,6 @@ export default {
     CategoryCard,
     TagCard
   },
-  data() {
-    return {
-      isOpen: false
-    }
-  },
   computed: {
     ...mapState({
       posts: state => state.web.post.posts,
@@ -51,53 +44,11 @@ export default {
       statePage: state => state.web.post.page
     })
   },
-  mounted() {
-    if (!this.getGDPR() === true) {
-        this.isOpen = true;
-    }
-    if (this.isOpen === true) {
-      Snackbar.open({
-            indefinite: true,
-            message: 'Dapatkah menggunakan cookie untuk Analytics?',
-            position: 'is-bottom',
-            actionText: 'Ya, tentu',
-            cancelText: 'Tidak',
-            onCancel: () => {
-              this.deny()
-            },
-            onAction: () => {
-              this.accept()
-            }
-        })
-    }
-  },
   async fetch({ store, query }) {
     // fetching slider on Rest API
     await store.commit('web/post/setPage', query.page)
 
     await store.dispatch('web/post/getPostsData')
-  },
-  methods: {
-    getGDPR() {
-        if (process.browser) {
-            return localStorage.getItem('GDPR:accepted', true);
-        }
-    },
-    accept() {
-      if (process.browser) {
-        bootstrap().then(gtag => {
-          this.isOpen = false;
-          localStorage.setItem('GDPR:accepted', true)
-          location.reload();
-        })
-      }
-    },
-    deny() {
-      if (process.browser) {
-        this.isOpen = false;
-        localStorage.setItem('GDPR:accepted', false);
-      }
-    },
   }
 }
 </script>

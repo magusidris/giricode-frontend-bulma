@@ -40,9 +40,20 @@ a.is-dark-green.btn-more:hover {
 }
 
 .button.is-light-green {
-  background-color: $dark-green;
-  border-color: transparent;
+
+  border: 0 solid $light-green;
   color: #fff;
+  background: $light-green;
+
+  /* "to left" / "to right" - affects initial color */
+  background: linear-gradient(to right, $light-green 50%, $warning 50%) left;
+  background-size: 200%;
+  transition: .5s ease-out;
+}
+
+.button.is-light-green:hover {
+  background-position: right;
+  color: $dark-grey;
 }
 
 // .button.is-light-green:hover, .button.is-light-green.is-hovered {

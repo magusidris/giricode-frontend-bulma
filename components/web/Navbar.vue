@@ -27,7 +27,7 @@
           <template v-if="!isAuthenticated">
             <div class="navbar-item">
               <div class="buttons">
-                <nuxt-link to="/register" class="button is-dark is-outlined">
+                <nuxt-link to="/register" class="button is-light-green">
                   <strong>Sign up</strong>
                 </nuxt-link>
                 <nuxt-link to="/login" class="button is-light">

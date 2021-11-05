@@ -5,9 +5,14 @@ div.card.blog {
 }
 
 div.card.blog:hover {
+  background-color: #fff;
   border: 2px solid #f3f3f3;
   box-shadow: 4px 3px 6px 4px #e7e7e7;
   transform: translateY(-2%);
+
+  &.blog-title {
+    color: $dark-green;
+  }
 }
 
 .blog-title {

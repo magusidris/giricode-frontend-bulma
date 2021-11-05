@@ -163,7 +163,7 @@ export default {
   },
   head() {
     return {
-      title: 'Dashboard — Forum Doktor Muslim Peduli Bangsa',
+      title: 'Dashboard — Giricode',
     }
   },
 }

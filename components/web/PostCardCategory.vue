@@ -13,7 +13,7 @@
       <div class="column status card-content has-text-grey">
         <div class="content">
           <p class="is-size-7 has-text-weight-medium">
-            <span class="mr-2" :class="'has-text-'+tag.color.value" v-for="tag in post.tags" :key="tag.id" v-html="tag.name" />
+            <span class="tag is-light mr-2" :class="tag.color.value" v-for="tag in post.tags" :key="tag.id" v-html="tag.name" />
           </p>
           <p class="blog-title title is-size-6">{{ post.title }}</p>
           <p class="is-size-7">
