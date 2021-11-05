@@ -23,4 +23,5 @@ a.navbar-item.green:hover {
 a.navbar-item.green.is-active {
   border-bottom: 4px solid $light-green;
   font-weight: bold;
+  transition: .5s ease-in-out;
 }

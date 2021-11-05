@@ -16,7 +16,7 @@
         </div>
         <div class="columns mt-4">
           <div class="column has-text-centered">
-            <nuxt-link :to="{name: 'post', query: {page: 1}}" class="button is-dark-green">LIHAT LEBIH BANYAK</nuxt-link>
+            <nuxt-link :to="{name: 'post', query: {page: 1}}" class="is-dark-green btn-more">LIHAT LEBIH BANYAK</nuxt-link>
           </div>
         </div>
       </div>

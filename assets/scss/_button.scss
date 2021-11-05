@@ -2,6 +2,22 @@
   background-color: $dark-green;
   border-color: transparent;
   color: #fff;
+}
+
+.button.is-dark-green:hover, .button.is-dark-green.is-hovered {
+  background-color: $light-green;
+  border-color: transparent;
+  color: #fff;
+}
+
+a.is-dark-green.btn-more {
+  border-radius: .5rem;
+  border-color: transparent;
+  padding: .7em 2em;
+  text-align: center;
+  color: #fff;
+  display: inline-block;
+  background: $light-green;
 
   /* "to left" / "to right" - affects initial color */
   background: linear-gradient(to left, $light-green 50%, $dark-green 50%) right;
@@ -9,10 +25,8 @@
   transition: .5s ease-out;
 }
 
-.button.is-dark-green:hover, .button.is-dark-green.is-hovered {
+a.is-dark-green.btn-more:hover {
   background-position: left;
-  border-color: transparent;
-  color: #fff;
 }
 
 .button:focus:not(:active), .button.is-focused:not(:active) {

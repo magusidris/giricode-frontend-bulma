@@ -15,7 +15,7 @@
           <p class="is-size-7 has-text-weight-medium">
             <span class="mr-2" :class="'has-text-'+tag.color.value" v-for="tag in post.tags" :key="tag.id" v-html="tag.name" />
           </p>
-          <p class="blog-title title is-size-6" v-html="post.title"></p>
+          <p class="blog-title title is-size-6" v-html="post.title" />
           <p class="is-size-7">
             <time :datetime="post.created_at">
               <b-icon
@@ -51,12 +51,3 @@ export default {
   }
 }
 </script>
-
-<style lang="scss" scoped>
-
-  .status {
-    display:flex;
-    flex-direction:column;
-    justify-content:space-between
-  }
-</style>
