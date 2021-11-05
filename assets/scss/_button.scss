@@ -56,6 +56,12 @@ a.is-dark-green.btn-more:hover {
   color: $dark-grey;
 }
 
+.button.is-profile {
+  border: 0 solid $dark-green;
+  color: #fff;
+  background: $dark-green;
+}
+
 // .button.is-light-green:hover, .button.is-light-green.is-hovered {
 //   background-color: $dark-green;
 //   border-color: transparent;

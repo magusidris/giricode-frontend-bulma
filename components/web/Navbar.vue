@@ -39,7 +39,7 @@
           <template v-else>
             <div class="navbar-item">
               <div class="buttons">
-                <a class="button is-light-green">
+                <a class="button is-profile">
                   <figure v-if="authUser.image !== null" class="image is-32x32 mr-2">
                     <nuxt-img class="is-rounded" :src="`/storage/users/`+authUser.image" :alt="authUser.username" />
                   </figure>
