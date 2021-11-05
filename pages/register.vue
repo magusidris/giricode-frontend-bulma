@@ -25,11 +25,7 @@
                         placeholder="Name">
                     </b-input>
                   </b-field>
-                  <div v-if="validation.name" class="mt-2 mb-3">
-                    <b-message type="is-danger">
-                      {{ validation.name[0] }}
-                    </b-message>
-                  </div>
+                  <p v-if="validation.name" class="help is-danger">{{ validation.name[0] }}</p>
                   <b-field>
                     <b-input
                         v-model="form.username"
@@ -38,11 +34,7 @@
                         placeholder="Username">
                     </b-input>
                   </b-field>
-                  <div v-if="validation.username" class="mt-2 mb-3">
-                    <b-message type="is-danger">
-                      {{ validation.username[0] }}
-                    </b-message>
-                  </div>
+                  <p v-if="validation.username" class="help is-danger">{{ validation.username[0] }}</p>
                   <b-field>
                     <b-input
                         v-model="form.email"
@@ -51,11 +43,7 @@
                         placeholder="Email">
                     </b-input>
                   </b-field>
-                  <div v-if="validation.email" class="mt-2 mb-3">
-                    <b-message type="is-danger">
-                      {{ validation.email[0] }}
-                    </b-message>
-                  </div>
+                  <p v-if="validation.email" class="help is-danger">{{ validation.email[0] }}</p>
                   <b-field>
                     <b-input
                         v-model="form.password"
@@ -65,11 +53,7 @@
                         placeholder="Password">
                     </b-input>
                   </b-field>
-                  <div v-if="validation.password" class="mt-2 mb-3">
-                    <b-message type="is-danger">
-                      {{ validation.password[0] }}
-                    </b-message>
-                  </div>
+                  <p v-if="validation.password" class="help is-danger">{{ validation.password[0] }}</p>
                   <b-field>
                     <b-input
                         v-model="form.password_confirmation"
@@ -79,7 +63,7 @@
                         placeholder="Konfirmasi Password">
                     </b-input>
                   </b-field>
-                  <button type="submit" class="button is-fullwidth is-info">Register</button>
+                  <button type="submit" class="button is-fullwidth is-dark-green">Register</button>
                 </form>
               </div>
               <div class="has-text-centered">
@@ -148,6 +132,6 @@ export default {
 
 <style lang="scss" scoped>
   .card-header:first-child, .card-content:first-child, .card-footer:first-child {
-    border-top: 3px solid $info;
-}
+    border-top: 3px solid $dark-green;
+  }
 </style>

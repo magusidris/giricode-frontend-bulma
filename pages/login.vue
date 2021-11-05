@@ -25,11 +25,7 @@
                       placeholder="Email atau Username">
                     </b-input>
                   </b-field>
-                  <div v-if="validation.username" class="mt-2 mb-3">
-                    <b-message type="is-danger">
-                      {{ validation.username[0] }}
-                    </b-message>
-                  </div>
+                  <p v-if="validation.username" class="help is-danger">{{ validation.username[0] }}</p>
                   <b-field>
                     <b-input v-model="form.password"
                       type="password"
@@ -38,16 +34,12 @@
                       password-reveal>
                     </b-input>
                   </b-field>
-                  <div v-if="validation.password" class="mt-2 mb-3">
-                    <b-message type="is-danger">
-                      {{ validation.password[0] }}
-                    </b-message>
-                  </div>
-                  <button type="submit" class="button is-fullwidth is-info">Login</button>
+                  <p v-if="validation.password" class="help is-danger">{{ validation.password[0] }}</p>
+                  <button type="submit" class="button is-fullwidth is-dark-green">Login</button>
                 </form>
               </div>
               <div class="has-text-centered">
-                Belum punya akun? <nuxt-link :to="{name: 'register'}">Daftar Sekarang</nuxt-link>
+                Belum punya akun? <nuxt-link :to="{name: 'register'}" class="has-text-weight-bold">Daftar Sekarang</nuxt-link>
               </div>
             </div>
           </div>
@@ -99,6 +91,6 @@ export default {
 
 <style lang="scss" scoped>
   .card-header:first-child, .card-content:first-child, .card-footer:first-child {
-    border-top: 3px solid $info;
+    border-top: 3px solid $dark-green;
   }
 </style>

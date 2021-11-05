@@ -7,12 +7,8 @@ div.card.blog {
 div.card.blog:hover {
   background-color: #fff;
   border: 2px solid #f3f3f3;
-  box-shadow: 4px 3px 6px 4px #e7e7e7;
+  box-shadow: 4px 3px 4px 3px #e7e7e7;
   transform: translateY(-2%);
-
-  &.blog-title {
-    color: $dark-green;
-  }
 }
 
 .blog-title {
@@ -21,4 +17,28 @@ div.card.blog:hover {
 }
 .card-image:first-child img {
   border-radius: 0.30rem!important;
+}
+
+a.nuxt-link-active {
+  color: #4A4A4A;
+}
+
+a.nuxt-link-active:hover {
+  color: $dark-green;
+}
+
+a.has-text-weight-bold {
+  color: $light-green;
+}
+
+a.has-text-weight-bold:hover {
+  color: $dark-green;
+}
+
+.input:focus, .textarea:focus, .taginput .taginput-container.is-focusable:focus, .select select:focus, .is-focused.input, .is-focused.textarea, .taginput .is-focused.taginput-container.is-focusable, .select select.is-focused, .input:active, .textarea:active, .taginput .taginput-container.is-focusable:active, .select select:active, .is-active.input, .is-active.textarea, .taginput .is-active.taginput-container.is-focusable, .select select.is-active {
+  border-color: #48c78e!important;;
+}
+
+.has-text-primary {
+  color: #48c78e !important;
 }
