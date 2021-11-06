@@ -51,14 +51,14 @@
                   :to="{ name: 'admin-blogs-edit-id', params: { id: props.row.id } }"
                   class="button is-small is-primary"
                 >
-                  <b-icon icon="account-edit" size="is-small" />
+                  <b-icon pack="fas" icon="edit" size="is-small" />
                 </nuxt-link>
                 <button
                   class="button is-small is-danger"
                   type="button"
                   @click.prevent="destroyPost(props.row.id)"
                 >
-                  <b-icon icon="trash-can" size="is-small" />
+                  <b-icon pack="fas" icon="trash" size="is-small" />
                 </button>
               </div>
             </b-table-column>
