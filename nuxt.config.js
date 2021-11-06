@@ -48,7 +48,7 @@ export default {
   css: [
     '@/assets/scss/main.scss',
     '@/assets/css/icons.css',
-    '@/node_modules/@mdi/font/css/materialdesignicons.min.css'
+    // '@/node_modules/@mdi/font/css/materialdesignicons.min.css'
   ],
 
   styleResources: {
@@ -78,7 +78,7 @@ export default {
   // Modules: https://go.nuxtjs.dev/config-modules
   modules: [
     // https://go.nuxtjs.dev/buefy
-    ['nuxt-buefy', { materialDesignIcons: false }],
+    ['nuxt-buefy'],
     // https://go.nuxtjs.dev/axios
     '@nuxtjs/axios',
     //https://dev.auth.nuxtjs.org/
