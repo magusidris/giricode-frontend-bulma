@@ -14,7 +14,6 @@
   },
   "dependencies": {
     "@blowstack/ckeditor-nuxt": "^0.6.0",
-    "@mdi/font": "^6.3.95",
     "@nuxtjs/auth-next": "5.0.0-1624817847.21691f1",
     "@nuxtjs/axios": "^5.13.6",
     "@nuxtjs/style-resources": "^1.2.1",
@@ -25,7 +24,7 @@
     "lodash": "^4.17.21",
     "numeral": "^2.0.6",
     "nuxt": "^2.15.7",
-    "nuxt-buefy": "^0.4.10",
+    "nuxt-buefy": "^0.4.11",
     "vue-advanced-cropper": "^1.8.2",
     "vue-chartjs": "^3.5.1",
     "vue-gtag": "^1.16.1",
