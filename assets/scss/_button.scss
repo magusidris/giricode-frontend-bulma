@@ -72,6 +72,16 @@ a.is-dark-green.btn-more:hover {
   box-shadow: 0 0 0 0.125em $dark-green;
 }
 
+.pagination-link.is-current {
+    background-color: $dark-green!important;
+    border-color: $dark-green!important;
+    color: #fff;
+}
+
+.pagination-previous:focus, .pagination-next:focus, .pagination-link:focus {
+    border-color: $dark-green!important;
+}
+
 // .button.is-light-green:active, .button.is-light-green.is-active {
 //   background-color: $light-green;
 //   border-color: transparent;

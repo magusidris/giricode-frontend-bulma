@@ -49,7 +49,7 @@
               <div class="buttons is-centered">
                 <nuxt-link
                   :to="{ name: 'admin-blogs-edit-id', params: { id: props.row.id } }"
-                  class="button is-small is-primary"
+                  class="button is-small is-dark-green"
                 >
                   <b-icon pack="fas" icon="edit" size="is-small" />
                 </nuxt-link>

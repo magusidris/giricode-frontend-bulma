@@ -50,16 +50,16 @@
               <div class="buttons is-centered">
                 <nuxt-link
                   :to="{ name: 'admin-users-edit-id', params: { id: props.row.id } }"
-                  class="button is-small is-primary"
+                  class="button is-small is-dark-green"
                 >
-                  <b-icon icon="account-edit" size="is-small" />
+                  <b-icon pack="fas" icon="edit" size="is-small" />
                 </nuxt-link>
                 <button
                   class="button is-small is-danger"
                   type="button"
                   @click.prevent="destroyUser(props.row.id)"
                 >
-                  <b-icon icon="trash-can" size="is-small" />
+                  <b-icon pack="fas" icon="trash" size="is-small" />
                 </button>
               </div>
             </b-table-column>
