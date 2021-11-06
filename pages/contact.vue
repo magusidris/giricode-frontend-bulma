@@ -32,9 +32,9 @@
                 </div>
 
                 <b-modal v-model="isOpen" :width="540" scroll="keep">
-                  <div class="card">
-                    <header class="modal-card-head">
-                        <p class="modal-card-title">Kritik & Saran</p>
+                  <div class="card modal-contact">
+                    <header class="modal-card-head has-text-centered has-text-weight-medium	">
+                        <p class="modal-card-title has-text-dark-green is-size-4">Kritik & Saran</p>
                         <button
                             type="button"
                             class="delete"
@@ -151,7 +151,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-  .card-header:first-child, .card-content:first-child, .card-footer:first-child {
+  .modal-contact {
     border-top: 3px solid $dark-green;
   }
 </style>
