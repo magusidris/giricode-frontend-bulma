@@ -88,6 +88,8 @@ export default {
     '@nuxt/image',
     //https://github.com/avil13/vue-sweetalert2
     'vue-sweetalert2/nuxt',
+    // https://content.nuxtjs.org
+    '@nuxt/content'
   ],
 
   image: {

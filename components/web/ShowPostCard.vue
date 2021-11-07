@@ -48,15 +48,16 @@
             </b-icon>
             {{ post.comments_count }}
           </p>
-          <div class="content mt-5 is-medium" v-html="post.content" />
-          <hr>
-          <div>
-            <div class="tags are-medium">
-              <nuxt-link v-for="tag in post.tags" :key="tag.id" class="tag" :class="tag.color.value" :to="{ name: 'tag-slug', params: { slug: tag.slug } }">
-                {{ tag.name }}
-              </nuxt-link>
-            </div>
-          </div>
+        </div>
+      </div>
+      <div class="content mt-5 is-normal" v-html="post.content">
+      </div>
+      <hr>
+      <div>
+        <div class="tags are-normal">
+          <nuxt-link v-for="tag in post.tags" :key="tag.id" class="tag" :class="tag.color.value" :to="{ name: 'tag-slug', params: { slug: tag.slug } }">
+            {{ tag.name }}
+          </nuxt-link>
         </div>
       </div>
     </div>
