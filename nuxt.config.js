@@ -62,8 +62,8 @@ export default {
     { src: '~/plugins/axios' },
     { src: '~/plugins/components'},
     { src: '~/plugins/integrations'},
-    { src: '~/plugins/after-each', ssr: false },
-    { src: '~/plugins/google-analytics', ssr: false },
+    { src: '~/plugins/after-each', mode: 'client' },
+    { src: '~/plugins/google-analytics', mode: 'client' },
     { src: '~/plugins/multi-select' },
     { src: '~/plugins/advanced-crop' }
   ],

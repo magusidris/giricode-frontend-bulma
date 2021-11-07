@@ -3,5 +3,5 @@ import VueGtag from 'vue-gtag';
 
   Vue.use(VueGtag, {
     config: { id: 'G-DEX6KTZ8DS' },
-    appName: 'Giricode'
+    appName: 'giricode.com'
   });
