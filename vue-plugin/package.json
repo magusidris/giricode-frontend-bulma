@@ -1,0 +1,25 @@
+{
+  "name": "@highlightjs/vue-plugin",
+  "version": "1.0.2",
+  "description": "Highlight.js Vue Plugin",
+  "main": "src/vue.js",
+  "scripts": {
+    "build": "rollup -c",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "publish": "npm publish --access public"
+  },
+  "type": "module",
+  "author": "Josh Goebel <hello@joshgoebel.com>",
+  "license": "BSD-3-Clause",
+  "devDependencies": {
+    "rollup": "^2.42.3",
+    "rollup-plugin-terser": "^7.0.2"
+  },
+  "dependencies": {
+    "highlight.js": "^10.7.2"
+  },
+  "files": [
+    "dist",
+    "src"
+  ]
+}

@@ -119,9 +119,7 @@ export default {
   layout: 'admin',
   components: {
     Titlebar,
-    CardComponent
-  },
-  components: {
+    CardComponent,
     'ckeditor-nuxt': () => {
       if (process.client) {
         return import('@blowstack/ckeditor-nuxt')

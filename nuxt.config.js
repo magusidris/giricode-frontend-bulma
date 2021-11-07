@@ -48,7 +48,7 @@ export default {
   css: [
     '@/assets/scss/main.scss',
     '@/assets/css/icons.css',
-    // '@/node_modules/@mdi/font/css/materialdesignicons.min.css'
+    // '@/node_modules/prismjs/themes/prism-tomorrow.css'
   ],
 
   styleResources: {
@@ -65,7 +65,8 @@ export default {
     { src: '~/plugins/after-each', mode: 'client' },
     { src: '~/plugins/google-analytics', mode: 'client' },
     { src: '~/plugins/multi-select' },
-    { src: '~/plugins/advanced-crop' }
+    { src: '~/plugins/advanced-crop' },
+    { src: '~/plugins/highlight.js' }
   ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
@@ -89,7 +90,11 @@ export default {
     //https://github.com/avil13/vue-sweetalert2
     'vue-sweetalert2/nuxt',
     // https://content.nuxtjs.org
-    '@nuxt/content'
+    '@nuxt/content',
+    // https://github.com/Llang8/nuxt-highlightjs
+    // ['nuxt-highlightjs', {
+      // Module Options
+    // }]
   ],
 
   image: {
