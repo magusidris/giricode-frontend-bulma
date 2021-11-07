@@ -7,6 +7,8 @@ export const state = () => ({
   //post
   post: {},
 
+  visitor: {},
+
   //page
   page: 1,
 
@@ -70,7 +72,7 @@ export const actions = {
 
   },
 
-  storeVisitor({ dispatch }, payload) {
+  storeVisitor({ commit }, payload) {
 
     // set Promise
     return new Promise((resolve, reject) => {
@@ -79,17 +81,22 @@ export const actions = {
       this.$axios.post(`/api/v1/web/visitor/${payload}`)
 
       // success
-      .then(() => {
+      .then(response => {
 
+        if (response.data.success === false) {
+          console.log(response.data.message)
+        }
         // dispatch getDetailPost
-        // dispatch('getDetailPost')
+        commit('setVisitorData', response.data)
 
         // resolve promise
         resolve()
 
       })
 
-      .catch(error => reject(error))
+      .catch(error => {
+        reject(error)
+      })
     })
   },
 
@@ -174,6 +181,10 @@ export const mutations = {
   },
   setPostData(state, payload) {
     state.post = payload
+  },
+
+  setVisitorData(state, payload) {
+    state.visitor = payload
   },
 
   // mutation "setPage"
