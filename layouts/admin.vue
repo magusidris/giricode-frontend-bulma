@@ -20,6 +20,11 @@ export default {
     Sidebar,
     Footerbar
   },
+  data() {
+    return {
+      isExpand: false
+    }
+  },
   computed: {
     menu() {
       return [

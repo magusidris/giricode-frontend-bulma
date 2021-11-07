@@ -1,6 +1,6 @@
 <template>
-	<aside class="sidebar aside sidebar-page is-placed-left is-expanded">
-		<div is-main-menu="true" class="aside-tools">
+	<aside class="aside is-placed-left is-expanded">
+		<div class="aside-tools">
 			<div class="aside-tools-label">
 				<span>
 					<b>Admin Giricode</b>
