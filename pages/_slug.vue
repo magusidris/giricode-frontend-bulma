@@ -50,9 +50,9 @@ export default {
   },
   async fetch({store, params}) {
     await store.dispatch('web/post/getDetailPost', params.slug)
+    await store.dispatch('web/post/storeVisitor', params.slug)
   },
   async asyncData({store, params}) {
-    await store.dispatch('web/post/storeVisitor', params.slug)
     await store.dispatch('web/post/updateSlug', {slug: params.slug})
   },
   head() {
