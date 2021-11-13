@@ -65,13 +65,21 @@
               </b-message>
             </div>
             <b-field label="Content Post">
-              <client-only placeholder="loading...">
+              <!-- <client-only placeholder="loading...">
                 <ckeditor-nuxt v-model="post.content" :config="editorConfig" />
                 <div class="ck ck-word-count columns is-flex-direction-row-reverse is-gapless is-multiline mt-n1 px-2 py-2">
                   <div class="has-text-weight-medium">Characters: {{ characters }}</div>
                   <div class="has-text-weight-medium is-2 mr-5">Words: {{ words }}</div>
                 </div>
-              </client-only>
+              </client-only> -->
+              <div class="columns">
+                <div class="column">
+                  <b-input v-model="post.content" type="textarea" minlength="10" maxlength="50000" rows="20"></b-input>
+                </div>
+                <div class="column">
+                  <markdown-display :markdown="post.content" />
+                </div>
+              </div>
             </b-field>
             <div v-if="validation.content" class="mt-2 mb-3">
               <b-message type="is-danger">
@@ -115,6 +123,7 @@
 import { mapState, mapGetters } from 'vuex'
 import Titlebar from '@/components/admin/TitleBar'
 import CardComponent from '@/components/admin/CardComponent'
+import MarkdownDisplay from '~/components/admin/MarkdownDisplay'
 export default {
   layout: 'admin',
   components: {
@@ -125,6 +134,7 @@ export default {
         return import('@blowstack/ckeditor-nuxt')
       }
     },
+    MarkdownDisplay
   },
   data() {
     return {

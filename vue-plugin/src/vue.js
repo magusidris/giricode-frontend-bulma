@@ -1,5 +1,5 @@
 import { escapeHTML } from "./lib/utils.js";
-import hljs from "highlight.js/lib/core.js";
+import hljs from "highlight.js/lib/highlight.js";
 
 function hasValueOrEmptyAttribute(value) {
   return Boolean(value || value === "");

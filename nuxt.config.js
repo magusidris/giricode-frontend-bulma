@@ -48,7 +48,9 @@ export default {
   css: [
     '@/assets/scss/main.scss',
     '@/assets/css/icons.css',
-    // '@/node_modules/prismjs/themes/prism-tomorrow.css'
+    // '@/assets/css/vue-md.css',
+    // '@/assets/css/highlight.css',
+    // '@/assets/css/vue-md.css'
   ],
 
   styleResources: {
@@ -66,7 +68,7 @@ export default {
     { src: '~/plugins/google-analytics', mode: 'client' },
     { src: '~/plugins/multi-select' },
     { src: '~/plugins/advanced-crop' },
-    { src: '~/plugins/highlight.js' }
+    // { src: '~/plugins/highlight.js' }
   ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
@@ -136,7 +138,7 @@ export default {
       'jwt': {
         provider: 'laravel/jwt',
         scheme: 'refresh',
-        url: pkg.base_url || 'http://localhost:2021',
+        url: pkg.base_url && 'http://localhost:2021',
         endpoints: {
           login: {
             url: '/api/v1/auth/login',

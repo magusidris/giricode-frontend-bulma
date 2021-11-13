@@ -50,8 +50,16 @@
           </p>
         </div>
       </div>
-      <div class="content mt-5 is-normal" v-html="post.content">
+      <div class="content mt-5 is-normal ck-content" v-html="proccessedMarkdown">
       </div>
+      <pre>
+        <code class="hljs hljs-python">
+          /** Tes kommentar */
+          a = 1
+          b = 4
+          c = a + b
+        </code>
+      </pre>
       <hr>
       <div>
         <div class="tags are-normal">
@@ -60,17 +68,38 @@
           </nuxt-link>
         </div>
       </div>
-    </div>
+      </div>
   </div>
 </template>
 
 <script>
+import marked from 'marked'
+import highlight from 'highlight.js'
 export default {
-    props: {
-      post: {
-        type: Object,
-        required: true
-      }
+  props: {
+    post: {
+      type: Object,
+      required: true
     }
+  },
+  computed: {
+    proccessedMarkdown: function () {
+                marked.setOptions({
+                    renderer: new marked.Renderer(),
+                    highlight(md) {
+                        return highlight.highlightAuto(md).value
+                    },
+                    gfm: true,
+                    tables: true,
+                    breaks: false,
+                    pedantic: false,
+                    sanitize: false,
+                    smartLists: true,
+                    smartypants: false,
+                    xhtml: false
+                });
+                return marked(this.post.content)
+            }
+  }
 }
 </script>
