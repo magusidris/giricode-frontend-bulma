@@ -6,9 +6,10 @@ div.card.blog {
 
 div.card.blog:hover {
   background-color: #fff;
+  color: $light-green;
   border: 2px solid #f3f3f3;
-  box-shadow: 4px 3px 4px 3px #e7e7e7;
-  transform: translateY(-2%);
+  box-shadow: 0 1em 1em #e7e7e7;
+  transform: translateY(-0.5em);
 }
 
 .blog-title {

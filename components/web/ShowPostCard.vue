@@ -52,14 +52,6 @@
       </div>
       <div class="content mt-5 is-normal ck-content" v-html="proccessedMarkdown">
       </div>
-      <pre>
-        <code class="hljs hljs-python">
-          /** Tes kommentar */
-          a = 1
-          b = 4
-          c = a + b
-        </code>
-      </pre>
       <hr>
       <div>
         <div class="tags are-normal">
@@ -74,7 +66,8 @@
 
 <script>
 import marked from 'marked'
-import highlight from 'highlight.js'
+import highlight from 'highlight.js/lib/index'
+import 'highlight.js/scss/atom-one-dark.scss'
 export default {
   props: {
     post: {
@@ -84,22 +77,15 @@ export default {
   },
   computed: {
     proccessedMarkdown: function () {
-                marked.setOptions({
-                    renderer: new marked.Renderer(),
-                    highlight(md) {
-                        return highlight.highlightAuto(md).value
-                    },
-                    gfm: true,
-                    tables: true,
-                    breaks: false,
-                    pedantic: false,
-                    sanitize: false,
-                    smartLists: true,
-                    smartypants: false,
-                    xhtml: false
-                });
-                return marked(this.post.content)
-            }
+      marked.setOptions({
+          renderer: new marked.Renderer(),
+          highlight(md) {
+              return highlight.highlightAuto(md).value
+          },
+          langPrefix: 'hljs hljs-'
+      });
+      return marked(this.post.content)
+    }
   }
 }
 </script>

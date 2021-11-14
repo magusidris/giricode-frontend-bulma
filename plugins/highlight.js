@@ -4,7 +4,7 @@ import hljs from 'highlight.js/lib/index';
 // import python from 'highlight.js/lib/languages/python';
 
 import 'highlight.js/scss/atom-one-dark.scss';
-import vuePlugin from "~/vue-plugin";
+import vuePlugin from "@/assets/vendor/hljs/vue-plugin";
 
 // hljs.registerLanguage('javascript', javascript);
 // hljs.registerLanguage('python', python);
