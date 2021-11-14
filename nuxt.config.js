@@ -95,13 +95,7 @@ export default {
     // https://image.nuxtjs.org/
     '@nuxt/image',
     //https://github.com/avil13/vue-sweetalert2
-    'vue-sweetalert2/nuxt',
-    // https://content.nuxtjs.org
-    '@nuxt/content',
-    // https://github.com/Llang8/nuxt-highlightjs
-    // ['nuxt-highlightjs', {
-      // Module Options
-    // }]
+    'vue-sweetalert2/nuxt'
   ],
 
   image: {
@@ -143,7 +137,7 @@ export default {
       'jwt': {
         provider: 'laravel/jwt',
         scheme: 'refresh',
-        url: pkg.base_url && 'http://localhost:2021',
+        url: pkg.base_url || 'http://localhost:2021',
         endpoints: {
           login: {
             url: '/api/v1/auth/login',
