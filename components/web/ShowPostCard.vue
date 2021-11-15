@@ -50,8 +50,9 @@
           </p>
         </div>
       </div>
-      <div class="content mt-5 is-normal ck-content" v-html="proccessedMarkdown">
-      </div>
+      <!-- <div class="content mt-5 is-normal ck-content" v-html="proccessedMarkdown">
+      </div> -->
+      <markdown-display :markdown="post.content" />
       <hr>
       <div>
         <div class="tags are-normal">
@@ -65,26 +66,15 @@
 </template>
 
 <script>
-import marked from 'marked'
-import highlight from 'highlight.js/lib/index'
-import 'highlight.js/scss/atom-one-dark.scss'
+import MarkdownDisplay from '~/components/admin/MarkdownDisplay'
 export default {
+  components: {
+    MarkdownDisplay
+  },
   props: {
     post: {
       type: Object,
       required: true
-    }
-  },
-  computed: {
-    proccessedMarkdown: function () {
-      marked.setOptions({
-          renderer: new marked.Renderer(),
-          highlight(md) {
-              return highlight.highlightAuto(md).value
-          },
-          langPrefix: 'hljs hljs-'
-      });
-      return marked(this.post.content)
     }
   }
 }

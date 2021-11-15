@@ -1,5 +1,5 @@
 <template>
-  <div v-html="proccessedMarkdown"></div>
+  <div class="content mt-5 is-normal ck-content" v-html="proccessedMarkdown"></div>
 </template>
 
 <script>
@@ -10,8 +10,6 @@ import 'highlight.js/scss/atom-one-dark.scss'
 export default {
   computed: {
     proccessedMarkdown() {
-
-
       // console.log(highlight)
       marked.setOptions({
           renderer: new marked.Renderer(),
@@ -21,25 +19,6 @@ export default {
           langPrefix: 'hljs hljs-'
       });
       return marked(this.markdown)
-
-
-      // Override function
-      // const renderer = {
-      //   code(text) {
-      //     // const match = text.toLowerCase().replace(/[^\w]+/g, '-');
-
-      //     return `
-      //       <div class=hljs-"${text}">
-      //         <pre>
-      //           <code class="hljs hljs-${text}">
-      //           </code>
-      //         </pre>
-      //       </div${text}>`;
-
-      //   }
-      // };
-
-      // marked.use({ renderer });
     }
   },
   props: {
