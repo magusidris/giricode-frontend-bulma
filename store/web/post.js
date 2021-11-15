@@ -83,9 +83,6 @@ export const actions = {
       // success
       .then(response => {
 
-        if (response.data.success === false) {
-          console.log(response.data.message)
-        }
         // dispatch getDetailPost
         commit('setVisitorData', response.data)
 
