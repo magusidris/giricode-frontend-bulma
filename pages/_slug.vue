@@ -53,6 +53,8 @@ export default {
   },
   async asyncData({store, params}) {
     await store.dispatch('web/post/storeVisitor', params.slug)
+      .catch(error=> console.log(error))
+
     await store.dispatch('web/post/updateSlug', {slug: params.slug})
   },
   head() {
