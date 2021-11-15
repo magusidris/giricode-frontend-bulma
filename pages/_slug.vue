@@ -52,9 +52,17 @@ export default {
     await store.dispatch('web/post/getDetailPost', params.slug)
     await store.dispatch('web/post/storeVisitor', params.slug)
   },
-  async asyncData({store, params}, context) {
+  async asyncData({store, params, context}) {
     await store.dispatch('web/post/updateSlug', {slug: params.slug})
 
+    if (process.server) {
+      const req = context.req
+      const headers = (req && req.headers) ? Object.assign({}, req.headers) : {}
+      const xForwardedFor = headers['x-forwarded-for']
+      const xRealIp = headers['x-real-ip']
+      console.log(xForwardedFor)
+      console.log(xRealIp)
+    }
   },
   head() {
       return {
