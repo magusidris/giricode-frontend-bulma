@@ -19,11 +19,15 @@ div.blog:hover {
   border: 2px solid #f3f3f3;
   box-shadow: 0 1em 1em #e7e7e7;
   > .card-image img {
+    opacity: 0.9;
     -webkit-transform: scale(1.08);
     transform: scale(1.08);
   }
   > .card-content .title {
     color: $dark-green;
+  }
+  > .card-content .content {
+    color: $dark-grey;
   }
 }
 
