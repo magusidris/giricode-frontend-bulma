@@ -13,7 +13,7 @@
       <div class="media">
         <div class="media-content">
           <span class="tag is-light mr-2" :class="tag.color.value" v-for="tag in post.tags" :key="tag.id" v-html="tag.name" />
-          <p class="blog-title title is-4" v-html="post.title" />
+          <p class="blog-title title is-5" v-html="post.title" />
         </div>
       </div>
       <div class="content pr-5">

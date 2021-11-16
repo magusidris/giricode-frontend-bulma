@@ -21,8 +21,10 @@
   background: #F8F8F8;
 }
 
-/* Default font */
-$family-sans-serif: "Nunito", sans-serif;
+body, button, input, optgroup, select, textarea {
+  font-family: $family-nunito;
+  font-weight: 400;
+}
 
 .blogs {
   min-height: 4rem;
