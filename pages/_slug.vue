@@ -69,7 +69,7 @@ export default {
         {
           hid: 'og:image',
           name: 'og:image',
-          content: `'https://giricode.com/_ipx/f_webp,fit_fill,q_80,s_480x300/storage/posts/'${this.post.image}`
+          content: `https://giricode.com/_ipx/f_webp,fit_fill,q_80,s_480x300/storage/posts/${this.post.image}`
         }
       ]
     }
