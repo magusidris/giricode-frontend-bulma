@@ -33,12 +33,12 @@ import TagCard from '@/components/web/TagCard'
 export default {
   head() {
     return {
-      title: this.title,
+      title: 'Giricode - Solusi Tutorial Pemrograman Lengkap',
       meta: [
         {
           hid: 'og:url',
           name: 'og:url',
-          content: this.url
+          content: process.env.baseUrl
         },
         {
           hid: 'og:type',
@@ -48,32 +48,24 @@ export default {
         {
           hid: 'og:title',
           name: 'og:title',
-          content: this.title
+          content: 'Giricode - Solusi Tutorial Pemrograman Lengkap'
         },
         {
           hid: 'description',
           name: 'description',
-          content: this.description
+          content: 'Belajar koding bahasa Indonesia mulai dasar hingga expert.'
         },
         {
           hid: 'og:description',
           name: 'og:description',
-          content: this.description
+          content: 'Belajar koding bahasa Indonesia mulai dasar hingga expert.'
         },
         {
           hid: 'og:image',
           name: 'og:image',
-          content: this.image
+          content: 'https://giricode.com/_ipx/f_webp,fit_fill,q_80,w_1000/storage/sliders/fSdgTkdPjKwyHJW7Ga9wro3p3HZ4Vt9RmDxIM10l.svg'
         }
       ]
-    }
-  },
-  data() {
-    return {
-      title: 'Giricode - Solusi Tutorial Pemrograman Lengkap',
-      description: 'Belajar koding bahasa Indonesia mulai dasar hingga expert.',
-      image: 'https://giricode.com/_ipx/f_webp,fit_fill,q_80,w_1000/storage/sliders/fSdgTkdPjKwyHJW7Ga9wro3p3HZ4Vt9RmDxIM10l.svg',
-      url: process.env.baseUrl
     }
   },
   components: {

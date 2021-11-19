@@ -28,13 +28,13 @@ import PostCard from '@/components/web/PostCardSecond'
 export default {
   head() {
     return {
-      title: this.title,
+      title: `All Post page ${this.statePage} - Giricode`,
       meta: [
         {
           hid: 'og:url',
           name: 'og:url',
           // content: `${process.env.BASE_URL}/${query.page}` || `'http://localhost:2021/'${query.page}`
-          content: this.url
+          content: `${process.env.baseUrl}/post?page=${this.statePage}`
         },
         {
           hid: 'og:type',
@@ -44,32 +44,24 @@ export default {
         {
           hid: 'og:title',
           name: 'og:title',
-          content: this.title
+          content: `All Post page ${this.statePage} - Giricode`
         },
         {
           hid: 'description',
           name: 'description',
-          content: this.description
+          content: 'Belajar koding bahasa Indonesia mulai dasar hingga expert.'
         },
         {
           hid: 'og:description',
           name: 'og:description',
-          content: this.description
+          content: 'Belajar koding bahasa Indonesia mulai dasar hingga expert.'
         },
         {
           hid: 'og:image',
           name: 'og:image',
-          content: this.image
+          content: 'https://giricode.com/_ipx/f_webp,fit_fill,q_80,w_1000/storage/sliders/fSdgTkdPjKwyHJW7Ga9wro3p3HZ4Vt9RmDxIM10l.svg'
         }
       ]
-    }
-  },
-  data() {
-    return {
-      title: `All Post page ${this.statePage} - Giricode`,
-      description: 'Belajar koding bahasa Indonesia mulai dasar hingga expert.',
-      image: 'https://giricode.com/_ipx/f_webp,fit_fill,q_80,w_1000/storage/sliders/fSdgTkdPjKwyHJW7Ga9wro3p3HZ4Vt9RmDxIM10l.svg',
-      url: `${process.env.baseUrl}/post?page=${this.statePage}`
     }
   },
   components: {
