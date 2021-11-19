@@ -27,7 +27,13 @@ export default {
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
       { name: 'theme-color', media: '(prefers-color-scheme: light)', content: '#AECAB2' },
       { hid: 'description', name: 'description', content: pkg.description },
-      { name: 'format-detection', content: 'telephone=no' }
+      { name: 'format-detection', content: 'telephone=no' },
+      { hid: 'og:title', name: 'og:title', content: 'Giricode' },
+      { hid: 'og:locale', name: 'og:locale', content: 'en_ID' },
+      { hid: 'og:url', name: 'og:url', content: process.env.BASE_URL || 'http://localhost:2021' },
+      { hid: 'og:type', name: 'og:type', content: 'website' },
+      { hid: 'og:image', name: 'og:image', content: 'https://giricode.com/_ipx/f_webp,fit_fill,q_80,w_1000/storage/sliders/fSdgTkdPjKwyHJW7Ga9wro3p3HZ4Vt9RmDxIM10l.svg' },
+      { hid: 'og:description', name: 'og:description', content: pkg.description }
     ],
     link: [
       {

@@ -31,6 +31,22 @@ import PostCard from '@/components/web/PostCard'
 import CategoryCard from '@/components/web/CategoryCard'
 import TagCard from '@/components/web/TagCard'
 export default {
+  head() {
+    return {
+      title: 'Giricode',
+      meta: [
+        { hid: 'description', name: 'description', content: this.title }
+      ]
+    }
+  },
+  data() {
+    return {
+      title: 'Giricode',
+      description: 'Belajar koding bahasa Indonesia mulai dasar hingga expert.',
+      image: 'https://giricode.com/_ipx/f_webp,fit_fill,q_80,w_1000/storage/sliders/fSdgTkdPjKwyHJW7Ga9wro3p3HZ4Vt9RmDxIM10l.svg',
+      url: 'https://giricode.com'
+    }
+  },
   components: {
     Carousel,
     PostCard,
