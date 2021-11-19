@@ -176,7 +176,7 @@ export default {
   },
 
   env: {
-    baseUrl: process.env.BASE_URL || 'http://localhost:2021'
+    baseUrl: 'https://giricode.com' || 'http://localhost:2021'
   },
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
