@@ -37,6 +37,43 @@ import CommentList from '@/components/web/Comment/List'
 import CategoryCard from '@/components/web/CategoryCard'
 import TagCard from '@/components/web/TagCard'
 export default {
+  head() {
+    return {
+      title: this.post.title +" - Giricode",
+      meta: [
+        {
+          hid: 'og:url',
+          name: 'og:url',
+          content: `${process.env.baseUrl}/${this.post.slug}`
+        },
+        {
+          hid: 'og:type',
+          name: 'og:type',
+          content: 'website'
+        },
+        {
+          hid: 'og:title',
+          name: 'og:title',
+          content: this.post.title
+        },
+        {
+          hid: 'description',
+          name: 'description',
+          content: this.post.description
+        },
+        {
+          hid: 'og:description',
+          name: 'og:description',
+          content: this.post.description
+        },
+        {
+          hid: 'og:image',
+          name: 'og:image',
+          content: `'https://giricode.com/_ipx/f_webp,fit_fill,q_80,s_480x300/storage/posts/'${this.post.image}`
+        }
+      ]
+    }
+  },
   components: {
     ShowPostCard,
     CommentList,
@@ -54,43 +91,6 @@ export default {
   },
   async asyncData({store, params}) {
     await store.dispatch('web/post/updateSlug', {slug: params.slug})
-  },
-  head() {
-      return {
-        title: this.post.title +" - Giricode",
-        meta: [
-          {
-            hid: 'og:url',
-            name: 'og:url',
-            content: process.env.BASE_URL || 'http://localhost:2021'
-          },
-          {
-            hid: 'og:type',
-            name: 'og:type',
-            content: 'website'
-          },
-          {
-            hid: 'og:title',
-            name: 'og:title',
-            content: this.post.title
-          },
-          {
-            hid: 'description',
-            name: 'description',
-            content: this.post.description
-          },
-          {
-            hid: 'og:description',
-            name: 'og:description',
-            content: this.post.description
-          },
-          {
-            hid: 'og:image',
-            name: 'og:image',
-            content: `https://giricode.com/_ipx/f_webp,fit_fill,q_80,s_480x300/storage/posts/${this.post.image}`
-          }
-        ]
-      }
-    }
+  }
 }
 </script>

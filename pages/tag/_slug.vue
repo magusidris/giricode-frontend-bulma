@@ -19,6 +19,51 @@
 import { mapState } from 'vuex'
 import PostCard from '@/components/web/PostCardCategory'
 export default {
+  head() {
+    return {
+      title: this.title,
+      meta: [
+        {
+          hid: 'og:url',
+          name: 'og:url',
+          content: this.url
+        },
+        {
+          hid: 'og:type',
+          name: 'og:type',
+          content: 'website'
+        },
+        {
+          hid: 'og:title',
+          name: 'og:title',
+          content: this.title
+        },
+        {
+          hid: 'description',
+          name: 'description',
+          content: this.description
+        },
+        {
+          hid: 'og:description',
+          name: 'og:description',
+          content: this.description
+        },
+        {
+          hid: 'og:image',
+          name: 'og:image',
+          content: this.image
+        }
+      ]
+    }
+  },
+  data() {
+    return {
+      title: `Tutorial by Tag ${this.tagName} - Giricode`,
+      description: `Cari Tutorial berdasarkan Tags: ${this.tagName}`,
+      image: 'https://giricode.com/_ipx/f_webp,fit_fill,q_80,w_1000/storage/sliders/fSdgTkdPjKwyHJW7Ga9wro3p3HZ4Vt9RmDxIM10l.svg',
+      url: `${process.env.baseUrl}/tag/${this.tagName}`
+    }
+  },
   components: {
     PostCard
   },
@@ -28,7 +73,8 @@ export default {
 
     ...mapState({
       // category
-      tag: state => state.web.tag.tag
+      tag: state => state.web.tag.tag,
+      tagName: state => state.web.tag.tag.name
     })
   },
 

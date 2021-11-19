@@ -33,18 +33,47 @@ import TagCard from '@/components/web/TagCard'
 export default {
   head() {
     return {
-      title: 'Giricode',
+      title: this.title,
       meta: [
-        { hid: 'description', name: 'description', content: this.title }
+        {
+          hid: 'og:url',
+          name: 'og:url',
+          content: this.url
+        },
+        {
+          hid: 'og:type',
+          name: 'og:type',
+          content: 'website'
+        },
+        {
+          hid: 'og:title',
+          name: 'og:title',
+          content: this.title
+        },
+        {
+          hid: 'description',
+          name: 'description',
+          content: this.description
+        },
+        {
+          hid: 'og:description',
+          name: 'og:description',
+          content: this.description
+        },
+        {
+          hid: 'og:image',
+          name: 'og:image',
+          content: this.image
+        }
       ]
     }
   },
   data() {
     return {
-      title: 'Giricode',
+      title: 'Giricode - Solusi Tutorial Pemrograman Lengkap',
       description: 'Belajar koding bahasa Indonesia mulai dasar hingga expert.',
       image: 'https://giricode.com/_ipx/f_webp,fit_fill,q_80,w_1000/storage/sliders/fSdgTkdPjKwyHJW7Ga9wro3p3HZ4Vt9RmDxIM10l.svg',
-      url: 'https://giricode.com'
+      url: process.env.baseUrl
     }
   },
   components: {

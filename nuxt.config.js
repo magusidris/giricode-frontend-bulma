@@ -143,7 +143,7 @@ export default {
       'jwt': {
         provider: 'laravel/jwt',
         scheme: 'refresh',
-        url: pkg.base_url || 'http://localhost:2021',
+        url: process.env.BASE_URL || 'http://localhost:2021',
         endpoints: {
           login: {
             url: '/api/v1/auth/login',
@@ -173,6 +173,10 @@ export default {
         },
       },
     },
+  },
+
+  env: {
+    baseUrl: process.env.BASE_URL || 'http://localhost:2021'
   },
 
   // Build Configuration: https://go.nuxtjs.dev/config-build

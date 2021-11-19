@@ -20,15 +20,60 @@
 import { mapState } from 'vuex'
 import CategoryCard from '@/components/web/PostCardCategory'
 export default {
+  head() {
+    return {
+      title: this.title,
+      meta: [
+        {
+          hid: 'og:url',
+          name: 'og:url',
+          content: this.url
+        },
+        {
+          hid: 'og:type',
+          name: 'og:type',
+          content: 'website'
+        },
+        {
+          hid: 'og:title',
+          name: 'og:title',
+          content: this.title
+        },
+        {
+          hid: 'description',
+          name: 'description',
+          content: this.description
+        },
+        {
+          hid: 'og:description',
+          name: 'og:description',
+          content: this.description
+        },
+        {
+          hid: 'og:image',
+          name: 'og:image',
+          content: this.image
+        }
+      ]
+    }
+  },
+  data() {
+    return {
+      title: `Tutorial by Kategori ${this.categoryName} - Giricode`,
+      description: `Cari Tutorial berdasarkan Kategori: ${this.categoryName}`,
+      image: 'https://giricode.com/_ipx/f_webp,fit_fill,q_80,w_1000/storage/sliders/fSdgTkdPjKwyHJW7Ga9wro3p3HZ4Vt9RmDxIM10l.svg',
+      url: `${process.env.baseUrl}/category/${this.categoryName}`
+    }
+  },
   components: {
     CategoryCard
   },
   // computed
   computed: {
-
     ...mapState({
       // category
-      category: state => state.web.category.category
+      category: state => state.web.category.category,
+      categoryName: state => state.web.category.category.name
     })
   },
 
