@@ -23,10 +23,14 @@
     "dayjs": "^1.10.7",
     "highlight.js": "^10.7.3",
     "marked": "^3.0.8",
+    "node-sass": "^4.14.1",
     "npm": "^8.1.3",
     "numeral": "^2.0.6",
     "nuxt": "^2.15.7",
     "nuxt-buefy": "^0.4.13",
+    "nuxt-sass-resources-loader": "^2.0.5",
+    "sass": "^1.43.4",
+    "sass-loader": "^7.3.1",
     "tiptap-extensions": "^1.35.2",
     "vue-advanced-cropper": "^1.9.0",
     "vue-chartjs": "^3.5.1",
@@ -40,9 +44,7 @@
     "cross-env": "^7.0.2",
     "fibers": "^5.0.0",
     "gh-pages": "^3.1.0",
-    "node-sass": "^4.14.1",
     "nodemon": "^1.19.4",
-    "prettier": "^2.0.5",
-    "sass-loader": "^7.3.1"
+    "prettier": "^2.0.5"
   }
 }

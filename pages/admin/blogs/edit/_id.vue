@@ -72,12 +72,27 @@
                   <div class="has-text-weight-medium is-2 mr-5">Words: {{ words }}</div>
                 </div>
               </client-only> -->
-              <div class="columns">
-                <div class="column">
-                  <b-input v-model="post.content" type="textarea" minlength="10" maxlength="50000" rows="20"></b-input>
-                </div>
-                <div class="column">
-                  <markdown-display :markdown="post.content" />
+              <div class="columns is-multiline">
+                <div class="column is-half">
+                  <div class="field course-create-form-field control has-icons-right">
+                      <textarea
+                        v-model="post.content"
+                        placeholder="e.g. Amazing Content"
+                        class="textarea is-medium"
+                        ref="textarea"
+                        rows="100"
+                        @focus="resize"
+                        @keyup="resize">
+                        </textarea>
+                      <span class="icon is-small is-right pr-4">
+                        {{ wordCount }}
+                      </span>
+                    </div>
+                  </div>
+                <div class="column is-half">
+                  <div class="field course-create-form-field control has-icons-right">
+                    <markdown-display :markdown="post.content" />
+                  </div>
                 </div>
               </div>
             </b-field>
@@ -123,6 +138,7 @@
 import { mapState, mapGetters } from 'vuex'
 import Titlebar from '@/components/admin/TitleBar'
 import CardComponent from '@/components/admin/CardComponent'
+import TextArea from '~/components/form/TextArea'
 import MarkdownDisplay from '~/components/admin/MarkdownDisplay'
 export default {
   layout: 'admin',
@@ -134,6 +150,7 @@ export default {
         return import('@blowstack/ckeditor-nuxt')
       }
     },
+    TextArea,
     MarkdownDisplay
   },
   data() {
@@ -146,8 +163,7 @@ export default {
         description: '',
         tags: []
       },
-      words: 0,
-      characters: 0,
+      currentValue: '',
       // filteredTags: this.tags,
       // validation
       validation: [],
@@ -181,7 +197,18 @@ export default {
     }),
     titleStack() {
       return ['Admin', 'Blog', 'Edit']
-    }
+    },
+    inputLength() {
+      return this.post.content.length || 0
+    },
+    wordCount() {
+      if (this.inputLength > 0) {
+        return this.post.content.split(' ')?.length
+      } else {
+        return 0
+      }
+      // return this.currentValue.length ? this.currentValue.match(/\s+/g)?.length : 0
+    },
   },
   mounted() {
     this.post.title = this.$store.state.admin.post.post.title
@@ -196,6 +223,16 @@ export default {
     await store.dispatch('admin/post/getTagsData')
   },
   methods: {
+    resize(e) {
+      // const { textarea } = this.$refs;
+      // textarea.style.height = textarea.scrollHeight - 7 + 'px';
+      let area = e.target;
+      if (this.inputLength > 0) {
+        area.style.height = area.scrollHeight - 4 + 'px';
+      } else {
+        return area
+      }
+    },
     //handle file upload
     handleFileChange(e) {
 
@@ -273,3 +310,12 @@ export default {
   }
 }
 </script>
+
+<style lang="scss" scoped>
+
+textarea {
+  padding-right: 2.5rem!important;
+  resize: none;
+  overflow: hidden;
+}
+</style>

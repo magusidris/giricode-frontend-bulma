@@ -1,5 +1,7 @@
 <template>
-  <div class="card blog">
+  <div class="card blog"
+    @mouseover="hover = true"
+    @mouseleave="hover = false">
     <div class="card-image">
       <figure class="image is-4by2">
         <nuxt-img
@@ -12,7 +14,7 @@
     <div class="card-content px-4">
       <div class="media">
         <div class="media-content">
-          <span class="tag is-light mr-2" :class="tag.color.value" v-for="tag in post.tags" :key="tag.id" v-html="tag.name" />
+          <span class="tag mr-2 mb-1" :class="`${tag.color.value} ${hover ? '' : 'is-light'}`" v-for="tag in post.tags" :key="tag.id" v-html="tag.name" />
           <p class="blog-title title is-5" v-html="post.title" />
         </div>
       </div>
@@ -47,6 +49,11 @@ export default {
     post: {
       type: Object,
       required: true
+    }
+  },
+  data() {
+    return {
+      hover: false
     }
   }
 }

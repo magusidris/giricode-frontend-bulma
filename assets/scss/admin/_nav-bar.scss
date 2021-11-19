@@ -1,3 +1,12 @@
+.menu-list a {
+  color: $dark-green!important;
+}
+
+.menu-list a:hover {
+  background: $light-green!important;
+  color: white!important;
+}
+
 nav.navbar {
   box-shadow: $navbar-box-shadow;
 

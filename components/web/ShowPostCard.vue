@@ -27,14 +27,6 @@
             <b-icon
               class="ml-4"
               pack="fas"
-              icon="user"
-              size="is-small">
-            </b-icon>
-            {{ post.user.name }}
-
-            <b-icon
-              class="ml-4"
-              pack="fas"
               icon="folder"
               size="is-small">
             </b-icon>
@@ -47,6 +39,15 @@
               size="is-small">
             </b-icon>
             {{ post.comments_count }}
+
+            <b-icon
+              class="ml-4"
+              pack="fas"
+              icon="user"
+              size="is-small">
+            </b-icon>
+            {{ post.user.name }}
+
           </p>
         </div>
       </div>
@@ -66,15 +67,14 @@
 </template>
 
 <script>
-import MarkdownDisplay from '~/components/admin/MarkdownDisplay'
+import MarkdownDisplay from '~/components/web/MarkdownDisplay'
 export default {
   components: {
     MarkdownDisplay
   },
   props: {
     post: {
-      type: Object,
-      required: true
+      type: Object
     }
   }
 }

@@ -65,21 +65,25 @@
               </b-message>
             </div>
             <b-field label="Content Post">
-              <client-only placeholder="loading...">
+              <!-- <client-only placeholder="loading...">
                 <ckeditor-nuxt v-model="post.content" :config="editorConfig" />
                 <div class="ck ck-word-count columns is-flex-direction-row-reverse is-gapless is-multiline mt-n1 px-2 py-2">
                   <div class="has-text-weight-medium">Characters: {{ characters }}</div>
                   <div class="has-text-weight-medium is-2 mr-5">Words: {{ words }}</div>
                 </div>
-              </client-only>
-              <!-- <div class="columns">
-                <div class="column">
-                  <b-input v-model="post.content" type="textarea" rows="10"></b-input>
+              </client-only> -->
+              <div class="columns is-multiline">
+                <div class="column is-half">
+                  <div class="field course-create-form-field control has-icons-right">
+                      <text-area :content="post.content" />
+                    </div>
+                  </div>
+                <div class="column is-half">
+                  <div class="field course-create-form-field control has-icons-right">
+                    <markdown-display :markdown="post.content" />
+                  </div>
                 </div>
-                <div class="column">
-                  <markdown-display :markdown="post.content" />
-                </div>
-              </div> -->
+              </div>
             </b-field>
             <div v-if="validation.content" class="mt-2 mb-3">
               <b-message type="is-danger">
@@ -123,6 +127,8 @@ import { mapGetters } from 'vuex'
 import Titlebar from '@/components/admin/TitleBar'
 import CardComponent from '@/components/admin/CardComponent'
 import MarkdownDisplay from '~/components/admin/MarkdownDisplay'
+import TextArea from '~/components/form/TextArea'
+import TextAreaWithMarkdown from '~/components/form/TextAreaWithMarkdown'
 export default {
   layout: 'admin',
   components: {
@@ -133,7 +139,9 @@ export default {
         return import('@blowstack/ckeditor-nuxt')
       }
     },
-    MarkdownDisplay
+    MarkdownDisplay,
+    TextArea,
+    TextAreaWithMarkdown
   },
   data() {
     return {
@@ -153,20 +161,20 @@ export default {
       allowNew: false,
       openOnFocus: true,
       //config CKEDITOR
-      editorConfig: {
-        removePlugins: ['Title'],
-        simpleUpload: {
-          uploadUrl: '/api/v1/admin/images/',
-          withCredentials: true
-        },
-        wordCount: {
-          onUpdate: stats => {
-            // Prints the current content statistics.
-            this.words = stats.words
-            this.characters = stats.characters
-          }
-        }
-      }
+      // editorConfig: {
+      //   removePlugins: ['Title'],
+      //   simpleUpload: {
+      //     uploadUrl: '/api/v1/admin/images/',
+      //     withCredentials: true
+      //   },
+      //   wordCount: {
+      //     onUpdate: stats => {
+      //       // Prints the current content statistics.
+      //       this.words = stats.words
+      //       this.characters = stats.characters
+      //     }
+      //   }
+      // }
     }
   },
   computed: {
@@ -176,6 +184,15 @@ export default {
     }),
     titleStack() {
       return ['Admin', 'Blog', 'Tambah']
+    },
+    // wordCount(){
+		//   var vm = this,filecont = vm.input;
+    //       return vm.skip_html && (filecont = filecont.replace(/<\S[^><]*>/gi, "")),
+		// 	  vm.input.match(/\w+/g) ? vm.input.match(/\w+/g).length : 0;
+	  // },
+    change (event) {
+        console.log(event)
+        // event.words to get word count, etc.
     }
   },
   async asyncData({ store }) {
@@ -183,6 +200,9 @@ export default {
     await store.dispatch('admin/post/getTagsData')
   },
   methods: {
+    // countup: function() {
+    //   this.canPublish = this.wordCount > 4;
+    // },
     //handle file upload
     handleFileChange(e) {
 
