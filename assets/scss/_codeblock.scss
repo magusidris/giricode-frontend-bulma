@@ -6,14 +6,14 @@ pre {
 code[class*=hljs-],pre[class*=hljs-] {
 	color:#ccc;
 	background:none;
-	font-family: 'Source Code Pro', monospace;
+	font-family: $family-nunito;
 	font-size:1em;
 	text-align:left;
 	white-space:pre;
 	word-spacing:normal;
 	word-break:normal;
 	word-wrap:normal;
-	line-height:1.5;
+	line-height:1.5!important;
 	-moz-tab-size:4;
 	-o-tab-size:4;
 	tab-size:4;
@@ -191,6 +191,14 @@ div[class~=hljs-vue]:before {
 	content:"vue"
 }
 
+div[class~=hljs-nuxt]:before {
+	content:"nuxt"
+}
+
+div[class~=hljs-react]:before {
+	content:"react"
+}
+
 div[class~=hljs-css]:before {
 	content:"css"
 }
@@ -221,6 +229,14 @@ div[class~=hljs-java]:before {
 
 div[class~=hljs-c]:before {
 	content:"c"
+}
+
+div[class~=hljs-cpp]:before {
+	content:"c++"
+}
+
+div[class~=hljs-cs]:before {
+	content:"c#"
 }
 
 div[class~=hljs-sh]:before {
@@ -281,4 +297,16 @@ div[class~=hljs-bash]:before {
 
 div[class~=hljs-php]:before {
 	content:"php"
+}
+
+div[class~=hljs-mermaid]:before {
+	content:"mermaid"
+}
+
+div[class~=hljs-laravel]:before {
+	content:"laravel"
+}
+
+div[class~=hljs-blade]:before {
+	content:"blade"
 }

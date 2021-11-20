@@ -1,6 +1,6 @@
 <template>
-  <div class="markdown">
-    <div class="content mt-4 is-medium" v-html="proccessedMarkdown"></div>
+  <div>
+    <div class="content mt-4 markdown" v-html="proccessedMarkdown"></div>
   </div>
 </template>
 
