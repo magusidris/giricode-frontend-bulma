@@ -39,12 +39,17 @@ import TagCard from '@/components/web/TagCard'
 export default {
   head() {
     return {
-      title: this.post.title +" - Giricode",
+      title: `${this.post.title} - Giricode`,
       meta: [
         {
           hid: 'og:url',
           name: 'og:url',
           content: `${process.env.baseUrl}/${this.post.slug}`
+        },
+        {
+          hid: 'og:locale',
+          name: 'og:locale',
+          content: 'en_ID'
         },
         {
           hid: 'og:type',
@@ -54,7 +59,12 @@ export default {
         {
           hid: 'og:title',
           name: 'og:title',
-          content: this.post.title
+          content: `${this.post.title} - Giricode`
+        },
+        {
+          hid: 'og:site_name',
+          name: 'og:site_name',
+          content: 'Giricode'
         },
         {
           hid: 'description',
@@ -69,6 +79,31 @@ export default {
         {
           hid: 'og:image',
           name: 'og:image',
+          content: `https://giricode.com/_ipx/f_webp,fit_fill,q_80,s_480x300/storage/posts/${this.post.image}`
+        },
+        {
+          hid: 'twitter:card',
+          name: 'twitter:card',
+          content: 'summary_large_image'
+        },
+        {
+          hid: 'twitter:title',
+          name: 'twitter:title',
+          content: `${this.post.title} - Giricode`
+        },
+        {
+          hid: 'twitter:description',
+          name: 'twitter:description',
+          content: this.post.description
+        },
+        {
+          hid: 'twitter:site',
+          name: 'twitter:site',
+          content: '@Giricode'
+        },
+        {
+          hid: 'twitter:image',
+          name: 'twitter:image',
           content: `https://giricode.com/_ipx/f_webp,fit_fill,q_80,s_480x300/storage/posts/${this.post.image}`
         }
       ]

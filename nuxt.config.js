@@ -29,11 +29,17 @@ export default {
       { hid: 'description', name: 'description', content: pkg.description },
       { name: 'format-detection', content: 'telephone=no' },
       { hid: 'og:title', name: 'og:title', content: 'Giricode' },
+      { hid: 'og:site_name', name: 'og:site_name', content: 'Giricode' },
       { hid: 'og:locale', name: 'og:locale', content: 'en_ID' },
-      { hid: 'og:url', name: 'og:url', content: process.env.BASE_URL || 'http://localhost:2021' },
+      { hid: 'og:url', name: 'og:url', content: process.env.baseUrl },
       { hid: 'og:type', name: 'og:type', content: 'website' },
       { hid: 'og:image', name: 'og:image', content: 'https://giricode.com/_ipx/f_webp,fit_fill,q_80,w_1000/storage/sliders/fSdgTkdPjKwyHJW7Ga9wro3p3HZ4Vt9RmDxIM10l.svg' },
-      { hid: 'og:description', name: 'og:description', content: pkg.description }
+      { hid: 'og:description', name: 'og:description', content: pkg.description },
+      { hid: 'twitter:card', name: 'twitter:card', content: 'summary_large_image' },
+      { hid: 'twitter:title', name: 'twitter:title', content: 'Giricode' },
+      { hid: 'twitter:description', name: 'twitter:description', content: pkg.description },
+      { hid: 'twitter:site', name: 'twitter:site', content: '@Giricode' },
+      { hid: 'twitter:image', name: 'twitter:image', content: 'https://giricode.com/_ipx/f_webp,fit_fill,q_80,w_1000/storage/sliders/fSdgTkdPjKwyHJW7Ga9wro3p3HZ4Vt9RmDxIM10l.svg' },
     ],
     link: [
       {

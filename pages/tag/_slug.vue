@@ -29,6 +29,11 @@ export default {
           content: `${process.env.baseUrl}/tag/${this.tagName}`
         },
         {
+          hid: 'og:locale',
+          name: 'og:locale',
+          content: 'en_ID'
+        },
+        {
           hid: 'og:type',
           name: 'og:type',
           content: 'website'
@@ -37,6 +42,11 @@ export default {
           hid: 'og:title',
           name: 'og:title',
           content: `Tutorial by Tag ${this.tagName} - Giricode`
+        },
+        {
+          hid: 'og:site_name',
+          name: 'og:site_name',
+          content: 'Giricode'
         },
         {
           hid: 'description',
@@ -51,6 +61,31 @@ export default {
         {
           hid: 'og:image',
           name: 'og:image',
+          content: 'https://giricode.com/_ipx/f_webp,fit_fill,q_80,w_1000/storage/sliders/fSdgTkdPjKwyHJW7Ga9wro3p3HZ4Vt9RmDxIM10l.svg'
+        },
+        {
+          hid: 'twitter:card',
+          name: 'twitter:card',
+          content: 'summary_large_image'
+        },
+        {
+          hid: 'twitter:title',
+          name: 'twitter:title',
+          content: `Tutorial by Tag ${this.tagName} - Giricode`
+        },
+        {
+          hid: 'twitter:description',
+          name: 'twitter:description',
+          content: `Cari Tutorial berdasarkan Tags: ${this.tagName}`
+        },
+        {
+          hid: 'twitter:site',
+          name: 'twitter:site',
+          content: '@Giricode'
+        },
+        {
+          hid: 'twitter:image',
+          name: 'twitter:image',
           content: 'https://giricode.com/_ipx/f_webp,fit_fill,q_80,w_1000/storage/sliders/fSdgTkdPjKwyHJW7Ga9wro3p3HZ4Vt9RmDxIM10l.svg'
         }
       ]
