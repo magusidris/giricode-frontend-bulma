@@ -25,7 +25,7 @@ export default {
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-      // { name: 'theme-color', media: '(prefers-color-scheme: light)', content: '#AECAB2' },
+      { hid: 'theme-color', name: 'theme-color', media: '(prefers-color-scheme: dark)', content: '#AECAB2' },
       { hid: 'description', name: 'description', content: pkg.description },
       { name: 'format-detection', content: 'telephone=no' },
       { hid: 'og:title', name: 'og:title', content: 'Giricode' },
@@ -107,7 +107,8 @@ export default {
     // https://image.nuxtjs.org/
     '@nuxt/image',
     //https://github.com/avil13/vue-sweetalert2
-    'vue-sweetalert2/nuxt'
+    'vue-sweetalert2/nuxt',
+    '@nuxtjs/pwa'
   ],
 
   image: {
@@ -129,6 +130,25 @@ export default {
       }
     }
   },
+
+  pwa: {
+    meta: {
+      title: 'Giricode - Belajar koding bahasa Indonesia mulai dasar hingga expert.',
+      author: 'Giricode',
+      'theme-color': 'AECAB2'
+    },
+    manifest: {
+      name: 'Giricode',
+      short_name: 'giricode',
+      description: 'Belajar koding bahasa Indonesia mulai dasar hingga expert.',
+      lang: 'en'
+    },
+    icon: {
+      fileName: '/img/mobile-logo.svg',
+      sizes: [64, 120, 144, 152, 192, 384, 512]
+    }
+  },
+
 
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
   axios: {
