@@ -5,8 +5,8 @@
         <div class="container is-max-widescreen h-100">
           <div class="columns h-100 is-vcentered">
             <div class="column">
-              <p class="title is-size-2">
-                Artikel by Kategori: <span class="color-primary50">{{ category.name }}</span>
+              <p class="title is-size-3 pb-3">
+                Artikel by Kategori: <span class="has-text-link has-text-weight-bold">{{ category.name }}</span>
               </p>
               <p class="subtitle">
                 Sesuaikan artikel pembelajaran berdasarkan kategori, kami telah menyiapkan banyak materi pada setiap bagian kategori berdasarkan kasus masalah yang sering ditemukan.

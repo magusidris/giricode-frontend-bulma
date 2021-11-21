@@ -9,7 +9,7 @@
                 Belajar koding bahasa Indonesia mulai dasar hingga expert.
               </p>
               <p class="subtitle has-text-white">
-                Sesuaikan artikel pembelajaran berdasarkan kategori, kami telah menyiapkan banyak materi pada setiap bagian kategori berdasarkan kasus masalah yang sering ditemukan.
+                Dapatkan tutorial yang anda butuhkan untuk meningkatkan kemampuan anda ketingkat yang lebih tinggi, kami menyiapkan apa saja berdasarkan kategori lengkap dengan langkah maupun source codenya.
               </p>
               <p>
 
