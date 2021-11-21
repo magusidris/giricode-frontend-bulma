@@ -5,10 +5,10 @@
         <div class="container is-max-widescreen h-100">
           <div class="columns h-100 is-vcentered">
             <div class="column">
-              <p class="title is-size-3 pb-3">
+              <p class="title is-size-3 has-text-white pb-3">
                 Belajar koding bahasa Indonesia mulai dasar hingga expert.
               </p>
-              <p class="subtitle">
+              <p class="subtitle has-text-white">
                 Sesuaikan artikel pembelajaran berdasarkan kategori, kami telah menyiapkan banyak materi pada setiap bagian kategori berdasarkan kasus masalah yang sering ditemukan.
               </p>
               <p>
