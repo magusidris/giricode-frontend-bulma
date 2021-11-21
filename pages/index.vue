@@ -1,26 +1,32 @@
 <template>
   <div>
-    <section class="section">
-      <div class="container is-max-widescreen">
-        <carousel />
-      </div>
-    </section>
-    <section class="section pt-0">
-      <div class="container is-max-widescreen">
-        <div class="columns is-multiline is-variable is-1-mobile is-8-tablet is-4-desktop is-6-widescreen is-8-fullhd">
-          <div class="column is-4-desktop is-6-tablet is-12-mobile py-7" v-for="post in posts.data" :key="post.id">
-            <nuxt-link :to="{name: 'slug', params: {slug: post.slug}}">
-              <post-card class="post" :post="post" />
-            </nuxt-link>
+    <section class="hero hero-large bg-primary300">
+      <div class="hero-body">
+        <div class="container is-max-widescreen h-100">
+          <div class="columns h-100 is-vcentered">
+            <div class="column">
+              <p class="title is-size-3 has-text-white pb-3">
+                Belajar koding bahasa Indonesia mulai dasar hingga expert.
+              </p>
+              <p class="subtitle has-text-white">
+                Sesuaikan artikel pembelajaran berdasarkan kategori, kami telah menyiapkan banyak materi pada setiap bagian kategori berdasarkan kasus masalah yang sering ditemukan.
+              </p>
+              <p>
+
+              </p>
+            </div>
+            <div class="column is-5 is-hidden-mobile">
+              <nuxt-img
+                src="/img/opensource.svg"
+                alt="post title"
+                preset="web"
+                sizes="sm:355px md:320px lg:400px" />
+            </div>
           </div>
         </div>
-        <div class="columns mt-4">
-          <div class="column has-text-centered">
-            <nuxt-link :to="{name: 'post', query: {page: 1}}" class="is-dark-green btn-more">LIHAT LEBIH BANYAK</nuxt-link>
-          </div>
-        </div>
       </div>
     </section>
+    <nuxt-child />
   </div>
 </template>
 
@@ -111,9 +117,7 @@ export default {
   },
   computed: {
     ...mapState({
-      posts: state => state.web.post.posts,
-      currentPage: state => state.web.post.posts.current_page,
-      statePage: state => state.web.post.page
+      posts: state => state.web.post.posts
     })
   },
   async fetch({ store, query }) {

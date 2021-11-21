@@ -3,25 +3,73 @@
   color: white;
 }
 
-.navbar-item.green {
+// a.navbar-item.dark-green.is-active,
+// div.navbar-item.dark-green.is-active,
+// a.navbar-link.is-active {
+//   border-bottom: 4px solid $light-green;
+//   font-weight: bold;
+// }
+
+.navbar-start {
+  > .navbar-item.dark-green {
+    color: #fff;
+    > .navbar-link {
+      background-color: $dark-green;
+      color: white;
+      > .navbar-dropdown {
+        background-color: #fff;
+        color: $dark-green;
+      }
+    }
+    > .navbar-dropdown.is-boxed {
+      padding-left: .5rem;
+      padding-right: .5rem;
+      > .navbar-item.dark-green {
+        background-color: #fff;
+        color: $dark-green;
+        margin-bottom: .3rem;
+      }
+      > .navbar-item.dark-green:hover {
+        background-color: $primary-100;
+        color: #fff;
+        border-radius: 5px;
+        font-weight: bold;
+      }
+      > .navbar-item.dark-green.is-active {
+        background-color: $dark-green;
+        color: #fff;
+        border-radius: 5px;
+        font-weight: bold;
+      }
+    }
+    .navbar-link > .navbar-item.dark-green.is-active {
+      border-bottom: 1px solid $primary-200;
+    }
+  }
+
+  > .navbar-item:hover.dark-green {
+    color: rgb(231, 238, 235);
+    font-weight: bold;
+  }
+
+  > .navbar-item.dark-green.is-active {
+    color: rgb(231, 238, 235);
+    font-weight: bold;
+  }
+}
+
+.navbar-item.dark-green:focus,
+.navbar-item.dark-green:hover,
+.navbar-item.dark-green.is-active {
   background-color: $dark-green;
   color: white;
+  > .navbar-link {
+    background-color: $dark-green;
+    color: white;
+  }
 }
 
-a.navbar-item.green:focus,
-a.navbar-item.green:hover,
-a.navbar-item.green.is-active {
-  background-color: $dark-green;
-  color: white;
-}
-
-a.navbar-item.green:hover {
-  color: rgb(231, 238, 235);
-  font-weight: bold;
-}
-
-a.navbar-item.green.is-active {
-  border-bottom: 4px solid $light-green;
-  font-weight: bold;
-  transition: .5s ease-in-out;
+.navbar-link:not(.is-arrowless)::after {
+  border-color: $light-green;
+  margin-top: -0.375em;
 }

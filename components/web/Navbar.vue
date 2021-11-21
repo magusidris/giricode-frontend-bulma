@@ -18,9 +18,26 @@
             id="navbarBasicExample"
             class="navbar-menu">
         <div class="navbar-start">
-          <nav-link :to="menu.url" class="navbar-item green" v-for="menu in menus" :key="menu.id">
-            {{ menu.name }}
-          </nav-link>
+          <template v-for="menu in navs">
+            <template v-if="menu.dropdown === false">
+              <nav-link :to="menu.url" class="navbar-item dark-green" @click.prevent="kategori = false">
+                {{ menu.name }}
+              </nav-link>
+            </template>
+            <template v-else>
+              <div class="navbar-item has-dropdown is-hoverable dark-green">
+                <a class="navbar-link" v-bind:class="{ 'is-active' : kategori}">
+                  {{ menu.name }}
+                </a>
+                <div class="navbar-dropdown is-boxed">
+                  <nav-link v-for="(sub, i) in menu.data" :key="i" :to="sub.url" class="navbar-item dark-green" @click.prevent="kategori = true">
+                    {{ sub.name }}
+                  </nav-link>
+                </div>
+              </div>
+            </template>
+
+          </template>
         </div>
 
         <div class="navbar-end">
@@ -68,7 +85,31 @@ import { mapGetters } from 'vuex'
 export default {
   data() {
     return {
-      isActive: false
+      navs: [
+        {
+          dropdown: false,
+          name: 'Home',
+          url: '/'
+        },
+        {
+          dropdown: true,
+          name: 'Kategori',
+          data: [
+            {
+              name: 'Laravel',
+              url: '/category/laravel',
+              image: '8rBR92OBkesWD75vjBQonD0GYj9t7r5Jm8VHvmdV.svg'
+            },
+            {
+              name: 'Nuxt Js',
+              url: '/category/nuxt-js',
+              image: 'LdYStRD064wcLdEJfGZ5xIYGRSus6Nx30ondiNk0.svg'
+            }
+          ]
+        }
+      ],
+      isActive: false,
+      kategori: false
     }
   },
   computed: {

@@ -72,7 +72,7 @@ export default {
 
   styleResources: {
     scss: [
-      './assets/scss/variables.scss'
+      './assets/vars/*.scss'
     ]
    },
 
@@ -98,12 +98,12 @@ export default {
   // Modules: https://go.nuxtjs.dev/config-modules
   modules: [
     // https://go.nuxtjs.dev/buefy
-    ['nuxt-buefy'],
     // https://go.nuxtjs.dev/axios
     '@nuxtjs/axios',
+    'nuxt-buefy',
+    '@nuxtjs/style-resources',
     //https://dev.auth.nuxtjs.org/
     '@nuxtjs/auth-next',
-    '@nuxtjs/style-resources',
     // https://image.nuxtjs.org/
     '@nuxt/image',
     //https://github.com/avil13/vue-sweetalert2
@@ -182,7 +182,10 @@ export default {
   },
 
   env: {
-    baseUrl: 'https://giricode.com' || 'http://localhost:2021'
+    baseUrl: 'https://giricode.com' || 'http://localhost:2021',
+    description: 'Belajar koding bahasa Indonesia mulai dasar hingga expert.',
+    author: 'Mochammad Agus Idris',
+    gid: 'G-DEX6KTZ8DS',
   },
 
   // Build Configuration: https://go.nuxtjs.dev/config-build

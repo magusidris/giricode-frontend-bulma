@@ -1,25 +1,53 @@
 <template>
-  <section class="section">
-    <div class="container is-max-widescreen">
-      <div class="columns is-multiline is-variable is-1-mobile is-8-tablet is-4-desktop is-6-widescreen is-8-fullhd">
-        <div class="column is-4-desktop is-6-tablet is-12-mobile py-7" v-for="post in posts.data" :key="post.id">
-          <nuxt-link :to="{name: 'slug', params: {slug: post.slug}}">
-            <post-card :post="post" />
-          </nuxt-link>
+  <div>
+    <section class="hero hero-large bg-primary300">
+      <div class="hero-body">
+        <div class="container is-max-widescreen h-100">
+          <div class="columns h-100 is-vcentered">
+            <div class="column">
+              <p class="title is-size-3 has-text-white pb-3">
+                Belajar koding bahasa Indonesia mulai dasar hingga expert.
+              </p>
+              <p class="subtitle has-text-white">
+                Sesuaikan artikel pembelajaran berdasarkan kategori, kami telah menyiapkan banyak materi pada setiap bagian kategori berdasarkan kasus masalah yang sering ditemukan.
+              </p>
+              <p>
+
+              </p>
+            </div>
+            <div class="column is-5 is-hidden-mobile">
+              <nuxt-img
+                src="/img/opensource.svg"
+                alt="post title"
+                preset="web"
+                sizes="sm:355px md:320px lg:400px" />
+            </div>
+          </div>
         </div>
       </div>
-      <div class="columns mt-4">
-        <div class="column has-text-centered">
-          <b-pagination
-            v-model="currentPage"
-            @change="changePage"
-            :total="posts.total"
-            :perPage="posts.per_page">
-        </b-pagination>
+    </section>
+    <section class="section">
+      <div class="container is-max-widescreen">
+        <div class="columns is-multiline is-variable is-1-mobile is-8-tablet is-4-desktop is-6-widescreen is-8-fullhd">
+          <div class="column is-4-desktop is-6-tablet is-12-mobile py-7" v-for="post in posts.data" :key="post.id">
+            <nuxt-link :to="{name: 'slug', params: {slug: post.slug}}">
+              <post-card :post="post" />
+            </nuxt-link>
+          </div>
+        </div>
+        <div class="columns mt-4">
+          <div class="column has-text-centered">
+            <b-pagination
+              v-model="currentPage"
+              @change="changePage"
+              :total="posts.total"
+              :perPage="posts.per_page">
+          </b-pagination>
+          </div>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
+  </div>
 </template>
 
 <script>
@@ -99,3 +127,9 @@ export default {
   }
 }
 </script>
+
+<style lang="scss" scoped>
+.section {
+  min-height: 56vh;
+}
+</style>

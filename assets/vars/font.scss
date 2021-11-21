@@ -1,0 +1,68 @@
+/* Default font */
+$family-nunito: 'Nunito', sans-serif;
+$family-sourcecode-pro: 'Source Code Pro', monospace;
+
+$h1: (
+  font-family: $family-nunito,
+  font-size: 103
+);
+
+$h2: (
+  font-family: $family-nunito,
+  font-size: 64
+);
+
+$h3: (
+  font-family: $family-nunito,
+  font-size: 51
+);
+
+$h4: (
+  font-family: $family-nunito,
+  font-size: 36
+);
+
+$h5: (
+  font-family: $family-nunito,
+  font-size: 26
+);
+
+$h6: (
+  font-family: $family-nunito,
+  font-size: 21
+);
+
+$body1: (
+  font-family: $family-nunito,
+  font-size: 17
+);
+
+$body2: (
+  font-family: $family-nunito,
+  font-size: 15
+);
+
+$subtitle1: (
+  font-family: $family-nunito,
+  font-size: 17
+);
+
+$subtitle2: (
+  font-family: $family-nunito,
+  font-size: 15
+);
+
+$button: (
+  font-family: $family-nunito,
+  font-size: 15
+);
+
+$overline: (
+  font-family: $family-nunito,
+  font-size: 11
+);
+
+$caption: (
+  font-family: $family-nunito,
+  font-size: 13
+);

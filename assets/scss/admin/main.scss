@@ -1,15 +1,15 @@
 /* Theme style (colors & sizes) */
-@import "theme-default";
+// @import "./theme-default";
 
 /* Core Libs & Lib configs */
-@import "libs/all";
+@import "./libs/all";
 
 /* Mixins */
-@import "mixins";
+@import "./mixins";
 
 /* Theme components */
-@import "nav-bar";
-@import "aside";
+@import "./navbar";
+@import "./aside";
 @import "title-bar";
 @import "hero-bar";
 @import "card";

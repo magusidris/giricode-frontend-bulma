@@ -85,7 +85,9 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-// @import '~/assets/scss/admin/main'
-
+// .navbar-link {
+//   padding-right: $navbar-item-h-padding;
+//   padding-left: $navbar-item-h-padding;
+// }
 </style>
 

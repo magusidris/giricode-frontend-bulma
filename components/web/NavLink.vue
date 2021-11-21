@@ -8,7 +8,7 @@
 export default {
   props: {
     to: String,
-    required: true
+    required: false
   },
   computed: {
     isActive() {

@@ -1,6 +1,5 @@
 <template>
   <div>
-    <hero />
     <navbar />
     <Nuxt id="web" />
     <footerbar />
@@ -42,7 +41,3 @@ export default {
   }
 }
 </script>
-
-<style lang="scss" scoped>
-// @import '~/assets/scss/web/main'
-</style>

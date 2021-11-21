@@ -31,11 +31,6 @@ nav.navbar {
     &.has-dropdown {
       padding-right: 0;
       padding-left: 0;
-
-      .navbar-link {
-        padding-right: $navbar-item-h-padding;
-        padding-left: $navbar-item-h-padding;
-      }
     }
 
     &.has-control {
