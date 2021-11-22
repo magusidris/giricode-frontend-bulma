@@ -74,7 +74,7 @@ p {
   cursor: pointer;
   padding: 7px;
   background-color: var(--bg-secondary);
-  border: 2px solid var(--border-color);
+  border: 3px solid var(--border-color);
   color: var(--color);
   margin: 0;
   border-radius: 5px;

@@ -11,14 +11,14 @@
           sizes="sm:355px md:320px lg:480px" />
       </figure>
     </div>
-    <div class="card-content px-4">
+    <div class="card-content" :class="hover ? 'px-4' : 'px-0'">
       <div class="media">
         <div class="media-content">
           <span class="tag mr-2 mb-2" :class="`${tag.color.value} ${hover ? '' : 'is-light'}`" v-for="tag in post.tags" :key="tag.id" v-html="tag.name" />
           <p class="blog-title title is-5 primary-color" v-html="post.title" />
         </div>
       </div>
-      <div class="content pr-5">
+      <div class="content">
         <p class="is-size-7 secondary-color" :class="`${hover ? 'has-text-grey' : ''}`">
           <time :datetime="post.created_at">
             <b-icon

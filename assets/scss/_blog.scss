@@ -9,6 +9,9 @@ div.blog {
     -webkit-transition: 0.4s ease;
     transition: 0.4s ease;
   }
+  > .card-content {
+    transition: 0.4s ease;
+  }
   > .card-content .title {
     font-weight: 700;
     transition: 0.4s ease;

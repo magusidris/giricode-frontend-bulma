@@ -74,7 +74,16 @@ article.media {
 
 :root {
   --color: #4A4A4A;
-  --color-primary: #7bae91;
+  --color-primary: #7BAE91;
+  --color-secondary: #505763;
+  --bg: #F0F0F0;
+  --bg-secondary: #fff;
+  --border-color: #ddd;
+}
+
+.light-mode {
+  --color: #4A4A4A;
+  --color-primary: #538062;
   --color-secondary: #505763;
   --bg: #F0F0F0;
   --bg-secondary: #fff;
@@ -82,15 +91,17 @@ article.media {
 }
 
 .dark-mode {
-  --color: #ebf4f1;
-  --color-primary: #41b38a;
-  --color-secondary: #fdf9f3;
+  --color: #CCCCCC;
+  --color-primary: #538062;
+  --color-secondary: #999999;
   --bg: #091a28;
   --bg-secondary: #071521;
   --border-color: #1a4061;
 }
+
 .sepia-mode {
   --color: #433422;
+  --color-primary: #538062;
   --color-secondary: #504231;
   --bg: #f1e7d0;
   --bg-secondary: #eae0c9;
