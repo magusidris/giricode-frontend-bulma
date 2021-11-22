@@ -25,8 +25,9 @@ export default {
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-      { hid: 'theme-color', name: 'theme-color', media: '(prefers-color-scheme: dark)', content: '#7BAE91' },
+      { hid: 'theme-color', name: 'theme-color', content: '#7BAE91' },
       { hid: 'description', name: 'description', content: pkg.description },
+      { hid: 'apple-mobile-web-app-status-bar-style', name: 'apple-mobile-web-app-status-bar-style', content: 'black-translucent' },
       { name: 'format-detection', content: 'telephone=no' },
       { hid: 'og:title', name: 'og:title', content: 'Giricode' },
       { hid: 'og:site_name', name: 'og:site_name', content: 'Giricode' },
@@ -108,7 +109,9 @@ export default {
     '@nuxt/image',
     //https://github.com/avil13/vue-sweetalert2
     'vue-sweetalert2/nuxt',
-    '@nuxtjs/pwa'
+    '@nuxtjs/color-mode',
+    '@nuxtjs/pwa',
+    '@nuxtjs/svg'
   ],
 
   image: {
@@ -149,6 +152,16 @@ export default {
     }
   },
 
+  colorMode: {
+    preference: 'system', // default value of $colorMode.preference
+    fallback: 'light', // fallback value if not system preference found
+    hid: 'nuxt-color-mode-script',
+    globalName: '__NUXT_COLOR_MODE__',
+    componentName: 'ColorScheme',
+    classPrefix: '',
+    classSuffix: '-mode',
+    storageKey: 'nuxt-color-mode'
+  },
 
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
   axios: {

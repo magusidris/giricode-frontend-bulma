@@ -1,11 +1,11 @@
 div.blog {
   background-color: transparent;
   border: 2px solid transparent;
-  transition: .5s all;
+  transition: .5s ease-out;
   position: relative;
   overflow: hidden;
   > .card-image img {
-    border-radius: 0.30rem!important;
+    border-radius: .4rem!important;
     -webkit-transition: 0.4s ease;
     transition: 0.4s ease;
   }
@@ -17,8 +17,9 @@ div.blog {
 
 div.blog:hover {
   background: #fff;
-  border: 2px solid #f3f3f3;
-  box-shadow: 0 1em 1em #e7e7e7;
+  border: 2px solid var(--border-color);
+  border-radius: .6rem!important;
+  box-shadow: 0 1em 1em var(--border-color);
   > .card-image img {
     opacity: 0.9;
     -webkit-transform: scale(1.08);

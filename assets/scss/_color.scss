@@ -1,3 +1,15 @@
+.primary-color {
+  color: var(--color);
+}
+
+.primary-color:hover {
+  color: var(--color-primary);
+}
+
+.secondary-color {
+  color: var(--color-secondary);
+}
+
 .color-dark-green {
   color: $dark-green;
 }

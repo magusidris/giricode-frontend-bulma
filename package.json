@@ -42,6 +42,8 @@
   "devDependencies": {
     "@nuxt/image": "^0.6.0",
     "@nuxt/types": "^2.14.3",
+    "@nuxtjs/color-mode": "^2.1.1",
+    "@nuxtjs/svg": "^0.3.0",
     "cross-env": "^7.0.2",
     "fibers": "^5.0.0",
     "gh-pages": "^3.1.0",

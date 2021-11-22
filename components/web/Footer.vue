@@ -5,6 +5,9 @@
         <div class="columns is-multiline is-justify-content-center pb-4">
           <div class="selfs mx-3 my-3" v-for="(data, index) in selfs" :key="index"><nuxt-link :to="data.url">{{ data.name }}</nuxt-link></div>
         </div>
+        <div>
+          <color-mode-picker />
+        </div>
         <div class="pt-3">
           <a target="_" :href="data.url" v-for="(data, index) in socmeds" :key="index">
             <span class="icon has-text-white mx-5">
@@ -19,7 +22,11 @@
 </template>
 
 <script>
+import ColorModePicker from '@/components/web/ColorModePicker'
 export default {
+  components: {
+    ColorModePicker
+  },
   data() {
     return {
       selfs: [

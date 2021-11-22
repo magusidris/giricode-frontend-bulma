@@ -15,11 +15,11 @@
       <div class="media">
         <div class="media-content">
           <span class="tag mr-2 mb-2" :class="`${tag.color.value} ${hover ? '' : 'is-light'}`" v-for="tag in post.tags" :key="tag.id" v-html="tag.name" />
-          <p class="blog-title title is-5" v-html="post.title" />
+          <p class="blog-title title is-5 primary-color" v-html="post.title" />
         </div>
       </div>
       <div class="content pr-5">
-        <p class="is-size-7" :class="`${hover ? '' : 'has-text-grey'}`">
+        <p class="is-size-7 secondary-color" :class="`${hover ? 'has-text-grey' : ''}`">
           <time :datetime="post.created_at">
             <b-icon
               pack="fas"

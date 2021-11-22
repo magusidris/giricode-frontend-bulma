@@ -19,7 +19,7 @@
         </div>
       </div>
       <div class="content pr-5">
-        <p class="is-size-7" :class="`${hover ? '' : 'has-text-grey'}`">
+        <p class="is-size-7" :class="`${hover ? 'has-text-grey' : ''}`">
           <time :datetime="post.created_at">
             <b-icon
               pack="fas"
