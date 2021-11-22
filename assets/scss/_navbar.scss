@@ -12,51 +12,58 @@
 
 .navbar-start {
   > .navbar-item.dark-green {
-    color: #fff;
+    color: $primary-50;
+    font-weight: 700;
     > .navbar-link {
       background-color: $dark-green;
-      color: white;
+      color: $primary-50;
+      font-weight: 700;
       > .navbar-dropdown {
-        background-color: #fff;
-        color: $dark-green;
+        background-color: $primary-50;
+        color: $dark-green!important;
       }
+    }
+    > .navbar-link:hover {
+      color: $primary-500;
     }
     > .navbar-dropdown.is-boxed {
       padding-left: .5rem;
       padding-right: .5rem;
+      > .navbar-link {
+        color: $primary-300;
+      }
       > .navbar-item.dark-green {
         background-color: #fff;
         color: $dark-green;
         margin-bottom: .3rem;
+        border-radius: 5px;
       }
       > .navbar-item.dark-green:hover {
+        background-color: $primary-50;
+        color: $primary-300;
+        font-weight: 800;
+      }
+      > .navbar-item.dark-green.is-active {
         background-color: $primary-100;
         color: #fff;
         border-radius: 5px;
-        font-weight: bold;
+        font-weight: 800;
       }
-      > .navbar-item.dark-green.is-active {
-        background-color: $dark-green;
-        color: #fff;
-        border-radius: 5px;
-        font-weight: bold;
-      }
-    }
-    .navbar-link > .navbar-item.dark-green.is-active {
-      border-bottom: 1px solid $primary-200;
     }
   }
 
   > .navbar-item:hover.dark-green {
-    color: rgb(231, 238, 235);
-    font-weight: bold;
+    color: $primary-200;
   }
 
   > .navbar-item.dark-green.is-active {
-    color: rgb(231, 238, 235);
-    font-weight: bold;
+    font-weight: 800;
   }
 }
+
+// a.is-dark-green.navbar-item.dark-green {
+//   margin-right: 1rem;
+// }
 
 .navbar-item.dark-green:focus,
 .navbar-item.dark-green:hover,
@@ -70,6 +77,6 @@
 }
 
 .navbar-link:not(.is-arrowless)::after {
-  border-color: $light-green;
+  border-color: $primary-100;
   margin-top: -0.375em;
 }

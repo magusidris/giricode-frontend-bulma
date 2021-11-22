@@ -5,7 +5,7 @@
         <a @click="isActive = !isActive"
           :class="{'is-active': isActive}"
           role="button"
-          class="navbar-burger burger"
+          class="navbar-burger burger has-text-white"
           aria-label="menu"
           aria-expanded="false"
           data-target="navbarBasicExample">
