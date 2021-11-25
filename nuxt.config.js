@@ -11,10 +11,11 @@ export default {
   //rendering mode SSR
   ssr: true,
 
-  loading: {
-    color: 'white',	// <-- color
-    height: '5px'	// <-- height
-  },
+  // loading: {
+  //   color: 'white',	// <-- color
+  //   height: '5px'	// <-- height
+  // },
+  loading: false,
 
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
@@ -133,7 +134,9 @@ export default {
     meta: {
       title: 'Giricode - Belajar koding bahasa Indonesia mulai dasar hingga expert.',
       author: 'Giricode',
-      'theme-color': 'AECAB2'
+      'theme-color': '#7BAE91',
+      'apple-mobile-web-app-capable': 'yes',
+      'apple-mobile-web-app-status-bar-style': 'black-translucent'
     },
     manifest: {
       name: 'Giricode',
