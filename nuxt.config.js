@@ -26,7 +26,7 @@ export default {
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-      { hid: 'theme-color', name: 'theme-color', media: '(prefers-color-scheme: dark)', content: 'black' },
+      { hid: 'theme-color', name: 'theme-color', media: '(prefers-color-scheme: light)', content: 'white' },
       { hid: 'description', name: 'description', content: pkg.description },
       { hid: 'apple-mobile-web-app-status-bar-style', name: 'apple-mobile-web-app-status-bar-style', content: 'black-translucent' },
       { name: 'format-detection', content: 'telephone=no' },
