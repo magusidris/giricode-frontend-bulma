@@ -5,15 +5,20 @@
         Komentar
       </p>
     </header>
-    <div class="card-content">
+    <div class="card-content pt-2">
       <form>
         <!-- Comment Post -->
-        <div class="pb-2" v-if="isAuthenticated">
+        <div v-if="isAuthenticated">
           <keep-alive>
             <comment-form
               @valueUpdated="updateComment($event)" />
           </keep-alive>
         </div>
+        <template v-if="comments.length < 1">
+          <div class="has-text-centered">
+            Belum ada komentar
+          </div>
+        </template>
 
         <article class="media" v-for="data in comments" :key="data.id">
           <figure class="media-left">

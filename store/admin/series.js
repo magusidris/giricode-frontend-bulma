@@ -1,17 +1,19 @@
 // state
 export const state = () => ({
 
+
+  // series
+  series: [],
+
   // posts
   posts: [],
 
-  // categories
-  categories: [],
-
-  // tags
-  tags: [],
-
   // page
   page: 1,
+
+
+  // post
+  postseri: {},
 
   // post
   post: {}
@@ -19,35 +21,32 @@ export const state = () => ({
 })
 
 export const getters = {
-  getCategories(state) {
-    return state.categories
-  },
-  getTags(state) {
-    return state.tags
+  getPosts(state) {
+    return state.posts
   }
 }
 
 // mutations
 export const mutations = {
   // mutation "setPostsData"
+  setSeriesData(state, payload) {
+
+    // set value state "posts"
+    state.series = payload
+  },
+
+  // mutation "setCategoriesData"
+  setPostseriData(state, payload) {
+
+    // set value state "posts"
+    state.postseri = payload
+  },
+
+  // mutation "setCategoriesData"
   setPostsData(state, payload) {
 
     // set value state "posts"
     state.posts = payload
-  },
-
-  // mutation "setCategoriesData"
-  setCategoriesData(state, payload) {
-
-    // set value state "posts"
-    state.categories = payload
-  },
-
-  // mutation "setTagsData"
-  setTagsData(state, payload) {
-
-    // set value state "tags"
-    state.tags = payload
   },
 
   // mutation "setPage"
@@ -55,18 +54,36 @@ export const mutations = {
 
     // set value state "page"
     state.page = payload
-  },
-
-  // mutation "setPostData"
-  setPostData(state, payload) {
-
-    // set value state "post"
-    state.post = payload
   }
+
 }
 
 // actions
 export const actions = {
+
+  // get Posts data
+  getSeriesData({ commit, state }, payload) {
+
+    // search
+    let search = payload ? payload : ''
+
+    // set promise
+    return new Promise((resolve, reject) => {
+
+      // fetching Rest API "/api/v1/admin/posts" with method "GET"
+      this.$axios.get(`/api/v1/admin/postseries?q=${search}&page=${state.page}`)
+
+      // success
+      .then((response) => {
+
+        // commit to mutation "SetPostsData"
+        commit('setSeriesData', response.data.data)
+
+        // resolve promise
+        resolve()
+      })
+    })
+  },
 
   // get Posts data
   getPostsData({ commit, state }, payload) {
@@ -78,7 +95,7 @@ export const actions = {
     return new Promise((resolve, reject) => {
 
       // fetching Rest API "/api/v1/admin/posts" with method "GET"
-      this.$axios.get(`/api/v1/admin/posts?q=${search}&page=${state.page}`)
+      this.$axios.get(`/api/v1/admin/postseri/posts?q=${search}&page=${state.page}`)
 
       // success
       .then((response) => {
@@ -92,69 +109,20 @@ export const actions = {
     })
   },
 
-  // get Posts data
-  getCategoriesData({ commit, state }, payload) {
-
-    // search
-    let search = payload ? payload : ''
-
-    // set promise
-    return new Promise((resolve, reject) => {
-
-      // fetching Rest API "/api/v1/admin/categories" with method "GET"
-      this.$axios.get(`/api/v1/admin/post/categories?q=${search}&page=${state.page}`)
-
-      // success
-      .then((response) => {
-
-        // commit to mutation "SetPostsData"
-        commit('setCategoriesData', response.data.data)
-
-        // resolve promise
-        resolve()
-      })
-    })
-  },
-
-
-  // get Tags data
-  getTagsData({ commit, state }, payload) {
-
-    // search
-    let search = payload ? payload : ''
-
-    // set promise
-    return new Promise((resolve, reject) => {
-
-      // fetching Rest API "/api/v1/admin/alltags" with method "GET"
-      this.$axios.get(`/api/v1/admin/post/tags?q=${search}&page=${state.page}`)
-
-      // success
-      .then((response) => {
-
-        // commit to mutation "SetPostsData"
-        commit('setTagsData', response.data.data)
-
-        // resolve promise
-        resolve()
-      })
-    })
-  },
-
   // get detail Post
-  getDetailPost({ commit }, payload) {
+  getDetailSeries({ commit }, payload) {
 
     // set promise
     return new Promise((resolve) => {
 
       // get to Rest API "/api/v1/admin/posts/:id" with method "GET"
-      this.$axios.get(`/api/v1/admin/posts/${payload}`)
+      this.$axios.get(`/api/v1/admin/postseries/${payload}`)
 
       // success
       .then(response => {
 
         // commit to mutation "setPostData"
-        commit('setPostData', response.data.data)
+        commit('setPostseriData', response.data.data)
 
         // resolve promise
         resolve()
@@ -163,19 +131,19 @@ export const actions = {
   },
 
   // store post
-  storePost({ dispatch, commit }, payload) {
+  storeSeries({ dispatch, commit }, payload) {
 
     // set Promise
     return new Promise((resolve, reject) => {
 
       // store to Rest API "/api/v1/admin/posts" with method "POST"
-      this.$axios.post('/api/v1/admin/posts', payload)
+      this.$axios.post('/api/v1/admin/postseries', payload)
 
       // success
       .then(() => {
 
         // dispatch action "getPostsData"
-        dispatch('getPostsData')
+        dispatch('getSeriesData')
 
         // resolve promise
         resolve()
@@ -187,19 +155,19 @@ export const actions = {
   },
 
   // update Post
-  updatePost({ dispatch, commit }, { postId, payload }) {
+  updateSeries({ dispatch, commit }, { postId, payload }) {
 
     // set promise
     return new Promise((resolve, reject) => {
 
       // store to Rest API "/api/v1/admin/posts/:id" with method POST
-      this.$axios.post(`/api/v1/admin/posts/${postId}`, payload)
+      this.$axios.post(`/api/v1/admin/postseries/${postId}`, payload)
 
       // success
       .then(() => {
 
         // dispatch action "getPostsData"
-        dispatch('getPostsData')
+        dispatch('getSeriesData')
 
         // resolve promise
         resolve()
@@ -212,19 +180,19 @@ export const actions = {
   },
 
   // destroy Post
-  destroyPost({ dispatch, commit }, payload) {
+  destroySeries({ dispatch, commit }, payload) {
 
     // set promise
     return new Promise((resolve, reject) => {
 
       // delete to Rest API "/api/v1/admin/posts/:id" with method "DELETE"
-      this.$axios.delete(`/api/v1/admin/posts/${payload}`)
+      this.$axios.delete(`/api/v1/admin/postseries/${payload}`)
 
       // success
       .then(() => {
 
         // dispatch action "getPostsData"
-        dispatch('getPostsData')
+        dispatch('getSeriesData')
 
         // resolve promise
         resolve()

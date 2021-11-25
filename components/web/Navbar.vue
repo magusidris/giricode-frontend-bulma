@@ -92,6 +92,11 @@ export default {
           url: '/'
         },
         {
+          dropdown: false,
+          name: 'Tutorial Series',
+          url: '/series'
+        },
+        {
           dropdown: true,
           name: 'Kategori',
           data: [

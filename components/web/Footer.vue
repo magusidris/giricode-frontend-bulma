@@ -3,7 +3,11 @@
     <div class="container py-7">
       <div class="has-text-centered">
         <div class="columns is-multiline is-justify-content-center pb-4">
-          <div class="selfs mx-3 my-3" v-for="(data, index) in selfs" :key="index"><nuxt-link :to="data.url">{{ data.name }}</nuxt-link></div>
+          <div class="selfs mx-3 my-3" v-for="(data, index) in selfs" :key="index">
+            <nuxt-link :to="data.url">
+              {{ data.name }}
+            </nuxt-link>
+          </div>
         </div>
         <div>
           <color-mode-picker />

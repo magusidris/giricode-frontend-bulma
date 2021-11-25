@@ -60,15 +60,10 @@ export default {
   // Global CSS: https://go.nuxtjs.dev/config-css
   css: [
     '@/assets/scss/main.scss',
-    '@/assets/css/icons.css',
-    // '@/assets/vendor/hljs/styles/atom-one-dark.min.css'
-    // '@/assets/css/vue-md.css',
-    // '@/assets/css/vue-md.css'
+    '@/assets/css/icons.css'
   ],
 
   script: [
-    // '@/assets/vendor/hljs/highlight.min.js',
-    // '@/assets/vendor/hljs/vue-plugin/dist/highlightjs-vue.min.js'
   ],
 
   styleResources: {
@@ -147,7 +142,7 @@ export default {
       lang: 'en'
     },
     icon: {
-      fileName: '/img/mobile-logo.svg',
+      fileName: 'img/mobile-logo.png',
       sizes: [64, 120, 144, 152, 192, 384, 512]
     }
   },
@@ -182,7 +177,7 @@ export default {
       'jwt': {
         provider: 'laravel/jwt',
         scheme: 'refresh',
-        url: 'https://giricode.com' || 'http://localhost:2021',
+        url: 'https://giricode.com' && 'http://localhost:2021',
         endpoints: {
           login: {
             url: '/api/v1/auth/login',

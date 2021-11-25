@@ -9,6 +9,19 @@
                 <show-post-card
                   :post="post" />
               </div>
+              <div v-show="series.length > 0" class="column is-12" v-for="seri in series" :key="seri.id">
+                <nav class="panel is-dark">
+                  <p class="panel-heading">
+                    Tutorial Dalam Tutorial Series Yang Sama
+                  </p>
+                  <nuxt-link v-for="panelPost in seri.posts" :key="panelPost.id" :to="{ name: 'slug', params: { slug: panelPost.slug } }" class="panel-block px-4 py-4">
+                    <span class="panel-icon">
+                      <i class="fas fa-book" aria-hidden="true"></i>
+                    </span>
+                    {{ panelPost.title }}
+                  </nuxt-link>
+                </nav>
+              </div>
               <div class="column is-12">
                 <comment-list
                   :comments="post.comments" />
@@ -32,6 +45,7 @@
 </template>
 
 <script>
+import { mapState } from 'vuex'
 import ShowPostCard from '@/components/web/ShowPostCard'
 import CommentList from '@/components/web/Comment/List'
 import CategoryCard from '@/components/web/CategoryCard'
@@ -116,9 +130,10 @@ export default {
     TagCard
   },
   computed: {
-    post() {
-      return this.$store.state.web.post.post
-    }
+    ...mapState ({
+      post: state => state.web.post.post,
+      series: state => state.web.post.post.post_series
+    })
   },
   async fetch({store, params}) {
     await store.dispatch('web/post/getDetailPost', params.slug)
@@ -129,3 +144,20 @@ export default {
   }
 }
 </script>
+
+<style lang="scss" scoped>
+.nuxt-link-active {
+  background: $primary-300;
+  color: #fff;
+  > span {
+    color: #fff;
+  }
+}
+.nuxt-link-active:hover {
+  background: $primary-300;
+  color: #fff;
+  > span {
+    color: #fff;
+  }
+}
+</style>

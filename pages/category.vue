@@ -4,16 +4,16 @@
       <div class="hero-body">
         <div class="container is-max-widescreen h-100">
           <div class="columns h-100 is-vcentered">
-            <div class="column">
-              <p class="title is-size-3 pb-3">
-                Artikel by Kategori: <span class="has-text-link has-text-weight-bold">{{ category.name }}</span>
+            <div class="column pb-0">
+              <p class="title is-size-3 is-size-4-mobile pb-3">
+                Artikel by Kategori: <span class="has-text-grey has-text-weight-bold">{{ category.name }}</span>
               </p>
-              <p class="subtitle">
-                Sesuaikan artikel pembelajaran berdasarkan kategori, kami telah menyiapkan banyak materi pada setiap bagian kategori berdasarkan kasus masalah yang sering ditemukan.
+              <p class="subtitle is-size-6-mobile">
+                Sesuaikan artikel pembelajaran berdasarkan kategori, kami telah menyiapkan banyak materi pada setiap bagian kategori berdasarkan kasus masalah yang sering didapatkan.
               </p>
-              <p>
+              <p class="has-text-centered-mobile">
                 <nuxt-link :to="{name: 'category-slug', params: {slug: category.slug}}" v-for="(category, i) in categories" :key="i">
-                  <button class="button is-large is-success is-inverted mr-2 mb-2">
+                  <button class="button is-success is-inverted mr-2 mb-2">
                     <nuxt-img
                       :src="`/storage/categories/`+category.image"
                       alt="post.title"
@@ -23,12 +23,12 @@
                 </nuxt-link>
               </p>
             </div>
-            <div class="column is-5 is-hidden-mobile">
+            <div class="column is-5 has-text-centered">
               <nuxt-img
                 src="/img/codetyping.svg"
                 :alt="category.name"
                 preset="web"
-                sizes="sm:355px md:320px lg:400px" />
+                sizes="sm:180px md:280px lg:380px" />
             </div>
           </div>
         </div>

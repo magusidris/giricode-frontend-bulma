@@ -52,6 +52,11 @@ export default {
             to: '/admin/blogs',
             label: 'Blog',
             icon: 'book-open',
+          },
+          {
+            to: '/admin/blogseries',
+            label: 'Blog Series',
+            icon: 'book-open',
           }
         ],
         'Settings',

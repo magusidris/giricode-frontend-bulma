@@ -49,6 +49,14 @@
 		    		Blog
 		    	</nuxt-link>
 		    </li>
+        <li>
+		    	<nuxt-link :to="{name: 'admin-series'}">
+		    		<span class="icon">
+		    			<i class="fas fa-swatchbook"></i>
+		    		</span>
+		    		Blog Series
+		    	</nuxt-link>
+		    </li>
 		  </ul>
 		  <p class="menu-label">
 		    SETTINGS

@@ -21,3 +21,11 @@
 a.tag:hover {
   text-decoration: none;
 }
+
+.divider-custom {
+  width: 4rem;
+  height: 0.25rem;
+  background-color: $primary-200;
+  border-radius: 9999px;
+  border: 0 solid $primary-200;
+}
