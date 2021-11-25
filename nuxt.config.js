@@ -134,7 +134,7 @@ export default {
     meta: {
       title: 'Giricode - Belajar koding bahasa Indonesia mulai dasar hingga expert.',
       author: 'Giricode',
-      'theme-color': '#7BAE91',
+      // 'theme-color': '#7BAE91',
       'apple-mobile-web-app-capable': 'yes',
       'apple-mobile-web-app-status-bar-style': 'black-translucent'
     },
