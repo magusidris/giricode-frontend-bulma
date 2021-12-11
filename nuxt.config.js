@@ -11,11 +11,10 @@ export default {
   //rendering mode SSR
   ssr: true,
 
-  // loading: {
-  //   color: 'white',	// <-- color
-  //   height: '5px'	// <-- height
-  // },
-  loading: false,
+  loading: {
+    color: 'white',	// <-- color
+    height: '5px'	// <-- height
+  },
 
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
@@ -42,6 +41,8 @@ export default {
       { hid: 'twitter:description', name: 'twitter:description', content: pkg.description },
       { hid: 'twitter:site', name: 'twitter:site', content: '@Giricode' },
       { hid: 'twitter:image', name: 'twitter:image', content: 'https://giricode.com/_ipx/f_webp,fit_fill,q_80,w_1000/storage/sliders/fSdgTkdPjKwyHJW7Ga9wro3p3HZ4Vt9RmDxIM10l.svg' },
+      { hid: 'og:image:width', name: 'og:image:width', content: '1200' },
+      { hid: 'og:image:height', name: 'og:image:height', content: '630' }
     ],
     link: [
       {
