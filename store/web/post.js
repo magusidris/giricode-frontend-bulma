@@ -1,211 +1,195 @@
 //state
 export const state = () => ({
+    //posts
+    posts: [],
 
-  //posts
-  posts: [],
+    //post
+    post: {},
 
-  //post
-  post: {},
+    visitor: {},
 
-  visitor: {},
+    //page
+    page: 1,
 
-  //page
-  page: 1,
+    comment: {
+        slug: '',
+        comment: '',
+        parentId: 0,
+    },
 
-  comment: {
-    slug: '',
-    comment: '',
-    parentId: 0
-  },
-
-  canComment: false,
-  canReply: false
+    canComment: false,
+    canReply: false,
 })
 
 //actions
 export const actions = {
+    // get categories data
+    getPostsData({ commit, state }, payload) {
+        // search
+        let search = payload ? payload : ''
 
-  // get categories data
-  getPostsData({ commit, state }, payload) {
+        // set promise
+        return new Promise((resolve, reject) => {
+            // fetching Rest API "/api/v1/web/posts" with method "GET"
+            this.$axios
+                .get(`/api/v1/web/posts?q=${search}&page=${state.page}`)
 
-    // search
-    let search = payload ? payload : ''
+                // success
+                .then((response) => {
+                    // commit to mutation "SetCategoriesData"
+                    commit('setPostsData', response.data.data)
 
-    // set promise
-    return new Promise((resolve, reject) => {
+                    // resolve promise
+                    resolve()
+                })
+                .catch((error) => reject(error))
+        })
+    },
 
-      // fetching Rest API "/api/v1/web/posts" with method "GET"
-      this.$axios.get(`/api/v1/web/posts?q=${search}&page=${state.page}`)
+    //get detail post
+    getDetailPost({ commit }, payload) {
+        //set promise
+        return new Promise((resolve, reject) => {
+            //get to Rest API "/api/web/posts/:slug" with method "GET"
+            this.$axios
+                .$get(`/api/v1/web/posts/${payload}`)
 
-      // success
-      .then((response) => {
+                //success
+                .then((response) => {
+                    //commit to mutation "SET_POST_DATA"
+                    commit('setPostData', response.data)
 
-        // commit to mutation "SetCategoriesData"
-        commit('setPostsData', response.data.data)
+                    resolve()
+                })
+                .catch((error) => reject(error))
+        })
+    },
 
-        // resolve promise
-        resolve()
-      })
-      .catch(error => reject(error))
-    })
-  },
+    storeVisitor({ commit }, payload) {
+        // set Promise
+        return new Promise((resolve, reject) => {
+            // store to Rest API "/api/v1/admin/posts" with method "POST"
+            this.$axios
+                .post(`/api/v1/web/visitor/${payload}`)
 
-  //get detail post
-  getDetailPost({ commit }, payload) {
+                // success
+                .then((response) => {
+                    // dispatch getDetailPost
+                    commit('setVisitorData', response.data)
 
-    //set promise
-    return new Promise((resolve, reject) => {
+                    // resolve promise
+                    resolve()
+                })
 
-      //get to Rest API "/api/web/posts/:slug" with method "GET"
-      this.$axios.$get(`/api/v1/web/posts/${payload}`)
+                .catch((error) => {
+                    reject(error)
+                })
+        })
+    },
 
-      //success
-      .then(response => {
+    storeComment({ commit, dispatch, state }) {
+        const slug = state.comment.slug
+        const comment = state.comment.comment
 
-          //commit to mutation "SET_POST_DATA"
-          commit('setPostData', response.data)
+        // set Promise
+        return new Promise((resolve, reject) => {
+            // store to Rest API "/api/v1/admin/posts" with method "POST"
+            this.$axios
+                .post(`/api/v1/web/post/${slug}/comment`, { comment: comment })
 
-          resolve()
-      })
-      .catch(error => reject(error))
-    })
+                // success
+                .then(() => {
+                    // dispatch getDetailPost
+                    dispatch('getDetailPost', slug)
+                    commit('setCanComment', false)
+                    commit('setCanReply', false)
+                    // resolve promise
+                    resolve()
+                })
 
-  },
+                .catch((error) => reject(error))
+        })
+    },
 
-  storeVisitor({ commit }, payload) {
+    storeReply({ commit, dispatch, state }) {
+        const slug = state.comment.slug
+        const comment = state.comment.comment
+        const parentId = state.comment.parentId
 
-    // set Promise
-    return new Promise((resolve, reject) => {
+        // set Promise
+        return new Promise((resolve, reject) => {
+            // store to Rest API "/api/v1/admin/posts" with method "POST"
+            this.$axios
+                .post(`/api/v1/web/post/${slug}/reply/${parentId}`, {
+                    comment: comment,
+                })
 
-      // store to Rest API "/api/v1/admin/posts" with method "POST"
-      this.$axios.post(`/api/v1/web/visitor/${payload}`)
+                // success
+                .then(() => {
+                    // dispatch getDetailPost
+                    dispatch('getDetailPost', slug)
+                    commit('setCanComment', false)
+                    commit('setCanReply', false)
+                    // resolve promise
+                    resolve()
+                })
 
-      // success
-      .then(response => {
+                .catch((error) => reject(error))
+        })
+    },
 
-        // dispatch getDetailPost
-        commit('setVisitorData', response.data)
+    updateComment({ commit }, { comment }) {
+        commit('setCommentValue', { comment })
+        commit('setCanComment', true)
+        // commit('setCanReply', false)
+    },
 
-        // resolve promise
-        resolve()
+    updateReply({ commit }, { comment, parentId }) {
+        commit('setReplyValue', { comment })
+        commit('setParentId', { parentId })
+        // commit('setCanComment', false)
+        commit('setCanReply', true)
+    },
 
-      })
-
-      .catch(error => {
-        reject(error)
-      })
-    })
-  },
-
-  storeComment({ commit, dispatch, state }) {
-
-    const slug = state.comment.slug
-    const comment = state.comment.comment
-
-    // set Promise
-    return new Promise((resolve, reject) => {
-
-      // store to Rest API "/api/v1/admin/posts" with method "POST"
-      this.$axios.post(`/api/v1/web/post/${slug}/comment`, {'comment': comment})
-
-      // success
-      .then(() => {
-
-        // dispatch getDetailPost
-        dispatch('getDetailPost', slug)
-        commit('setCanComment', false)
-        commit('setCanReply', false)
-        // resolve promise
-        resolve()
-
-      })
-
-      .catch(error => reject(error))
-    })
-  },
-
-  storeReply({ commit, dispatch, state }) {
-
-    const slug = state.comment.slug
-    const comment = state.comment.comment
-    const parentId = state.comment.parentId
-
-    // set Promise
-    return new Promise((resolve, reject) => {
-
-      // store to Rest API "/api/v1/admin/posts" with method "POST"
-      this.$axios.post(`/api/v1/web/post/${slug}/reply/${parentId}`, {'comment': comment})
-
-      // success
-      .then(() => {
-
-        // dispatch getDetailPost
-        dispatch('getDetailPost', slug)
-        commit('setCanComment', false)
-        commit('setCanReply', false)
-        // resolve promise
-        resolve()
-
-      })
-
-      .catch(error => reject(error))
-    })
-  },
-
-  updateComment({ commit }, {comment}) {
-    commit('setCommentValue', {comment})
-    commit('setCanComment', true)
-    // commit('setCanReply', false)
-  },
-
-  updateReply({commit}, {comment, parentId}) {
-    commit('setReplyValue', {comment})
-    commit('setParentId', {parentId})
-    // commit('setCanComment', false)
-    commit('setCanReply', true)
-  },
-
-  updateSlug({commit}, {slug}) {
-    commit('setSlugValue', {slug})
-  }
+    updateSlug({ commit }, { slug }) {
+        commit('setSlugValue', { slug })
+    },
 }
-
 
 //mutations
 export const mutations = {
-  setPostsData(state, payload) {
-    state.posts = payload
-  },
-  setPostData(state, payload) {
-    state.post = payload
-  },
+    setPostsData(state, payload) {
+        state.posts = payload
+    },
+    setPostData(state, payload) {
+        state.post = payload
+    },
 
-  setVisitorData(state, payload) {
-    state.visitor = payload
-  },
+    setVisitorData(state, payload) {
+        state.visitor = payload
+    },
 
-  // mutation "setPage"
-  setPage(state, payload) {
-
-    // set value state "page"
-    state.page = payload
-  },
-  setCommentValue(state, {comment}) {
-    state.comment.comment = comment
-  },
-  setReplyValue(state, {comment}) {
-    state.comment.comment = comment
-  },
-  setParentId(state, {parentId}) {
-    state.comment.parentId = parentId
-  },
-  setSlugValue(state, {slug}) {
-    state.comment.slug = slug
-  },
-  setCanComment(state, canComment) {
-    state.canComment = canComment
-  },
-  setCanReply(state, canReply) {
-    state.canReply = canReply
-  }
+    // mutation "setPage"
+    setPage(state, payload) {
+        // set value state "page"
+        state.page = payload
+    },
+    setCommentValue(state, { comment }) {
+        state.comment.comment = comment
+    },
+    setReplyValue(state, { comment }) {
+        state.comment.comment = comment
+    },
+    setParentId(state, { parentId }) {
+        state.comment.parentId = parentId
+    },
+    setSlugValue(state, { slug }) {
+        state.comment.slug = slug
+    },
+    setCanComment(state, canComment) {
+        state.canComment = canComment
+    },
+    setCanReply(state, canReply) {
+        state.canReply = canReply
+    },
 }
