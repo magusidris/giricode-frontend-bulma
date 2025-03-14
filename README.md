@@ -27,10 +27,6 @@ For detailed explanation on how things work, check out the [Nuxt.js documentatio
 -   💅 **Beautiful**: Clean and modern design
 -   🔧 **Configurable**: Easily customizable to fit your needs
 
-## 🤝 Contributing
-
-We welcome contributions! Please check out our [contributing guide](CONTRIBUTING.md) for more details.
-
 ## 📄 License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
